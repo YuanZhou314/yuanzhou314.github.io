@@ -16,25 +16,24 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="直接切换至root用户下执行操作 1su - root  输入密码进入root用户，然后修改软件更新源 1sudo nano &#x2F;etc&#x2F;apt&#x2F;sources.list   将原来的源用 # 注掉，添加这个阿里源 1deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;raspbian&#x2F;raspbian&#x2F; stretch main contrib non-free rpi  接下来修改系统">
+    <meta name="description" content="先提供一个LaTex公式编辑器在线网站，更加快捷：https:&#x2F;&#x2F;latexlive.com&#x2F;home 补充:写完才发现原生hexo不支持latex公式,不过md支持就可以了,就是hexo上不太美观,下次有心情再研究下怎么渲染公式吧 添加公式的方法 行内公式 1$行内公式$ 行间公式 1$$行间公式$$  Latex 数学公式语法 角标（上下标）  上标命令^&amp;#123;&amp;#125;  下标">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树莓派更新源流程">
-<meta property="og:url" content="https://zhouyinglin.cn/post/8f5d5cd5.html">
+<meta property="og:title" content="Markdown下Latex数学公式输入">
+<meta property="og:url" content="https://zhouyinglin.cn/post/dc95e40f.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="直接切换至root用户下执行操作 1su - root  输入密码进入root用户，然后修改软件更新源 1sudo nano &#x2F;etc&#x2F;apt&#x2F;sources.list   将原来的源用 # 注掉，添加这个阿里源 1deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;raspbian&#x2F;raspbian&#x2F; stretch main contrib non-free rpi  接下来修改系统">
+<meta property="og:description" content="先提供一个LaTex公式编辑器在线网站，更加快捷：https:&#x2F;&#x2F;latexlive.com&#x2F;home 补充:写完才发现原生hexo不支持latex公式,不过md支持就可以了,就是hexo上不太美观,下次有心情再研究下怎么渲染公式吧 添加公式的方法 行内公式 1$行内公式$ 行间公式 1$$行间公式$$  Latex 数学公式语法 角标（上下标）  上标命令^&amp;#123;&amp;#125;  下标">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-06T10:28:58.000Z">
-<meta property="article:modified_time" content="2022-12-15T02:32:52.000Z">
+<meta property="article:published_time" content="2022-12-18T08:13:15.000Z">
+<meta property="article:modified_time" content="2022-12-18T08:35:57.355Z">
 <meta property="article:author" content="小周">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="树莓派">
+<meta property="article:tag" content="文档">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
     <meta name="baidu-site-verification" content="code-bMcoZ9RRBp" />
   
-  <title>树莓派更新源流程 - 小周的院子</title>
+  <title>Markdown下Latex数学公式输入 - 小周的院子</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -284,7 +283,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="树莓派更新源流程"></span>
+            <span id="subtitle" data-typed-text="Markdown下Latex数学公式输入"></span>
           
         </div>
 
@@ -295,8 +294,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-06 18:28" pubdate>
-          2022年8月6日 晚上
+        <time datetime="2022-12-18 16:13" pubdate>
+          2022年12月18日 下午
         </time>
       </span>
     
@@ -307,7 +306,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          362 字
+          5.4k 字
         
       </span>
     
@@ -318,7 +317,7 @@
         
         
         
-          4 分钟
+          45 分钟
         
       </span>
     
@@ -364,30 +363,168 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">树莓派更新源流程</h1>
+            <h1 style="display: none">Markdown下Latex数学公式输入</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<p>直接切换至root用户下执行操作</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">su - root</span><br></code></pre></td></tr></table></figure>
+<!-- categories:Dev、Ops、Study、Sth、News、work-->
+<!-- tags: 
+Python、MySQL、LeetCode、机器学习、Linux、Big Data、Java、BlockChain、Docker、Web 、分布式、
+Maven、数据结构、JVM、JavaScript、Crontab、Shell、Ubuntu、VPN、NodeJS、String、VM、Hadoop、
+Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美学、写作、哲学、文档、绘画、前端、
+历史、政治、社会、导购
+ -->
+<p>先提供一个LaTex公式编辑器在线网站，更加快捷：<a target="_blank" rel="noopener" href="https://latexlive.com/home">https://latexlive.com/home</a></p>
+<p>补充:写完才发现原生hexo不支持latex公式,不过md支持就可以了,就是hexo上不太美观,下次有心情再研究下怎么渲染公式吧</p>
+<h2 id="添加公式的方法"><a href="#添加公式的方法" class="headerlink" title="添加公式的方法"></a>添加公式的方法</h2><ol>
+<li><p>行内公式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">$行内公式$<br></code></pre></td></tr></table></figure></li>
+<li><p>行间公式</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span><span class="hljs-variable">$</span>行间公式<span class="hljs-variable">$</span><span class="hljs-variable">$</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Latex-数学公式语法"><a href="#Latex-数学公式语法" class="headerlink" title="Latex 数学公式语法"></a>Latex 数学公式语法</h2><ol>
+<li><p>角标（上下标）</p>
+<ul>
+<li><p>上标命令<code>^&#123;&#125;</code></p>
+</li>
+<li><p>下标命令<code>_&#123;&#125;</code></p>
+<p>上下标命令用来放在需要插入上下标的地方，华括弧内为上下标的内容，当角标为单个字符时候，可以不使用花括号；如果角标为多字符或者多层次的时候，必须要使用花括号。</p>
+</li>
+<li><p>举例：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">$$x^2, x_1^2, x^</span><span class="hljs-template-variable">&#123;(n)&#125;</span><span class="language-xml">_</span><span class="hljs-template-variable">&#123;22&#125;</span><span class="language-xml">, ^</span><span class="hljs-template-variable">&#123;16&#125;</span><span class="language-xml">O^</span><span class="hljs-template-variable">&#123;2-&#125;</span><span class="language-xml">_</span><span class="hljs-template-variable">&#123;32&#125;</span><span class="language-xml">, x^</span><span class="hljs-template-variable">&#123;y^&#123;z^a&#125;</span><span class="language-xml">&#125;, x^</span><span class="hljs-template-variable">&#123;y_z&#125;</span><span class="language-xml">$$</span><br></code></pre></td></tr></table></figure>
 
-<p>输入密码进入root用户，然后修改软件更新源</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo nano <span class="hljs-regexp">/etc/</span>apt/sources.list <br></code></pre></td></tr></table></figure>
+<p>$$x^2,  x_1^2, x^{(n)}<em>{22}, ^{16}O^{2-}</em>{32}, x^{y^{z^a}}, x^{y_z}$$</p>
+<p>如果需要使用文字作为角标，首先要把文字放在\mbox{}文字模式中，另外要加上改变文字大小的命令</p>
+<p>例如：<code>$\partial f_&#123;\mbox&#123;\tiny 极大值&#125;&#125;$</code><br>显示：$\partial f_{\mbox{\tiny 极大值}}$</p>
+<p>当角标位置看起来不明显时，可以强制改变角标大小或层次，距离如下：<br><code>$y_N, y_&#123;_N&#125;$</code><br>显示为：$y_N, y_{_N}$</p>
+<p>第一种输出为正常输出，但输出效果不明显；</p>
+<p>第二种是将一级角标改为二级角标，字体也自动变为二级角标字体</p>
+</li>
+</ul>
+</li>
+<li><p>分式</p>
+<ul>
+<li><p>分式命令：\frac{分子}{分母}</p>
+</li>
+<li><p>举例：</p>
+<ul>
+<li><p>行内分式<code>$\frac&#123;x+y&#125;&#123;y+z&#125;$</code>，显示为$𝑥+𝑦𝑦+𝑧x+yy+z$</p>
+</li>
+<li><p>行间分式：<code>$\frac&#123;x+y&#125;&#123;y+z&#125;$</code>，显示为：</p>
+<p>$$𝑥+𝑦𝑦+𝑧x+yy+z$$</p>
+</li>
+</ul>
+<p>上面的例子表明行内分式字体比行间字体小，因为行内分式使用的是角标字体，可以人工改变行内分式的字体大小。</p>
+<p>例如：<code>$\displaystyle\frac&#123;x+y&#125;&#123;y+z&#125;$</code> 显示为</p>
+<p>$𝑥+𝑦𝑦+𝑧x+yy+z$</p>
+<p>连分式：<code>$x_0+\frac&#123;1&#125;&#123;x_1+\frac&#123;1&#125;&#123;x_2+\frac&#123;1&#125;&#123;x_3+\frac&#123;1&#125;&#123;x_4&#125;&#125;&#125;&#125;$</code>，显示为</p>
+<p>$x_0+\frac{1}{x_1+\frac{1}{x_2+\frac{1}{x_3+\frac{1}{x_4}}}}$</p>
+<p>可以通过强制改变字体大小使得分子分母字体大小一致，例如(注意,这里的@需要改成井号,写成@只是为了通过hexo编译,坑爹的hexo)：<br><code>$\newcommand&#123;\FS&#125;[2]&#123;\displaystyle\frac&#123;@1&#125;&#123;@2&#125;&#125;x0+\FS&#123;1&#125;&#123;X_1+\FS&#123;1&#125;&#123;X_2+\FS&#123;1&#125;&#123;X_3+\FS&#123;1&#125;&#123;X_4&#125;&#125;&#125;&#125;$</code></p>
+<p>显示为</p>
+<p>$$\newcommand{\FS}[2]{\displaystyle\frac{@1}{@2}}x0+\FS{1}{X_1+\FS{1}{X_2+\FS{1}{X_3+\FS{1}{X_4}}}}$$</p>
+</li>
+</ul>
+<p>其中第一行命令定义了一个新的分式命令，规定每个调用该命令的分式都按<code>\displaystyle</code>的格式显示分式；分数线长度值是预设为分子分母的最大长度，如果想要使分数线再长一点，可以在分子或分母两端添加一些间隔，例如<code>$\frac&#123;1&#125;&#123;2&#125;,\frac&#123;\;1\;&#125;&#123;\;2\;&#125;$</code>，显示为$\frac{1}{2},\frac{;1;}{;2;}$ .其中第一个显示是正常的显示，第二个显示是分子分母前后都放入一个间隔命令;</p>
+</li>
+<li><p>根式</p>
+<ul>
+<li><p>二次根式命令：\sqrt{表达式}</p>
+<p>如果表达式是个单个字符，则不需要花括号，但需要在字符和sqrt之间加入一个空格</p>
+</li>
+<li><p>n次根式命令：\sqrt[n]{表达式}</p>
+<p>被开方表达式字符高度不一致时，根号上面的横线可能不是在同一条直线上；为了使横线在同一条直线上，可以在被开方表达式插入一个只有高度没有宽度的数学支柱\mathstut</p>
+<p>例如：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span>\<span class="hljs-built_in">sqrt</span>&#123;a&#125;+\<span class="hljs-built_in">sqrt</span>&#123;b&#125;+\<span class="hljs-built_in">sqrt</span>&#123;c&#125;,\qquad \<span class="hljs-built_in">sqrt</span>&#123;\mathstrut a&#125;+\<span class="hljs-built_in">sqrt</span>&#123;\mathstrut b&#125;+\<span class="hljs-built_in">sqrt</span>&#123;\mathstrut c&#125;<span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>
 
-<p>将原来的源用 # 注掉，添加这个阿里源</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/raspbian/</span>raspbian/ stretch main contrib non-free rpi<br></code></pre></td></tr></table></figure>
 
-<p>接下来修改系统更新源</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo nano <span class="hljs-regexp">/etc/</span>apt<span class="hljs-regexp">/sources.list.d/</span>raspi.list<br></code></pre></td></tr></table></figure>
 
-<p>将原有注释掉，添加这个科大源</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">deb http:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/archive.raspberrypi.org/</span>debian/ stretch main ui<br></code></pre></td></tr></table></figure>
+<p> 显示为：</p>
+<p>$\sqrt{a}+\sqrt{b}+\sqrt{c},\qquad \sqrt{\mathstrut a}+\sqrt{\mathstrut b}+\sqrt{\mathstrut c}$</p>
+<p>当被开方表达式高时，开方次数的位置显得略低，解决方法为：将开方此时改为上标，并拉近与根式的水平距离，即显示将命令中的<code>[n]</code>改为<code>[^n\!]</code>,其中<code>^</code>表示是上标，<code>\!</code>表示缩小间隔,例如：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span>\<span class="hljs-built_in">sqrt</span>&#123;<span class="hljs-number">1</span>+\<span class="hljs-built_in">sqrt</span>[p]&#123;<span class="hljs-number">1</span>+\<span class="hljs-built_in">sqrt</span>[q]&#123;<span class="hljs-number">1</span>+a&#125;&#125;&#125;<span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>
 
-<p>最后更新一下即可</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo apt-<span class="hljs-built_in">get</span> update &amp;&amp; apt-<span class="hljs-built_in">get</span> upgrade<br></code></pre></td></tr></table></figure>
+<p>显示为：$\sqrt{1+\sqrt[p]{1+\sqrt[q]{1+a}}}$</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span>\<span class="hljs-built_in">sqrt</span>&#123;<span class="hljs-number">1</span>+\<span class="hljs-built_in">sqrt</span>[^p\!]&#123;<span class="hljs-number">1</span>+\<span class="hljs-built_in">sqrt</span>[^q\!]&#123;<span class="hljs-number">1</span>+a&#125;&#125;&#125;<span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>
 
+<p>显示为：$\sqrt{1+\sqrt[^p!]{1+\sqrt[^q!]{1+a}}}$</p>
+<p>（注意比较两个根式开方次数的显示位置）</p>
+</li>
+</ul>
+</li>
+<li><p>求和与积分</p>
+<p><strong>求和命令</strong>：<code>\sum_&#123;k=1&#125;^n</code>表达式（求和项紧随其后,下同）</p>
+<p><strong>积分命令</strong>：<code>\int_a^b</code>表达式</p>
+<p>例如：</p>
+<p>无穷级数<code>$\sum_&#123;k=1&#125;^\infty\frac&#123;x^n&#125;&#123;n!&#125;$</code>显示为：$\sum_{k=1}^\infty\frac{x^n}{n!}$ </p>
+<p>可以化为积分<code>$\int_0^\infty e^x$</code>显示为: $\int_0^\infty e^x$</p>
+<p>也即是<code>$∑∞0𝑥𝑛𝑛!=∫∞0𝑒𝑥∑0∞xnn!=∫0∞ex$</code>：$∑∞0𝑥𝑛𝑛!=∫∞0𝑒𝑥∑0∞xnn!=∫0∞ex$</p>
+<p><strong>改变上下限位置的命令</strong>：<code>\limits</code>(强制上下限在上下侧) 和<code> \nolimits</code>(强制上下限在左右侧)</p>
+<p>例如：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span>\<span class="hljs-keyword">sum</span>\limits_&#123;k=<span class="hljs-number">1</span>&#125;^n<span class="hljs-symbol">$</span> 和 <span class="hljs-symbol">$</span>\<span class="hljs-keyword">sum</span>\nolimits_&#123;k=<span class="hljs-number">1</span>&#125;^n<span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>
+
+<p>显示为： $\sum\limits_{k=1}^n$ 和 $\sum\nolimits_{k=1}^n$</p>
+</li>
+<li><p>下划线、上划线等</p>
+<ul>
+<li>上划线命令： \overline{公式}</li>
+<li>下划线命令：\underline{公式}<ul>
+<li>例如：<code>$\overline&#123;\overline&#123;a^2&#125;+\underline&#123;ab&#125;+\bar&#123;a&#125;^3&#125;$</code>显示为：$\overline{\overline{a^2}+\underline{ab}+\bar{a}^3}$</li>
+</ul>
+</li>
+<li>上花括弧命令：\overbrace{公式}{说明}</li>
+<li>下花括弧命令：\underbrace{公式}_{说明}<ul>
+<li>例如：<code>$\underbrace&#123;a+\overbrace&#123;b+\dots+b&#125;^&#123;m\mbox&#123;\tiny 个&#125;&#125;&#125;_&#123;20\mbox&#123;\scriptsize 个&#125;&#125;$</code>显示为：$\underbrace{a+\overbrace{b+\dots+b}^{m\mbox{\tiny 个}}}_{20\mbox{\scriptsize 个}}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数学重音符号<br>以a为例，；如果字母i或j带有重音，字母i,y应该替换为\imath、\jmath<br><code>$$\hat&#123;a&#125;\check&#123;a&#125;\breve&#123;a&#125;\tilde&#123;a&#125;\bar&#123;a&#125;\vec&#123;a&#125;\acute&#123;a&#125;\grave&#123;a&#125;\mathring&#123;a&#125;\dot&#123;a&#125;\ddot&#123;a&#125;$$</code><br>显示结果为：</p>
+<p>$$\hat{a}\check{a}\breve{a}\tilde{a}\bar{a}\vec{a}\acute{a}\grave{a}\mathring{a}\dot{a}\ddot{a}$$</p>
+</li>
+<li><p>堆积符号</p>
+<ul>
+<li><p><code>\stacrel&#123;上位符号&#125;&#123;基位符号&#125;</code> 基位符号大，上位符号小</p>
+</li>
+<li><p><code>&#123;上位公式\atop 下位公式&#125;</code> 上下符号一样大</p>
+</li>
+<li><p><code>&#123;上位公式\choose 下位公式&#125;</code> 上下符号一样大；上下符号被包括在圆弧内</p>
+</li>
+<li><p>例如：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">\vec</span><span class="hljs-template-variable">&#123;x&#125;</span><span class="language-xml">\stackrel</span><span class="hljs-template-variable">&#123;\mathrm&#123;def&#125;</span><span class="language-xml">&#125;</span><span class="hljs-template-variable">&#123;=&#125;</span><span class="hljs-template-variable">&#123;x_1,\dots,x_n&#125;</span><span class="language-xml">\\ </span><span class="hljs-template-variable">&#123;n+1 \choose k&#125;</span><span class="language-xml">=</span><span class="hljs-template-variable">&#123;n \choose k&#125;</span><span class="language-xml">+</span><span class="hljs-template-variable">&#123;n \choose k-1&#125;</span><span class="language-xml">\\ \sum_</span><span class="hljs-template-variable">&#123;k_0,k_1,\ldots&gt;0 \atop k_0+k_1+\cdots=n&#125;</span><span class="language-xml">A_</span><span class="hljs-template-variable">&#123;k_0&#125;</span><span class="language-xml">A_</span><span class="hljs-template-variable">&#123;k_1&#125;</span><span class="language-xml">\cdots</span><br></code></pre></td></tr></table></figure>
+
+<p>显示效果为：</p>
+<p>$$\vec{x}\stackrel{\mathrm{def}}{=}{x_1,\dots,x_n}\ {n+1 \choose k}={n \choose k}+{n \choose k-1}\ \sum_{k_0,k_1,\ldots&gt;0 \atop k_0+k_1+\cdots=n}A_{k_0}A_{k_1}\cdots$$</p>
+</li>
+</ul>
+</li>
+<li><p>定界符</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-built_in">$</span><span class="hljs-built_in">$</span>（）<span class="hljs-keyword">\big</span>(<span class="hljs-keyword">\big</span>) <span class="hljs-keyword">\Big</span>(<span class="hljs-keyword">\Big</span>) <span class="hljs-keyword">\bigg</span>(<span class="hljs-keyword">\bigg</span>) <span class="hljs-keyword">\Bigg</span>(<span class="hljs-keyword">\Bigg</span>)<span class="hljs-keyword">\big</span>(<span class="hljs-keyword">\Big</span>) <span class="hljs-keyword">\bigg</span>(<span class="hljs-keyword">\Bigg</span>)<span class="hljs-built_in">$</span><span class="hljs-built_in">$</span><br></code></pre></td></tr></table></figure>
+
+<p>显示结果为：</p>
+<p>$$（）\big(\big) \Big(\Big) \bigg(\bigg) \Bigg(\Bigg)\big(\Big) \bigg(\Bigg)$$</p>
+<p>自适应放大命令：\left 和\right，本命令放在左右定界符前，自动随着公式内容大小调整符号大小</p>
+<p>例子：</p>
+<p>$$(𝑥)(𝑥𝑦𝑧)(x)(xyz)$$</p>
+</li>
+<li><p>占位宽度</p>
+<ul>
+<li>两个quad空格 <code>a \qquad b</code> 两个m的宽度, 显示为：$a \qquad b$</li>
+<li>quad空格 <code>a \quad b </code>一个m的宽度，显示为:  $a \quad b $</li>
+<li>大空格 <code>a\ b 1/3m</code>宽度，显示为：$a\ b 1/3m$</li>
+<li>中等空格 <code>a\;b 2/7m</code>宽度，显示为：$a;b 2/7m$</li>
+<li>小空格<code> a\,b 1/6m</code>宽度, 显示为：$ a,b 1/6m$</li>
+<li>没有空格 <code>ab</code>, 显示为：$ab$</li>
+<li>紧贴 <code>a\!b</code> 缩进1/6m宽度, 显示为：$a!b$</li>
+<li>\quad代表当前字体下接近字符‘M’的宽度</li>
+</ul>
+</li>
+<li><p>集合相关的运算命令</p>
+<p>集合的大括号： <code>\&#123; ...\&#125;</code>，显示为: ${ …}$<br>集合中的<code>|</code>： , 显示为：$|$</p>
+<p>属于： <code>\in</code> 显示为： $\in$<br>不属于： <code>\not\in</code> 显示为： $\not\in$<br>A包含于B： <code>A\subset B</code>显示为：$A\subset B$<br>A真包含于B：<code>A \subsetneqq B</code> 显示为：$A \subsetneqq B$<br>A包含B：<code>A supset B</code> 显示为：$A supset B$<br>A真包含B：<code>A \supsetneqq B</code> 显示为: $A \supsetneqq B$<br>A不包含于B：<code>A \not \subset B</code> 显示为：$A \not \subset B$<br>A交B： <code>A \cap B</code> 显示为：$A \cap B$<br>A并B：<code>A \cup B</code> 显示为：$A \cup B$<br>A的闭包：<code>\overline&#123;A&#125;</code>显示为：$\overline{A}$<br>A减去B: <code>A\setminus B</code>显示为：$A\setminus B$<br>实数集合： <code>\mathbb&#123;R&#125;</code> 显示为：$ <code>\mathbb&#123;R&#125;</code>$<br>空集：<code>\emptyset</code> 显示为：$\emptyset$</p>
+</li>
+</ol>
 
                 
               </div>
@@ -406,7 +543,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Dev/" class="category-chain-item">Dev</a>
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
   
   
 
@@ -421,9 +558,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Python/">#Python</a>
-      
-        <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">#树莓派</a>
+        <a href="/tags/%E6%96%87%E6%A1%A3/">#文档</a>
       
     </div>
   
@@ -435,8 +570,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>树莓派更新源流程</div>
-      <div>https://zhouyinglin.cn/post/8f5d5cd5.html</div>
+      <div>Markdown下Latex数学公式输入</div>
+      <div>https://zhouyinglin.cn/post/dc95e40f.html</div>
     </div>
     <div class="license-meta">
       
@@ -448,13 +583,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月6日</div>
+          <div>2022年12月18日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年12月15日</div>
+          <div>2022年12月18日</div>
         </div>
       
       <div class="license-meta-item">
@@ -489,18 +624,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/post/f437e7c5.html" title="Linux下查询jdk安装路径">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux下查询jdk安装路径</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/post/57cf4104.html" title="树莓派wifi环境下初始化及环境配置">
-                        <span class="hidden-mobile">树莓派wifi环境下初始化及环境配置</span>
+                      <a href="/post/c4740d31.html" title="Scrapy2.7速通">
+                        <span class="hidden-mobile">Scrapy2.7速通</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
