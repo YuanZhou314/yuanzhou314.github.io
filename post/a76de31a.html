@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="其他乱七八糟配置就不扯了，先上项目结构图   配置好参数后我再src&#x2F;test&#x2F;java类测试访问数据库时发现bean没有正确的注入。值得注意的是，这个项目的启动类是叫App.java 所以我们必须在这个测试类上面加上注解： 12@RunWith(SpringRunner.class)@SpringBootTest(classes &#x3D; App.class)   注意：SpringBoot(cl">
+    <meta name="description" content="其他乱七八糟配置就不扯了，先上项目结构图  配置好参数后我再src&#x2F;test&#x2F;java类测试访问数据库时发现bean没有正确的注入。值得注意的是，这个项目的启动类是叫App.java 所以我们必须在这个测试类上面加上注解： 12@RunWith(SpringRunner.class)@SpringBootTest(classes &#x3D; App.class)  注意：SpringBoot(class">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Springboot 测试类没有找到bean注入">
 <meta property="og:url" content="https://zhouyinglin.cn/post/a76de31a.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="其他乱七八糟配置就不扯了，先上项目结构图   配置好参数后我再src&#x2F;test&#x2F;java类测试访问数据库时发现bean没有正确的注入。值得注意的是，这个项目的启动类是叫App.java 所以我们必须在这个测试类上面加上注解： 12@RunWith(SpringRunner.class)@SpringBootTest(classes &#x3D; App.class)   注意：SpringBoot(cl">
+<meta property="og:description" content="其他乱七八糟配置就不扯了，先上项目结构图  配置好参数后我再src&#x2F;test&#x2F;java类测试访问数据库时发现bean没有正确的注入。值得注意的是，这个项目的启动类是叫App.java 所以我们必须在这个测试类上面加上注解： 12@RunWith(SpringRunner.class)@SpringBootTest(classes &#x3D; App.class)  注意：SpringBoot(class">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184436.png">
 <meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
@@ -373,26 +373,21 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>其他乱七八糟配置就不扯了，先上项目结构图</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184436.png" srcset="/img/loading.gif" lazyload></p>
-<p> 配置好参数后我再src/test/java类测试访问数据库时发现bean没有正确的注入。值得注意的是，这个项目的启动类是叫App.java</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184436.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>配置好参数后我再src/test/java类测试访问数据库时发现bean没有正确的注入。值得注意的是，这个项目的启动类是叫App.java</p>
 <p>所以我们必须在这个测试类上面加上注解：</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@RunWith</span>(SpringRunner.class)<br><span class="hljs-variable">@SpringBootTest</span>(classes = App.class) <br></code></pre></td></tr></table></figure>
-
 <p>注意：SpringBoot(classes = App.class) classes后面跟的是启动类的class，千万不要随便抄网上的配置，写一些Application.class之类的，这种Application之类的类名和一些官方包里的类名一样，容易引入错误的包。</p>
 <p>刚开始发现这个问题疯狂去网上看别人的配置文件是怎么写的，试了一天都没用，后来静下心来，把错误信息copy出来文本里仔细看</p>
 <p><img src="https://common.cnblogs.com/images/copycode.gif" srcset="/img/loading.gif" lazyload alt="复制代码"></p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dart">org.springframework.beans.<span class="hljs-keyword">factory</span>.UnsatisfiedDependencyException:<br> Error creating bean <span class="hljs-keyword">with</span> name <span class="hljs-string">&#x27;com.springboot.LibrarySystem.mapper.UserMapperTest&#x27;</span>:<br> Unsatisfied dependency expressed through field <span class="hljs-string">&#x27;userMapper&#x27;</span>; <br> nested exception <span class="hljs-keyword">is</span> org.springframework.beans.<span class="hljs-keyword">factory</span>.NoSuchBeanDefinitionException:<br> No qualifying bean of type <span class="hljs-string">&#x27;com.sb.LibrarySystem.mapper.UserMapper&#x27;</span> <br> available: expected at least <span class="hljs-number">1</span> bean which qualifies <span class="hljs-keyword">as</span> autowire candidate. <br> Dependency annotations: &#123;<span class="hljs-meta">@org</span>.springframework.beans.<span class="hljs-keyword">factory</span>.annotation.Autowired(<span class="hljs-keyword">required</span>=<span class="hljs-keyword">true</span>)&#125;<br></code></pre></td></tr></table></figure>
-
 <p><img src="https://common.cnblogs.com/images/copycode.gif" srcset="/img/loading.gif" lazyload alt="复制代码"></p>
 <p>还是从这个Test类下手</p>
 <p>本来我的类是这样的：</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@RunWith</span>(SpringRunner.class)<br><span class="hljs-variable">@SpringBootTest</span>(classes = Application.class)<br>public class UserMapperTest &#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>修改后就是这样,和我的启动类的类名是一致的：</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@RunWith</span>(SpringRunner.class)<br><span class="hljs-variable">@SpringBootTest</span>(classes = App.class)<br>public class UserMapperTest &#123;<br></code></pre></td></tr></table></figure>
-
 <p>完美解决！</p>
 <p>如果百度的时候，发现查看的问题越来越深，越来越偏离最开始的问题，那十有八九是方向偏了，重新整理一下，重新开始吧</p>
 

@@ -380,28 +380,34 @@ Maven、数据结构、JVM、JavaScript、Crontab、Shell、Ubuntu、VPN、NodeJ
 Life、树莓派、Git、Hexo
  -->
 <p><strong>警告：本文记录的修改方式将直接修改原文件，请做好文件备份！！！！！</strong></p>
-<h4 id="格式："><a href="#格式：" class="headerlink" title="格式："></a>格式：</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">sed -i <span class="hljs-string">&quot;s/oldstring/newstring/g&quot;</span> `<span class="hljs-keyword">grep</span> oldstring -rl yourdir`<br>sed -i <span class="hljs-string">&quot;s/查找字段/替换字段/g&quot;</span> `<span class="hljs-keyword">grep</span> 查找字段 -rl 路径`  <br>或者<br><span class="hljs-keyword">grep</span> -<span class="hljs-keyword">tl</span> yourdir | xargs sed -i <span class="hljs-string">&quot;s/oldstring/newstring/g&quot;</span><br><span class="hljs-keyword">grep</span> -rl 查找字段  路径|xargs sed -i <span class="hljs-string">&quot;s/查找字段/替换字段/g&quot;</span> <br></code></pre></td></tr></table></figure>
-
-<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>最初搭建Hexo时，为了图省事就在github上开了一个图床，由于公司内网浏览github畅通无阻，因此丝毫没有感觉有什么问题。直到女朋友有一天打开了我的网站，发现所有图片都无法加载出来，事实上移动端数据流量访问时都会加载失败，不知道是github在墙外还是什么原因，反正就是用不了。所以需要考虑换个新图床，等腾讯云的对象存储配置好后，就需要批量将原有的文章内的图片链接更换成腾讯云的访问链接。</p>
-<h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><p>文章在同一文件夹下，且全部为.md格式。单个文件内有多个旧图片链接，需要批量将整个文件夹下、所有文件内的旧链接换成新链接。</p>
+<h4 id="格式"><a class="markdownIt-Anchor" href="#格式"></a> 格式：</h4>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">sed -i <span class="hljs-string">&quot;s/oldstring/newstring/g&quot;</span> `<span class="hljs-keyword">grep</span> oldstring -rl yourdir`<br>sed -i <span class="hljs-string">&quot;s/查找字段/替换字段/g&quot;</span> `<span class="hljs-keyword">grep</span> 查找字段 -rl 路径`  <br>或者<br><span class="hljs-keyword">grep</span> -<span class="hljs-keyword">tl</span> yourdir | xargs sed -i <span class="hljs-string">&quot;s/oldstring/newstring/g&quot;</span><br><span class="hljs-keyword">grep</span> -rl 查找字段  路径|xargs sed -i <span class="hljs-string">&quot;s/查找字段/替换字段/g&quot;</span> <br></code></pre></td></tr></table></figure>
+<h4 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h4>
+<p>最初搭建Hexo时，为了图省事就在github上开了一个图床，由于公司内网浏览github畅通无阻，因此丝毫没有感觉有什么问题。直到女朋友有一天打开了我的网站，发现所有图片都无法加载出来，事实上移动端数据流量访问时都会加载失败，不知道是github在墙外还是什么原因，反正就是用不了。所以需要考虑换个新图床，等腾讯云的对象存储配置好后，就需要批量将原有的文章内的图片链接更换成腾讯云的访问链接。</p>
+<h4 id="场景"><a class="markdownIt-Anchor" href="#场景"></a> 场景</h4>
+<p>文章在同一文件夹下，且全部为.md格式。单个文件内有多个旧图片链接，需要批量将整个文件夹下、所有文件内的旧链接换成新链接。</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">旧链接：raw.githubusercontent.com<span class="hljs-regexp">/YuanZhou314/</span>PicRepo<span class="hljs-regexp">/main/img</span>s<br><br>新链接：xxx-xxx-<span class="hljs-number">1234567890</span>.cos.ap-xxxxxxxx.myqcloud.com<br></code></pre></td></tr></table></figure>
-
-
-
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livescript">sed -i <span class="hljs-string">&quot;s<span class="hljs-subst">#raw</span>.githubusercontent.com/YuanZhou314/PicRepo/main/imgs<span class="hljs-subst">#xxx-xxx-1234567890</span>.cos.ap-xxxxxxxx.myqcloud.com<span class="hljs-subst">#g</span>&quot;</span> `grep -rl .`<br></code></pre></td></tr></table></figure>
-
-<h4 id="命令解读"><a href="#命令解读" class="headerlink" title="命令解读"></a>命令解读</h4><ul>
-<li><p>sed -i 表示直接编辑匹配到的文件</p>
+<h4 id="解决"><a class="markdownIt-Anchor" href="#解决"></a> 解决</h4>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livescript">sed -i <span class="hljs-string">&quot;s<span class="hljs-subst">#raw</span>.githubusercontent.com/YuanZhou314/PicRepo/main/imgs<span class="hljs-subst">#xxx-xxx-1234567890</span>.cos.ap-xxxxxxxx.myqcloud.com<span class="hljs-subst">#g</span>&quot;</span> `grep -rl .`<br></code></pre></td></tr></table></figure>
+<h4 id="命令解读"><a class="markdownIt-Anchor" href="#命令解读"></a> 命令解读</h4>
+<ul>
+<li>
+<p>sed -i 表示直接编辑匹配到的文件</p>
 </li>
-<li><p>s 是替换命令，也是sed中最常见的命令</p>
+<li>
+<p>s 是替换命令，也是sed中最常见的命令</p>
 </li>
-<li><p># 这里的井号是分隔符，一般情况下的分隔符是用<code>/</code> 斜杠，但是这里因为替换的是地址（带斜杠），如果用斜杠作为分隔符的话需要特殊处理，因此直接换成用井号。（分隔符可以是任意字符，只是一般都用<code>/</code>）</p>
+<li>
+<p># 这里的井号是分隔符，一般情况下的分隔符是用<code>/</code> 斜杠，但是这里因为替换的是地址（带斜杠），如果用斜杠作为分隔符的话需要特殊处理，因此直接换成用井号。（分隔符可以是任意字符，只是一般都用<code>/</code>）</p>
 </li>
-<li><p>两个新旧字符串的中间，同样需要用分隔符#隔开</p>
+<li>
+<p>两个新旧字符串的中间，同样需要用分隔符#隔开</p>
 </li>
-<li><p>g 代表全局替换，默认情况sed是逐行读取文件，且只更改行中第一次出现的匹配项，加g会所有匹配项都被替换</p>
+<li>
+<p>g 代表全局替换，默认情况sed是逐行读取文件，且只更改行中第一次出现的匹配项，加g会所有匹配项都被替换</p>
 </li>
-<li><p>grep -rl .  按目录递归查找匹配项，你可以先用这个命令查一下，是否全部匹配到你所需要修改的文件。</p>
+<li>
+<p>grep -rl .  按目录递归查找匹配项，你可以先用这个命令查一下，是否全部匹配到你所需要修改的文件。</p>
 </li>
 </ul>
 

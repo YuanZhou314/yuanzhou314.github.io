@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="MapReduce 一个分布式运算程序的编程框架，用户开发“基于Hadoop的数据分析应用”的核心框架。 优点：  易于编程，用户只关心业务逻辑，实现框架的接口 良好的扩展性。可动态增加服务器，解决计算资源不够的问题 高容错性。任意节点挂掉可以将任务转移至其他节点 适合海量数据计算。（TB&#x2F;PB级别）几千台服务器共同计算  缺点：  不擅长实时计算。（mysql毫秒级别的） 不擅长流式计算 不">
+    <meta name="description" content="MapReduce 一个分布式运算程序的编程框架，用户开发“基于Hadoop的数据分析应用”的核心框架。 优点：  易于编程，用户只关心业务逻辑，实现框架的接口 良好的扩展性。可动态增加服务器，解决计算资源不够的问题 高容错性。任意节点挂掉可以将任务转移至其他节点 适合海量数据计算。（TB&#x2F;PB级别）几千台服务器共同计算  缺点：  不擅长实时计算。（mysql毫秒级别的） 不擅长流式计算 不擅">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据课程————MapReduce">
 <meta property="og:url" content="https://zhouyinglin.cn/post/e8243c3.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="MapReduce 一个分布式运算程序的编程框架，用户开发“基于Hadoop的数据分析应用”的核心框架。 优点：  易于编程，用户只关心业务逻辑，实现框架的接口 良好的扩展性。可动态增加服务器，解决计算资源不够的问题 高容错性。任意节点挂掉可以将任务转移至其他节点 适合海量数据计算。（TB&#x2F;PB级别）几千台服务器共同计算  缺点：  不擅长实时计算。（mysql毫秒级别的） 不擅长流式计算 不">
+<meta property="og:description" content="MapReduce 一个分布式运算程序的编程框架，用户开发“基于Hadoop的数据分析应用”的核心框架。 优点：  易于编程，用户只关心业务逻辑，实现框架的接口 良好的扩展性。可动态增加服务器，解决计算资源不够的问题 高容错性。任意节点挂掉可以将任务转移至其他节点 适合海量数据计算。（TB&#x2F;PB级别）几千台服务器共同计算  缺点：  不擅长实时计算。（mysql毫秒级别的） 不擅长流式计算 不擅">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/BigData.jpg">
 <meta property="article:published_time" content="2022-08-06T11:29:46.000Z">
@@ -372,7 +372,6 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>MapReduce</p>
 <p>一个分布式运算程序的编程框架，用户开发“基于Hadoop的数据分析应用”的核心框架。</p>
 <p>优点：</p>
@@ -428,22 +427,28 @@
 </ul>
 <p>FileInputFormat切片分析：</p>
 <ol>
-<li><p>程序找到数据存储的目录</p>
+<li>
+<p>程序找到数据存储的目录</p>
 </li>
-<li><p>遍历切片下的每个文件，切片时不考虑数据集整体，对每个文件单独切片</p>
+<li>
+<p>遍历切片下的每个文件，切片时不考虑数据集整体，对每个文件单独切片</p>
 </li>
-<li><p>遍历第一个文件：</p>
+<li>
+<p>遍历第一个文件：</p>
 </li>
-<li><ol>
+<li>
+<ol>
 <li>获取文件大小</li>
 <li>根据切片公式计算切片大小，默认切片大小=blocksize</li>
 <li>第一个切片0:128M，第二个128:256，第三个356:300M，每次切片都要判断切完剩下的部分是否大于块的1.1倍，不大于就划成一块切片（源码中有写）</li>
 <li>将切片信息写入切片规划文件中</li>
 </ol>
 </li>
-<li><p>整个切片的核心过程都在getSplit( )中完成，InputSplit只记录了切片元数据</p>
+<li>
+<p>整个切片的核心过程都在getSplit( )中完成，InputSplit只记录了切片元数据</p>
 </li>
-<li><p>提交切片规划文件到YARN上，YARN的MrAppMaster根据切片规划文件计算开启MapTask的个数</p>
+<li>
+<p>提交切片规划文件到YARN上，YARN的MrAppMaster根据切片规划文件计算开启MapTask的个数</p>
 </li>
 </ol>
 <p>获取切片信息API</p>
@@ -455,7 +460,7 @@
 <ul>
 <li>基本流程：</li>
 </ul>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193038.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193038.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>TextInputFormat：系统默认的切片机制</strong></p>
 <p>TextInputFormat是默认的FileInputFormat实现类。按行读取每条记录。键是存储该行在整个文件中的起始字节偏移量， LongWritable类型。值是这行的内容，不包括任何行终止符（换行符和回车符），Text类型。</p>
 <p><strong>CombineTextInputFormat切片机制</strong></p>
@@ -471,11 +476,11 @@
 <li>溢写程序启动后，对80M内容的Key做排序，排序是MapReduce模型默认的行为，是对序列化的字节做的排序</li>
 <li>合并溢写文件，每次溢写都会在磁盘生成一个临时文件，多Mapper输出结果大，则会有多次溢写，有多个临时文件，整个数据处理结束后，开始对磁盘中的临时文件做Merge合并成一个文件，并写入磁盘，并为这个we你按提供一个索引文件，记录每个reduce对应数据的偏移</li>
 </ol>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193053.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193115.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193053.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193115.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>MapReduce工作流程</strong></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193129.png" srcset="/img/loading.gif" lazyload></p>
-<p> <img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193155.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193129.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193155.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>MapReduce_Shuffle机制</strong></p>
 <p>Map方法之后就开始Reduce阶段，Reduce第一个阶段是Reduce_Shuffle，一般当做Reduce业务层前置阶段。第二阶段即真正的ReduceTask，用来对数据进行操</p>
 <p>Shuffle大致分为四个步骤：</p>
@@ -485,19 +490,19 @@
 <li>combiner规约：溢写前、合并小文件等都会用到的操作，可选</li>
 <li>分组：小文件合并成一个大文件后，对其进行归并排序、分组</li>
 </ol>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193205.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193218.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193205.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193218.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>Partition分区</strong></p>
 <p>系统默认的分区逻辑如下，默认分区是根据key的hashCode对ReduceTask个数取模得到，用户无法控制key存储到哪个分区：</p>
 <p>public class HashPartitioner&lt;K2, V2&gt; implements Partitioner&lt;K2, V2&gt; {</p>
 <p>……</p>
-<p>  public int getPartition(K2 key, V2 value, int numReduceTasks) {</p>
+<p>public int getPartition(K2 key, V2 value, int numReduceTasks) {</p>
 <p>​    return (key.hashCode() &amp; 2147483647) % numReduceTasks;</p>
-<p>  }</p>
+<p>}</p>
 <p>}</p>
 <p>想要控制存储分区，可继承下面的Partitioner抽象类，并重写getPartitioner()方法：</p>
 <p>public abstract class Partitioner&lt;KEY, VALUE&gt; {</p>
-<p>  public abstract int getPartition(KEY var1, VALUE var2, int var3);</p>
+<p>public abstract int getPartition(KEY var1, VALUE var2, int var3);</p>
 <p>}</p>
 <p>若自定义了分区，必须在job驱动中设置自定义Partitioner，否则还是会走默认，并根据Partitioner的逻辑设置相应数量的ReduceTask</p>
 <p>分区总结：</p>

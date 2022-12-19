@@ -308,6 +308,73 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/46cf604d.html" target="_self">
+          <img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/docker2.png" srcset="/img/loading.gif" lazyload alt="Docker进阶-挂载-容器数据卷">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/46cf604d.html" target="_self">
+          Docker进阶-挂载-容器数据卷
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/post/46cf604d.html" target="_self">
+        <div>
+          容器数据卷 卷技术，作用是数据共享。由于容器删除后内部修改的数据也会丢失，因此需要有个地方存储数据。 卷技术可以让容器本地产生的数据映射到本地，卷技术的本质是目录的挂载，将容器内部的目录挂载到宿主机上，实现容器持久化。包括容器间也可以共享 12docker -v 主机目录:容器目录# 就算重启容器，映射关系也还是会存在   安装mysql navicat连接到云服务器的3305端口，映射到do
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-06 19:55" pubdate>
+              2022-08-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Ops/" class="category-chain-item">Ops</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">#Docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/post/446df500.html" target="_self">
           <img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/docker0.png" srcset="/img/loading.gif" lazyload alt="Docker基本">
         </a>
@@ -324,7 +391,7 @@
       
       <a class="index-excerpt " href="/post/446df500.html" target="_self">
         <div>
-          单体DockerDocker Docker出现的契机：解决项目中的环境问题。docker的图标：鲸鱼上放了许多集装箱，也映射了docker的核心思想——隔离。每个箱子是互相隔离的。隔离机制也可以将linux服务器利用到极致 深究历史 2010年出现dotcloud，2013年开源后使用人数增多。2014年Docker1.0发布，基于Go语言开发。Docker优势是非常轻巧，在Docker之前一
+          单体Docker  Docker  Docker出现的契机：解决项目中的环境问题。docker的图标：鲸鱼上放了许多集装箱，也映射了docker的核心思想——隔离。每个箱子是互相隔离的。隔离机制也可以将linux服务器利用到极致 深究历史 2010年出现dotcloud，2013年开源后使用人数增多。2014年Docker1.0发布，基于Go语言开发。Docker优势是非常轻巧，在Docker
         </div>
       </a>
 
@@ -391,7 +458,7 @@
       
       <a class="index-excerpt " href="/post/8647cf5f.html" target="_self">
         <div>
-          存储引擎将数据存储在磁盘中，查询数据时会选择合适的执行计划将数据查询，执行计划的选择取决于SQL语句执行的成本。而当我们在讨论查询的成本时，一般有两部分：  I&#x2F;O成本：查询时需要将磁盘上的数据加载到内存中。这个过程损耗的时间即I&#x2F;O成本 CPU成本：读取记录、检测记录是否满足搜索条件、排序等操作的时间为CPU成本  在操作系统中，I&#x2F;O和CPU因为效率的不同，计算成本的单位也不一样。MySQ
+          存储引擎将数据存储在磁盘中，查询数据时会选择合适的执行计划将数据查询，执行计划的选择取决于SQL语句执行的成本。而当我们在讨论查询的成本时，一般有两部分：  I&#x2F;O成本：查询时需要将磁盘上的数据加载到内存中。这个过程损耗的时间即I&#x2F;O成本 CPU成本：读取记录、检测记录是否满足搜索条件、排序等操作的时间为CPU成本  在操作系统中，I&#x2F;O和CPU因为效率的不同，计算成本的单位也不一样。MySQL
         </div>
       </a>
 
@@ -458,7 +525,7 @@
       
       <a class="index-excerpt " href="/post/ee7a70c8.html" target="_self">
         <div>
-          单表查询 单表查询的语句实际上是一种声明式的语法，只是告诉MySQL要获取的数据符合哪些规则，至于具体的执行方式是MySQL自己来定。针对不同的场景，也有不同的执行计划， MySQL基于开销(cost)的优化器策略，哪种执行计划开销更低，就意味着性能更好，速度更快，就选择哪一种。以下是执行计划的类型： const 通过主键或者唯一二级索引与常数的等值比较来定位一条记录，是最快的执行方式。主键定
+          单表查询 单表查询的语句实际上是一种声明式的语法，只是告诉MySQL要获取的数据符合哪些规则，至于具体的执行方式是MySQL自己来定。针对不同的场景，也有不同的执行计划， MySQL基于开销(cost)的优化器策略，哪种执行计划开销更低，就意味着性能更好，速度更快，就选择哪一种。以下是执行计划的类型： const 通过主键或者唯一二级索引与常数的等值比较来定位一条记录，是最快的执行方式。主键定位
         </div>
       </a>
 
@@ -525,7 +592,7 @@
       
       <a class="index-excerpt " href="/post/d4527f0c.html" target="_self">
         <div>
-          hadoop搭建：  环境搭建：利用分发脚本在所有服务器上部署java和hadoop 组件部署：三个重要组件分别部署在三台服务器上，并修改配置文件 启动集群并测试功能：格式化后分别启动组件并上传文件，配置历史服务器和日志功能  服务器相关概念 类型：文件服务器、数据库服务器、WEB服务器 特点：高处理能力、高扩展性、高可靠性 服务器磁盘 机械硬盘： SCSI接口硬盘，早期使用，已停售，1w转&#x2F;
+          hadoop搭建：  环境搭建：利用分发脚本在所有服务器上部署java和hadoop 组件部署：三个重要组件分别部署在三台服务器上，并修改配置文件 启动集群并测试功能：格式化后分别启动组件并上传文件，配置历史服务器和日志功能  服务器相关概念 类型：文件服务器、数据库服务器、WEB服务器 特点：高处理能力、高扩展性、高可靠性 服务器磁盘 机械硬盘： SCSI接口硬盘，早期使用，已停售，1w转&#x2F;m
         </div>
       </a>
 
@@ -594,7 +661,7 @@
       
       <a class="index-excerpt " href="/post/fff3faaa.html" target="_self">
         <div>
-          HDFS基本概念 是一个文件系统，用于存储文件，通过目录树来定位文件；是分布式的，由多个服务器联合起来实现其功。 适合场景：一次写入，多次读出，不可更改。文件写入后就不需要再改变 HDFS特征 优点  高容错，文件报错多个副本 适合处理大数据，数据规模到GB、TB甚至TP；文件数量多到百万级以上均可处理 可建构廉价机器上  缺点  不适合低延迟数据访问，实时场景不合适 无法高效对大量小文件进行
+          HDFS基本概念 是一个文件系统，用于存储文件，通过目录树来定位文件；是分布式的，由多个服务器联合起来实现其功。 适合场景：一次写入，多次读出，不可更改。文件写入后就不需要再改变 HDFS特征 优点  高容错，文件报错多个副本 适合处理大数据，数据规模到GB、TB甚至TP；文件数量多到百万级以上均可处理 可建构廉价机器上  缺点  不适合低延迟数据访问，实时场景不合适 无法高效对大量小文件进行存
         </div>
       </a>
 
@@ -663,7 +730,7 @@
       
       <a class="index-excerpt " href="/post/e8243c3.html" target="_self">
         <div>
-          MapReduce 一个分布式运算程序的编程框架，用户开发“基于Hadoop的数据分析应用”的核心框架。 优点：  易于编程，用户只关心业务逻辑，实现框架的接口 良好的扩展性。可动态增加服务器，解决计算资源不够的问题 高容错性。任意节点挂掉可以将任务转移至其他节点 适合海量数据计算。（TB&#x2F;PB级别）几千台服务器共同计算  缺点：  不擅长实时计算。（mysql毫秒级别的） 不擅长流式计算 不
+          MapReduce 一个分布式运算程序的编程框架，用户开发“基于Hadoop的数据分析应用”的核心框架。 优点：  易于编程，用户只关心业务逻辑，实现框架的接口 良好的扩展性。可动态增加服务器，解决计算资源不够的问题 高容错性。任意节点挂掉可以将任务转移至其他节点 适合海量数据计算。（TB&#x2F;PB级别）几千台服务器共同计算  缺点：  不擅长实时计算。（mysql毫秒级别的） 不擅长流式计算 不擅
         </div>
       </a>
 
@@ -726,7 +793,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/post/d601b667.html" target="_self">
         <div>
-          问题原因：这里的问题是IntelliJ试图在不使用IDE中配置的Maven“用户设置文件”(settings.xml)的情况下解决所需的工件本身。它将直接连接到Maven Central，但被我的雇主屏蔽了 解决方案在pom文件添加： 123456&lt;dependency&gt; &lt;!-- this is needed or IntelliJ gives junit.jar or j
+          问题原因： 这里的问题是IntelliJ试图在不使用IDE中配置的Maven“用户设置文件”(settings.xml)的情况下解决所需的工件本身。它将直接连接到Maven Central，但被我的雇主屏蔽了 解决方案在pom文件添加： 123456&lt;dependency&gt; &lt;!-- this is needed or IntelliJ gives junit.jar or j
         </div>
       </a>
 
@@ -793,7 +860,7 @@
       
       <a class="index-excerpt " href="/post/2ab2ff87.html" target="_self">
         <div>
-          前置概念：  磁盘预读：内存跟磁盘在发生数据交互的时候，一般情况下有一个最小的逻辑单元，即”页”&#x2F;“datapage”，页一般由操作系统决定是多大，一般是4k或8k。而进行数据交互的时候，可以取页的整数倍来读取。如innodb引擎每次读取数据都是16k  B+树   每个关键字对应一棵子树 每个结点关键字个数n的范围是[m&#x2F;2]&lt;&#x3D;n&lt;&#x3D;m 叶节点是包含信息的，其他所有非叶节点仅起
+          前置概念：   磁盘预读：内存跟磁盘在发生数据交互的时候，一般情况下有一个最小的逻辑单元，即&quot;页&quot;&#x2F;“datapage”，页一般由操作系统决定是多大，一般是4k或8k。而进行数据交互的时候，可以取页的整数倍来读取。如innodb引擎每次读取数据都是16k   B+树    每个关键字对应一棵子树 每个结点关键字个数n的范围是[m&#x2F;2]&lt;&#x3D;n&lt;&#x3D;m 叶节点是包含信息
         </div>
       </a>
 
@@ -854,7 +921,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/post/1054e826.html" target="_self">
         <div>
-          目前在SpringBoot中的使用Mybatis的pom文件是 12345&lt;dependency&gt;    &lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;&#x2F;artifactId&gt;    &lt;version&amp;g
+          目前在SpringBoot中的使用Mybatis的pom文件是 12345&lt;dependency&gt;    &lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;&#x2F;artifactId&gt;    &lt;version&amp;gt
         </div>
       </a>
 
@@ -901,72 +968,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/post/49197122.html" target="_self">
-          Java实现读取本地txt文件(行政区划制作层级标记表格)
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/post/49197122.html" target="_self">
-        <div>
-          首先接到的是一个网址，地址是http:&#x2F;&#x2F;www.zxinc.org&#x2F;gb2260.html但这个网址后来就没用了，服务器那边应该出问题了，不过还好我保存到本地了。 再放一个云盘 链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1Hkf2PtRGK3dLQ50tJ1mk4g 提取码：unon    这里我是将那个页面打开查看源码然后复制下来的，所以前面带了一个,这里的每行是由区划代码、区
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-06 18:54" pubdate>
-              2022-08-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Dev/" class="category-chain-item">Dev</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">#Java</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/8/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/10/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/8/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><a class="page-number" href="/page/12/#board">12</a><a class="extend next" rel="next" href="/page/10/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

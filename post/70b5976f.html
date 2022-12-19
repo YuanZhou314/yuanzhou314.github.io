@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="问题由于ubuntu默认开机后随机密码，所以一般装好系统后第一件事就是sudo passwd root，这次没有修改给忘记了，好死不死又把权限整出来有问题，一用sudo就提示如下： 123sudo: &#x2F;etc&#x2F;sudoers is owned by uid 1000, should be 0sudo: no valid sudoers sources found, quittingsudo:">
+    <meta name="description" content="问题 由于ubuntu默认开机后随机密码，所以一般装好系统后第一件事就是sudo passwd root，这次没有修改给忘记了，好死不死又把权限整出来有问题，一用sudo就提示如下： 123sudo: &#x2F;etc&#x2F;sudoers is owned by uid 1000, should be 0sudo: no valid sudoers sources found, quittingsudo:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu修改权限后导致sudo和su无法使用">
 <meta property="og:url" content="https://zhouyinglin.cn/post/70b5976f.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="问题由于ubuntu默认开机后随机密码，所以一般装好系统后第一件事就是sudo passwd root，这次没有修改给忘记了，好死不死又把权限整出来有问题，一用sudo就提示如下： 123sudo: &#x2F;etc&#x2F;sudoers is owned by uid 1000, should be 0sudo: no valid sudoers sources found, quittingsudo:">
+<meta property="og:description" content="问题 由于ubuntu默认开机后随机密码，所以一般装好系统后第一件事就是sudo passwd root，这次没有修改给忘记了，好死不死又把权限整出来有问题，一用sudo就提示如下： 123sudo: &#x2F;etc&#x2F;sudoers is owned by uid 1000, should be 0sudo: no valid sudoers sources found, quittingsudo:">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203018.png">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203031.png">
@@ -376,26 +376,25 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于ubuntu默认开机后随机密码，所以一般装好系统后第一件事就是sudo passwd root，这次没有修改给忘记了，好死不死又把权限整出来有问题，一用sudo就提示如下：</p>
+<h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
+<p>由于ubuntu默认开机后随机密码，所以一般装好系统后第一件事就是sudo passwd root，这次没有修改给忘记了，好死不死又把权限整出来有问题，一用sudo就提示如下：</p>
 <figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">sudo:</span> /etc/sudoers <span class="hljs-built_in">is</span> owned <span class="hljs-keyword">by</span> uid <span class="hljs-number">1000</span>, should be <span class="hljs-number">0</span><br><span class="hljs-symbol">sudo:</span> no valid sudoers sources found, quitting<br><span class="hljs-symbol">sudo:</span> unable <span class="hljs-keyword">to</span> initialize policy plugin<br></code></pre></td></tr></table></figure>
-
 <p>这种也很好解决，正常情况直接修改sudoer文件的权限即可，但我又不是root用户，切换不过去。我直接麻了。犯了很久终于翻到一个9年前的帖子，情况和我一摸一样，原帖在这儿，有兴趣可以看一下：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33991418/article/details/93206334">https://blog.csdn.net/weixin_33991418/article/details/93206334</a></p>
 <p>如果不用这种方式，还可以用ubuntu光盘引导系统，mount对应的磁盘修改/etc/sudoers文件。或者直接重装一遍，也不需要太久……</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>重启ubuntu，启动时按esc或shift，进入引导项</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203018.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2>
+<p>重启ubuntu，启动时按esc或shift，进入引导项</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203018.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>选择第二个，再选择第二个 recrovery mode，开机程序走完之后，进入Recovery Menu页面 ，选择root，回车</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203031.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203031.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>回车后下面提示再按回车，再按一下，就能看到熟悉的 root@user ~#了</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203041.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203041.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>到这儿了就可以开始干正事儿了，把提示之前的问题给解决掉：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">pkexec chown root:root <span class="hljs-regexp">/etc/</span>sudoers <span class="hljs-regexp">/etc/</span>sudoers.d -R<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203125.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203125.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>回车，然后重启Ubuntu即可正常修改root密码了</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203149.png" srcset="/img/loading.gif" lazyload></p>
-<p> 如果还有朋友上面这行代码解决不了，可以尝试如下方法，将sudoers.d文件夹的权限设置成root用户和root组，root组只有执行的权限，只有root用户有写入的权限：</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203149.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>如果还有朋友上面这行代码解决不了，可以尝试如下方法，将sudoers.d文件夹的权限设置成root用户和root组，root组只有执行的权限，只有root用户有写入的权限：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">chown -R root:root <span class="hljs-regexp">/etc/</span>sudoers.d<br>chmod u=rwx,g=rx,o=rx <span class="hljs-regexp">/etc/</span>sudoers.d/<br>chmod u=r,g=r,o= <span class="hljs-regexp">/etc/</span>sudoers.d/*<br></code></pre></td></tr></table></figure>
 
                 

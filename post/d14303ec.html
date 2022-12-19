@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="只有第一代身份证是15位，后面的身份证都是18位数字 15位身份证：地址码+出生日期码(2位年)+顺序码18位身份证：地址码+出生日期码(4位年)+顺序码+校验码 地址码：当地的行政区划代码，6位出生日期码：即出生年月日顺序码：同一地址码的区域内，对同年同月同日生的人进行编号，奇数为男性，偶数为女性校验码：通过算法计算得出。 校验方法1.将前17位数字分别乘以不同的系数，这个系数数组如下：7-">
+    <meta name="description" content="只有第一代身份证是15位，后面的身份证都是18位数字 15位身份证：地址码+出生日期码(2位年)+顺序码 18位身份证：地址码+出生日期码(4位年)+顺序码+校验码 地址码：当地的行政区划代码，6位 出生日期码：即出生年月日 顺序码：同一地址码的区域内，对同年同月同日生的人进行编号，奇数为男性，偶数为女性 校验码：通过算法计算得出。 校验方法 1.将前17位数字分别乘以不同的系数，这个系数数组如">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java身份证处理方法(15转18,出生日期隐藏)">
 <meta property="og:url" content="https://zhouyinglin.cn/post/d14303ec.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="只有第一代身份证是15位，后面的身份证都是18位数字 15位身份证：地址码+出生日期码(2位年)+顺序码18位身份证：地址码+出生日期码(4位年)+顺序码+校验码 地址码：当地的行政区划代码，6位出生日期码：即出生年月日顺序码：同一地址码的区域内，对同年同月同日生的人进行编号，奇数为男性，偶数为女性校验码：通过算法计算得出。 校验方法1.将前17位数字分别乘以不同的系数，这个系数数组如下：7-">
+<meta property="og:description" content="只有第一代身份证是15位，后面的身份证都是18位数字 15位身份证：地址码+出生日期码(2位年)+顺序码 18位身份证：地址码+出生日期码(4位年)+顺序码+校验码 地址码：当地的行政区划代码，6位 出生日期码：即出生年月日 顺序码：同一地址码的区域内，对同年同月同日生的人进行编号，奇数为男性，偶数为女性 校验码：通过算法计算得出。 校验方法 1.将前17位数字分别乘以不同的系数，这个系数数组如">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-06T10:37:14.000Z">
 <meta property="article:modified_time" content="2022-12-15T02:32:52.000Z">
@@ -369,17 +369,22 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>只有第一代身份证是15位，后面的身份证都是18位数字</p>
-<p>15位身份证：地址码+出生日期码(2位年)+顺序码<br>18位身份证：地址码+出生日期码(4位年)+顺序码+校验码</p>
-<p>地址码：当地的行政区划代码，6位<br>出生日期码：即出生年月日<br>顺序码：同一地址码的区域内，对同年同月同日生的人进行编号，奇数为男性，偶数为女性<br>校验码：通过算法计算得出。</p>
-<p>校验方法<br>1.将前17位数字分别乘以不同的系数，这个系数数组如下：7-9-10-5-8-4-2-1-6-3-7-9-10-5-8-4-2<br>2.将这17位数字和系数相乘的结果相加，加出来的和除以11，看余数是多少<br>3.余数只有可能在0-1-2-3-4-5-6-7-8-9-10这11个数字之间，分别对应的校验码是1-0-X-9-8-7-6-5-4-3-2<br>即如果余数为0，身份证校验码就是1，余数为2就是X</p>
+<p>15位身份证：地址码+出生日期码(2位年)+顺序码<br>
+18位身份证：地址码+出生日期码(4位年)+顺序码+校验码</p>
+<p>地址码：当地的行政区划代码，6位<br>
+出生日期码：即出生年月日<br>
+顺序码：同一地址码的区域内，对同年同月同日生的人进行编号，奇数为男性，偶数为女性<br>
+校验码：通过算法计算得出。</p>
+<p>校验方法<br>
+1.将前17位数字分别乘以不同的系数，这个系数数组如下：7-9-10-5-8-4-2-1-6-3-7-9-10-5-8-4-2<br>
+2.将这17位数字和系数相乘的结果相加，加出来的和除以11，看余数是多少<br>
+3.余数只有可能在0-1-2-3-4-5-6-7-8-9-10这11个数字之间，分别对应的校验码是1-0-X-9-8-7-6-5-4-3-2<br>
+即如果余数为0，身份证校验码就是1，余数为2就是X</p>
 <p>然后就上代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//计算校验码</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">char</span> <span class="hljs-title function_">getVerifyCode</span><span class="hljs-params">(String idCard)</span>&#123;<br>    <span class="hljs-keyword">if</span>(idCard == <span class="hljs-literal">null</span> || idCard.length()&lt;<span class="hljs-number">17</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-type">char</span>[] ai = idCard.toCharArray();<br>    <span class="hljs-type">int</span>[] wi = &#123;<span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>&#125;;<br>    <span class="hljs-type">char</span>[] verifyCode = &#123;<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;0&#x27;</span>, <span class="hljs-string">&#x27;X&#x27;</span>,<span class="hljs-string">&#x27;9&#x27;</span>, <span class="hljs-string">&#x27;8&#x27;</span>, <span class="hljs-string">&#x27;7&#x27;</span>,<span class="hljs-string">&#x27;6&#x27;</span>, <span class="hljs-string">&#x27;5&#x27;</span>, <span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>&#125;;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> y;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;wi.length; i++) &#123;<br>        s+=(ai[i]-<span class="hljs-string">&#x27;0&#x27;</span>)*wi[i];<br>    &#125;<br>    y = s % <span class="hljs-number">11</span>;<br>    <span class="hljs-keyword">return</span> verifyCode[y];<br>&#125;<br><br><span class="hljs-comment">//转换为18位</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getNewIdCard</span><span class="hljs-params">(String oldCard)</span>&#123;<br>    StringBuilder sb;<br>    <span class="hljs-keyword">if</span>(oldCard != <span class="hljs-literal">null</span> &amp;&amp; oldCard.length() == <span class="hljs-number">15</span>) &#123;<br>        sb = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>        sb.append(oldCard.substring(<span class="hljs-number">0</span>, <span class="hljs-number">6</span>)).append(<span class="hljs-string">&quot;19&quot;</span>).append(oldCard.substring(<span class="hljs-number">6</span>));<br>        sb.append(getVerifyCode(sb.toString()));<br>        <span class="hljs-keyword">return</span> sb.toString();<br>    &#125;<span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p> 隐藏出生日期，用*代替</p>
+<p>隐藏出生日期，用*代替</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getBrithdayByxx</span><span class="hljs-params">(String idCard)</span>&#123;<br>    <span class="hljs-type">Srting</span> <span class="hljs-variable">newCard</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">if</span>(idCard != <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-keyword">if</span>(idCard.length == <span class="hljs-number">18</span>)&#123;<br>            newCard = idCard.substring(<span class="hljs-number">0</span>, <span class="hljs-number">6</span>)+ <span class="hljs-string">&quot;********&quot;</span>+idCard.substring(<span class="hljs-number">14</span>, <span class="hljs-number">18</span>);<br>        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>()&#123;<br>            newCard = idCard.substring(<span class="hljs-number">0</span>, <span class="hljs-number">6</span>)+ <span class="hljs-string">&quot;******&quot;</span>+idCard.substring(<span class="hljs-number">12</span>, <span class="hljs-number">15</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newCard;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 
                 
               </div>

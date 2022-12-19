@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文参照Waline官方文档，当网站有用户发布评论或者用户回复评论时，Waline支持对博主和回复评论作者进行通知。通知方式包括QQ、微信、邮件等。 推送配置我最开始是想走邮件的，但由于即时性不高就放弃了，转为用微信。对于配置微信通知，Waline官网指引去Server酱提供的推送服务。  回到Waline官网的要求，可以发现SC_KEY是能在Server酱上找到的，其他三个都是自定义的。">
+    <meta name="description" content="本文参照Waline官方文档，当网站有用户发布评论或者用户回复评论时，Waline支持对博主和回复评论作者进行通知。通知方式包括QQ、微信、邮件等。  推送配置 我最开始是想走邮件的，但由于即时性不高就放弃了，转为用微信。对于配置微信通知，Waline官网指引去Server酱提供的推送服务。  回到Waline官网的要求，可以发现SC_KEY是能在Server酱上找到的，其他三个都是自定义的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo-Fluid利用Waline实现微信&#x2F;PushDeer评论推送">
 <meta property="og:url" content="https://zhouyinglin.cn/post/f445341f.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="本文参照Waline官方文档，当网站有用户发布评论或者用户回复评论时，Waline支持对博主和回复评论作者进行通知。通知方式包括QQ、微信、邮件等。 推送配置我最开始是想走邮件的，但由于即时性不高就放弃了，转为用微信。对于配置微信通知，Waline官网指引去Server酱提供的推送服务。  回到Waline官网的要求，可以发现SC_KEY是能在Server酱上找到的，其他三个都是自定义的。">
+<meta property="og:description" content="本文参照Waline官方文档，当网站有用户发布评论或者用户回复评论时，Waline支持对博主和回复评论作者进行通知。通知方式包括QQ、微信、邮件等。  推送配置 我最开始是想走邮件的，但由于即时性不高就放弃了，转为用微信。对于配置微信通知，Waline官网指引去Server酱提供的推送服务。  回到Waline官网的要求，可以发现SC_KEY是能在Server酱上找到的，其他三个都是自定义的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/download-16601251561781.png">
 <meta property="article:published_time" content="2022-08-10T15:20:32.000Z">
@@ -379,8 +379,9 @@ Maven、数据结构、JVM、JavaScript、Crontab、Shell、Ubuntu、VPN、NodeJ
 Life、树莓派、Git、Hexo
  -->
 <p>本文参照<a target="_blank" rel="noopener" href="https://waline.js.org/guide/server/notification.html">Waline官方文档</a>，当网站有用户发布评论或者用户回复评论时，Waline支持对博主和回复评论作者进行通知。通知方式包括QQ、微信、邮件等。</p>
-<h4 id="推送配置"><a href="#推送配置" class="headerlink" title="推送配置"></a>推送配置</h4><p>我最开始是想走邮件的，但由于即时性不高就放弃了，转为用微信。对于配置微信通知，Waline官网指引去<a target="_blank" rel="noopener" href="https://sct.ftqq.com/">Server酱</a>提供的推送服务。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810230512312.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="推送配置"><a class="markdownIt-Anchor" href="#推送配置"></a> 推送配置</h4>
+<p>我最开始是想走邮件的，但由于即时性不高就放弃了，转为用微信。对于配置微信通知，Waline官网指引去<a target="_blank" rel="noopener" href="https://sct.ftqq.com/">Server酱</a>提供的推送服务。</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810230512312.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>回到Waline官网的要求，可以发现SC_KEY是能在Server酱上找到的，其他三个都是自定义的。</p>
 <table>
 <thead>
@@ -389,7 +390,8 @@ Life、树莓派、Git、Hexo
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>SC_KEY</code></td>
 <td>Server 酱提供的 Token，即Server酱的【Key&amp;API】&gt;【SendKey】，点击复制即可。</td>
 </tr>
@@ -403,27 +405,27 @@ Life、树莓派、Git、Hexo
 </tr>
 <tr>
 <td><code>SITE_URL</code></td>
-<td>网站地址，如：<a href="https://zhouyinglin.cn/">https://zhouyinglin.cn</a>  最后不加/</td>
+<td>网站地址，如：<a href="https://zhouyinglin.cn">https://zhouyinglin.cn</a>  最后不加/</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>将以上内容（变量+值）填写到<a target="_blank" rel="noopener" href="https://vercel.com/">vercel</a>的设置&gt;环境变量中</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810225550230.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810225550230.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>填写后重新部署一遍。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810225723023.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810225723023.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>重新部署后Server_URL会改变，所以需要修改一下Fluid主题配置文件中配置Server_URL的两个地方，我的另一篇<a href="https://zhouyinglin.cn/2022/08/10/Hexo-Fluid-%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0-Waline-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/#HTML-%E5%BC%95%E5%85%A5-%E5%AE%A2%E6%88%B7%E7%AB%AF">文章</a>有提到修改位置，修改配置文件后重新部署到Github。</p>
-<h4 id="Server酱推送"><a href="#Server酱推送" class="headerlink" title="Server酱推送"></a>Server酱推送</h4><p>然后来看推送服务这边。由于登录Server酱的时候扫码关注了公众号，所以这里我们可以直接点保存&gt;发送测试</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810230352735.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="server酱推送"><a class="markdownIt-Anchor" href="#server酱推送"></a> Server酱推送</h4>
+<p>然后来看推送服务这边。由于登录Server酱的时候扫码关注了公众号，所以这里我们可以直接点保存&gt;发送测试</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810230352735.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>你的微信就会收到一条公众号消息。</p>
 <img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/IMG_9591.jpg" srcset="/img/loading.gif" lazyload style="zoom: 33%;">
-
 <p>点击进入，长这样：</p>
 <img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/IMG_F4B4DF536CAB-1.jpeg" srcset="/img/loading.gif" lazyload style="zoom:33%;">
-
-<p>实际上这种方式并不合理，如果是网页评论，它会直接返回一段html代码给你。而且Server酱官网也提到使用微信推送有弃用风险，推荐使用<a target="_blank" rel="noopener" href="http://www.pushdeer.com/">PushDeer</a>。（我推荐IPhone用户使用。安卓用的是一个App。IOS用的是轻App，使用感受良好。）</p>
+<p>实际上这种方式并不合理，如果是网页评论，它会直接返回一段html代码给你。而且Server酱官网也提到使用微信推送有弃用风险，推荐使用<a target="_blank" rel="noopener" href="http://www.pushdeer.com">PushDeer</a>。（我推荐IPhone用户使用。安卓用的是一个App。IOS用的是轻App，使用感受良好。）</p>
 <p>用相机扫描这个任意一个轻App码就可以打开了，我用的是自架版，二者的区别我也没明白，有兴趣的同学可以留言告知一下。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810231308063.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810231308063.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>在轻App中绑定自己的设备后，复制自己的Key，粘贴到Server酱的这个页面，保存后测试一下。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810231455665.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810231455665.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>点击发送测试后，手机上就会收到一个轻App的提醒，点击打开查看<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/IMG_9595.png" srcset="/img/loading.gif" lazyload style="zoom:33%;"></p>
 <p>目前来看PushDeer的效果和微信是一样的，都需要跳转页面才能看到推送的消息，只不过微信受腾讯监管，如果推送频繁或被人举报可能会有问题。PushDeer就不担心有什么问题，据我所知pushdeer算是个新鲜玩意儿，关于返回html代码的问题在AppStore评论区也有人提到，相信不久之后会更新的。</p>
 <p>最后回到网站打开评论试一下，评论完了就会收到PushDeer的消息啦，如果想切换回微信，就在Server酱上切换即可。</p>

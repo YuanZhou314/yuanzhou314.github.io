@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="先确定自己电脑是否安装了Maven和安装位置，具体查询方法直接win+R键打开运行窗口，输入cmd打开dos窗口，再输入mvn -v即可查询安装的位置  拿到安装位置 D:\Applications\Work\apache-maven-3.6.1 后打开该位置下的conf文件夹，找到一个叫settings.xml的文件。 将以下代码粘贴至标签内（注：没修改之前，这个标签里的内容是完全注释掉的，">
+    <meta name="description" content="先确定自己电脑是否安装了Maven和安装位置，具体查询方法直接win+R键打开运行窗口，输入cmd打开dos窗口，再输入mvn -v即可查询安装的位置  拿到安装位置 D:\Applications\Work\apache-maven-3.6.1 后打开该位置下的conf文件夹，找到一个叫settings.xml的文件。 将以下代码粘贴至标签内（注：没修改之前，这个标签里的内容是完全注释掉的，将">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Eclipse配置Maven的本地仓库和阿里云镜像">
 <meta property="og:url" content="https://zhouyinglin.cn/post/3bf8ab6c.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="先确定自己电脑是否安装了Maven和安装位置，具体查询方法直接win+R键打开运行窗口，输入cmd打开dos窗口，再输入mvn -v即可查询安装的位置  拿到安装位置 D:\Applications\Work\apache-maven-3.6.1 后打开该位置下的conf文件夹，找到一个叫settings.xml的文件。 将以下代码粘贴至标签内（注：没修改之前，这个标签里的内容是完全注释掉的，">
+<meta property="og:description" content="先确定自己电脑是否安装了Maven和安装位置，具体查询方法直接win+R键打开运行窗口，输入cmd打开dos窗口，再输入mvn -v即可查询安装的位置  拿到安装位置 D:\Applications\Work\apache-maven-3.6.1 后打开该位置下的conf文件夹，找到一个叫settings.xml的文件。 将以下代码粘贴至标签内（注：没修改之前，这个标签里的内容是完全注释掉的，将">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/maven.jpg">
 <meta property="article:published_time" content="2022-08-06T10:43:32.000Z">
@@ -372,20 +372,18 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>先确定自己电脑是否安装了Maven和安装位置，具体查询方法直接win+R键打开运行窗口，输入cmd打开dos窗口，再输入mvn -v即可查询安装的位置</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184146.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184146.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>拿到安装位置 D:\Applications\Work\apache-maven-3.6.1 后打开该位置下的conf文件夹，找到一个叫settings.xml的文件。</p>
 <p>将以下代码粘贴至<mirrors>标签内（注：没修改之前，这个标签里的内容是完全注释掉的，将代码粘贴在标签内部即可，不用管原有的内容。注意有两层标签）</mirrors></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>alimaven<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>aliyun maven<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>central<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span>          <br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span> <br></code></pre></td></tr></table></figure>
-
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184214.png" srcset="/img/loading.gif" lazyload></p>
-<p> 然后找到<localRepository>标签，将里面的内容修改为你Maven本地仓库即可（可以创建一个新的文件夹），这里我没有修改。</localRepository></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184231.png" srcset="/img/loading.gif" lazyload></p>
-<p> 然后是修改Eclipse内的配置Window-Preferences 这里修改是的是maven的地址</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184242.png" srcset="/img/loading.gif" lazyload></p>
-<p> 然后修改刚才修改过的setting.xml和本地仓库，我的本地仓库由于没有修改，依旧是.m2文件夹</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184259.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184214.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>然后找到<localRepository>标签，将里面的内容修改为你Maven本地仓库即可（可以创建一个新的文件夹），这里我没有修改。</localRepository></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184231.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>然后是修改Eclipse内的配置Window-Preferences 这里修改是的是maven的地址</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184242.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>然后修改刚才修改过的setting.xml和本地仓库，我的本地仓库由于没有修改，依旧是.m2文件夹</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806184259.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>这样就OK了</p>
 
                 

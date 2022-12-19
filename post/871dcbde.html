@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="官方介绍：吸附层，灵活判断出现的位置，默认在元素的右侧弹出。 12layer.tips(content, follow, options)layer.tips(msg, &amp;#x27;#id&amp;#x27;,&amp;#123;tips: 1&amp;#125;)  必填参数 ： content: 生成的文本，可以是字符串或HTML代码follow: 元素ID，若是元素本身可直接用this（绑定元素时）option">
+    <meta name="description" content="官方介绍：吸附层，灵活判断出现的位置，默认在元素的右侧弹出。 12layer.tips(content, follow, options)layer.tips(msg, &amp;#x27;#id&amp;#x27;,&amp;#123;tips: 1&amp;#125;) 必填参数 ： content: 生成的文本，可以是字符串或HTML代码 follow: 元素ID，若是元素本身可直接用this（绑定元素时） option">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS鼠标悬停设置layui tips提示框">
 <meta property="og:url" content="https://zhouyinglin.cn/post/871dcbde.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="官方介绍：吸附层，灵活判断出现的位置，默认在元素的右侧弹出。 12layer.tips(content, follow, options)layer.tips(msg, &amp;#x27;#id&amp;#x27;,&amp;#123;tips: 1&amp;#125;)  必填参数 ： content: 生成的文本，可以是字符串或HTML代码follow: 元素ID，若是元素本身可直接用this（绑定元素时）option">
+<meta property="og:description" content="官方介绍：吸附层，灵活判断出现的位置，默认在元素的右侧弹出。 12layer.tips(content, follow, options)layer.tips(msg, &amp;#x27;#id&amp;#x27;,&amp;#123;tips: 1&amp;#125;) 必填参数 ： content: 生成的文本，可以是字符串或HTML代码 follow: 元素ID，若是元素本身可直接用this（绑定元素时） option">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/layUI.png">
 <meta property="article:published_time" content="2022-08-06T10:40:40.000Z">
@@ -371,17 +371,16 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>官方介绍：吸附层，灵活判断出现的位置，默认在元素的右侧弹出。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">layer<span class="hljs-selector-class">.tips</span>(<span class="hljs-attribute">content</span>, follow, options)<br>layer<span class="hljs-selector-class">.tips</span>(msg, <span class="hljs-string">&#x27;#id&#x27;</span>,&#123;tips: <span class="hljs-number">1</span>&#125;)<br></code></pre></td></tr></table></figure>
-
 <p>必填参数 ：</p>
-<p>content: 生成的文本，可以是字符串或HTML代码<br>follow: 元素ID，若是元素本身可直接用this（绑定元素时）<br>options : tips的配置型，即位置[1上；2右；3下；4左, 字体颜色]</p>
+<p>content: 生成的文本，可以是字符串或HTML代码<br>
+follow: 元素ID，若是元素本身可直接用this（绑定元素时）<br>
+options : tips的配置型，即位置[1上；2右；3下；4左, 字体颜色]</p>
 <p>还有一些基础参数，我的另一篇文章中，是layer弹出层是基础参数</p>
 <p>实例：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showDiv</span>(<span class="hljs-params">obj</span>)</span>&#123;<br>    layer.<span class="hljs-title function_ invoke__">tips</span>(<span class="hljs-string">&quot;&lt;span&gt;车辆轨迹&lt;/span&gt;&lt;span&gt;关联人员&lt;/span&gt;&quot;</span>,         <br>    <span class="hljs-string">&quot;#&quot;</span>+obj.id, <br>    &#123;<span class="hljs-attr">tips</span>:[<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;#663ff&#x27;</span>], <span class="hljs-attr">time</span>:<span class="hljs-number">3000</span>&#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p> 以上效果就是鼠标悬浮到a标签后，显示悬浮窗，3s后自动关闭。为啥要设置3秒自动关闭？因为这样可以让我们去点击a标签里的内容。由于会自动关闭，所以也不需要鼠标移除的事件。</p>
+<p>以上效果就是鼠标悬浮到a标签后，显示悬浮窗，3s后自动关闭。为啥要设置3秒自动关闭？因为这样可以让我们去点击a标签里的内容。由于会自动关闭，所以也不需要鼠标移除的事件。</p>
 <p><em>需要注意的是，需要多个tips悬浮时，tipsMore（默认false）应该是flase的</em></p>
 
                 

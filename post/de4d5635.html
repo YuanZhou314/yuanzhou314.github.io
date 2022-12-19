@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本来想看一下最近评论系统的后台是否有评论，自从建站以来也有上千的访问量，多少能有点留言吧。没想到一看吓一跳，挂载vercel的评论项目直接打不开了。我以为是vercel出了问了，于是将vercel上的项目删掉重新搭建了一遍，但仍然没有作用。 检查项目详情页显示了预览页面，说明项目在正常启动运行。  但点击访问无法打开页面  于是跑去友链另外一位朋友的评论系统，发现是正常的（当然不排除他是非官">
+    <meta name="description" content="本来想看一下最近评论系统的后台是否有评论，自从建站以来也有上千的访问量，多少能有点留言吧。没想到一看吓一跳，挂载vercel的评论项目直接打不开了。我以为是vercel出了问了，于是将vercel上的项目删掉重新搭建了一遍，但仍然没有作用。  检查 项目详情页显示了预览页面，说明项目在正常启动运行。  但点击访问无法打开页面  于是跑去友链另外一位朋友的评论系统，发现是正常的（当然不排除他是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="将Waline评论系统由Vercel部署变更为独立部署">
 <meta property="og:url" content="https://zhouyinglin.cn/post/de4d5635.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="本来想看一下最近评论系统的后台是否有评论，自从建站以来也有上千的访问量，多少能有点留言吧。没想到一看吓一跳，挂载vercel的评论项目直接打不开了。我以为是vercel出了问了，于是将vercel上的项目删掉重新搭建了一遍，但仍然没有作用。 检查项目详情页显示了预览页面，说明项目在正常启动运行。  但点击访问无法打开页面  于是跑去友链另外一位朋友的评论系统，发现是正常的（当然不排除他是非官">
+<meta property="og:description" content="本来想看一下最近评论系统的后台是否有评论，自从建站以来也有上千的访问量，多少能有点留言吧。没想到一看吓一跳，挂载vercel的评论项目直接打不开了。我以为是vercel出了问了，于是将vercel上的项目删掉重新搭建了一遍，但仍然没有作用。  检查 项目详情页显示了预览页面，说明项目在正常启动运行。  但点击访问无法打开页面  于是跑去友链另外一位朋友的评论系统，发现是正常的（当然不排除他是">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/download-16601251561781.png">
 <meta property="article:published_time" content="2022-09-27T04:27:43.000Z">
@@ -380,46 +380,54 @@ Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美
 历史、政治、社会、
  -->
 <p>本来想看一下最近评论系统的后台是否有评论，自从建站以来也有上千的访问量，多少能有点留言吧。没想到一看吓一跳，挂载vercel的评论项目直接打不开了。我以为是vercel出了问了，于是将vercel上的项目删掉重新搭建了一遍，但仍然没有作用。</p>
-<h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><p>项目详情页显示了预览页面，说明项目在正常启动运行。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921174009881.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="检查"><a class="markdownIt-Anchor" href="#检查"></a> 检查</h3>
+<p>项目详情页显示了预览页面，说明项目在正常启动运行。</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921174009881.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>但点击访问无法打开页面</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921174156739.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921174156739.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>于是跑去友链另外一位朋友的评论系统，发现是正常的（当然不排除他是非官方的部署模式）。于是我用手机挂上梯子访问一下，果然是正常的。但是注册和登录页面无法访问，我猜可能是最近的梯子不太稳</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921174849398.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921174849398.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>问题到这里似乎无解了，但之前并不是这样的，部署好系统之后可以自行访问，网站的代码托管在github，前端配置好链接直接获取就好，相当于之前也是在国内访问的。那么唯一的解释就是网络或者封锁IP之类的原因，再查看一下<a target="_blank" rel="noopener" href="https://www.vercel-status.com/">vercel官方状态页面</a>，9月19号有一次DNS延迟问题，但这个事件显示已经解决了。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921180001490.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h3><p>突然想起来有网站可以检测网络，随手打开看了下……整个就是大无语。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921180538836.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921180001490.png" srcset="/img/loading.gif" lazyload alt></p>
+<h3 id="发现问题"><a class="markdownIt-Anchor" href="#发现问题"></a> 发现问题</h3>
+<p>突然想起来有网站可以检测网络，随手打开看了下……整个就是大无语。</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220921180538836.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>然后想了想终归部署在国外还是比较虚，还不如就放在自己机器，缺点就是到时候云服务器到期了迁移数据可能会有问题。但比起服务无法访问，还是值得冒险一试的。</p>
-<h3 id="替换方案"><a href="#替换方案" class="headerlink" title="替换方案"></a>替换方案</h3><p>Waline官网评论区已经有很多人在吐槽最近vercel的问题，直接看<a target="_blank" rel="noopener" href="https://waline.js.org/guide/server/vps-deploy.html">独立部署</a>。docker不太熟的可以往下翻，评论区有人分享了<a target="_blank" rel="noopener" href="https://www.tj520.top/views/articles/back-end/waline-service.html#%E6%96%B9%E6%A1%88%E4%BA%8C-%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90">一键部署方式</a>，看起来很多人部署成功了，尝试一下里面的方案二。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220927115531247.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="替换方案"><a class="markdownIt-Anchor" href="#替换方案"></a> 替换方案</h3>
+<p>Waline官网评论区已经有很多人在吐槽最近vercel的问题，直接看<a target="_blank" rel="noopener" href="https://waline.js.org/guide/server/vps-deploy.html">独立部署</a>。docker不太熟的可以往下翻，评论区有人分享了<a target="_blank" rel="noopener" href="https://www.tj520.top/views/articles/back-end/waline-service.html#%E6%96%B9%E6%A1%88%E4%BA%8C-%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90">一键部署方式</a>，看起来很多人部署成功了，尝试一下里面的方案二。</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220927115531247.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>注意</p>
 <ul>
-<li><p>这个教程是需要自己创建数据库并且初始化，这些步骤官网文档都有，因此只是一句带过。按照文档一步步来就没错。</p>
+<li>
+<p>这个教程是需要自己创建数据库并且初始化，这些步骤官网文档都有，因此只是一句带过。按照文档一步步来就没错。</p>
 </li>
-<li><p>使用时建议把node版本升级到16或者以上，我在12时使用这个方法搞了半天再发现是版本问题，最后用nvm切换了node版本才成功。</p>
+<li>
+<p>使用时建议把node版本升级到16或者以上，我在12时使用这个方法搞了半天再发现是版本问题，最后用nvm切换了node版本才成功。</p>
 </li>
-<li><p>如果存在多个node环境，注意 sudo 模式下可能会切换node版本导致上面的问题。</p>
+<li>
+<p>如果存在多个node环境，注意 sudo 模式下可能会切换node版本导致上面的问题。</p>
 </li>
 </ul>
 <p>执行如下代码：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 安装nvm，如果下不来就多试几次</span><br><span class="hljs-attribute">wget</span> -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.<span class="hljs-number">39</span>.<span class="hljs-number">1</span>/install.sh | bash<br><br><span class="hljs-comment"># 刷新下bashrc</span><br><span class="hljs-attribute">source</span> ~/.bashrc<br><br><span class="hljs-comment"># 查看mvn是否安装成功</span><br><span class="hljs-attribute">nvm</span> -h <br><br><span class="hljs-comment"># 安装指定版本node</span><br><span class="hljs-attribute">nvm</span> install <span class="hljs-number">16</span>.<span class="hljs-number">17</span>.<span class="hljs-number">0</span><br><br><span class="hljs-comment"># 切换node</span><br><span class="hljs-attribute">nvm</span> use <span class="hljs-number">16</span><br><br><span class="hljs-comment"># 查看下node版本,前面没出错的话就ok了</span><br><span class="hljs-attribute">node</span> -v<br></code></pre></td></tr></table></figure>
-
-
-
 <p>重新跑一下项目</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220927120547770.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220927120547770.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>然后访问，默认端口是8360，如果是云服务器需要去安全组开端口，否则无法访问。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220927120647226.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="恢复使用"><a href="#恢复使用" class="headerlink" title="恢复使用"></a>恢复使用</h3><p>访问<code>http://IP:8360/ui/register </code>注册，登录后访问<code>http://IP:8360/ui/</code>查看后台评论</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220927121611870.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220927120647226.png" srcset="/img/loading.gif" lazyload alt></p>
+<h3 id="恢复使用"><a class="markdownIt-Anchor" href="#恢复使用"></a> 恢复使用</h3>
+<p>访问<code>http://IP:8360/ui/register </code>注册，登录后访问<code>http://IP:8360/ui/</code>查看后台评论</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220927121611870.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>在Hexo的配置中，只要把主题配置文件中原先的vercel链接替换成新的访问地址即可</p>
 <p>即xxx.vercel.app改成新的访问地址</p>
-<p>Ps: 直接用IP+端口可能有安全风险, 可以在将本地启动的waline-service通过二级域名映射到外网。在腾讯云域名解析处即可配置<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220928175104583.png" srcset="/img/loading.gif" lazyload></p>
-<p>Ps：可能还需要设置一下nginx，but我之前配置了nginx、ssl之类的都没有成功,还搞出来跨域的问题。后来重新配置了个二级域名之后突然就可以了。原理我也懒得追究了，有机会后面再复盘一下。<br>9.29更新：<br>在短暂地允许访问后，由于域名没有备案，又重新关闭了。现在的情况就是：</p>
+<p>Ps: 直接用IP+端口可能有安全风险, 可以在将本地启动的waline-service通过二级域名映射到外网。在腾讯云域名解析处即可配置<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220928175104583.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>Ps：可能还需要设置一下nginx，but我之前配置了nginx、ssl之类的都没有成功,还搞出来跨域的问题。后来重新配置了个二级域名之后突然就可以了。原理我也懒得追究了，有机会后面再复盘一下。<br>
+9.29更新：<br>
+在短暂地允许访问后，由于域名没有备案，又重新关闭了。现在的情况就是：</p>
 <ul>
 <li>使用二级域名，但没备份无法访问</li>
-<li>使用IP+端口，不安全且跨域，同样无法访问<br>懒得折腾了，没有什么意义，等二十大过去之后vercel应该会恢复。</li>
+<li>使用IP+端口，不安全且跨域，同样无法访问<br>
+懒得折腾了，没有什么意义，等二十大过去之后vercel应该会恢复。</li>
 </ul>
 
                 

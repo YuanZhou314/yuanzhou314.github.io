@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="单表查询 单表查询的语句实际上是一种声明式的语法，只是告诉MySQL要获取的数据符合哪些规则，至于具体的执行方式是MySQL自己来定。针对不同的场景，也有不同的执行计划， MySQL基于开销(cost)的优化器策略，哪种执行计划开销更低，就意味着性能更好，速度更快，就选择哪一种。以下是执行计划的类型： const 通过主键或者唯一二级索引与常数的等值比较来定位一条记录，是最快的执行方式。主键定">
+    <meta name="description" content="单表查询 单表查询的语句实际上是一种声明式的语法，只是告诉MySQL要获取的数据符合哪些规则，至于具体的执行方式是MySQL自己来定。针对不同的场景，也有不同的执行计划， MySQL基于开销(cost)的优化器策略，哪种执行计划开销更低，就意味着性能更好，速度更快，就选择哪一种。以下是执行计划的类型： const 通过主键或者唯一二级索引与常数的等值比较来定位一条记录，是最快的执行方式。主键定位">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL查询的本质——单表与多表的查询方法">
 <meta property="og:url" content="https://zhouyinglin.cn/post/ee7a70c8.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="单表查询 单表查询的语句实际上是一种声明式的语法，只是告诉MySQL要获取的数据符合哪些规则，至于具体的执行方式是MySQL自己来定。针对不同的场景，也有不同的执行计划， MySQL基于开销(cost)的优化器策略，哪种执行计划开销更低，就意味着性能更好，速度更快，就选择哪一种。以下是执行计划的类型： const 通过主键或者唯一二级索引与常数的等值比较来定位一条记录，是最快的执行方式。主键定">
+<meta property="og:description" content="单表查询 单表查询的语句实际上是一种声明式的语法，只是告诉MySQL要获取的数据符合哪些规则，至于具体的执行方式是MySQL自己来定。针对不同的场景，也有不同的执行计划， MySQL基于开销(cost)的优化器策略，哪种执行计划开销更低，就意味着性能更好，速度更快，就选择哪一种。以下是执行计划的类型： const 通过主键或者唯一二级索引与常数的等值比较来定位一条记录，是最快的执行方式。主键定位">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/MySQL.png">
 <meta property="article:published_time" content="2022-08-06T11:44:28.000Z">
@@ -371,7 +371,6 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p><strong>单表查询</strong></p>
 <p>单表查询的语句实际上是一种声明式的语法，只是告诉MySQL要获取的数据符合哪些规则，至于具体的执行方式是MySQL自己来定。针对不同的场景，也有不同的执行计划， MySQL基于开销(cost)的优化器策略，哪种执行计划开销更低，就意味着性能更好，速度更快，就选择哪一种。以下是执行计划的类型：</p>
 <p><strong>const</strong></p>
@@ -387,7 +386,7 @@
 <p><strong>ref_or_null</strong></p>
 <p>比ref多扫描了一些值为null的二级索引记录</p>
 <p><strong>range</strong></p>
-<p>使用索引执行查询时，对应的扫描区间为<strong>若干个单点扫描区间</strong>或者<strong>范围扫描区间</strong>。即包含多个单点扫描区间的查询条件，包含一个或全表扫描都不能称为range </p>
+<p>使用索引执行查询时，对应的扫描区间为<strong>若干个单点扫描区间</strong>或者<strong>范围扫描区间</strong>。即包含多个单点扫描区间的查询条件，包含一个或全表扫描都不能称为range</p>
 <p><strong>index</strong></p>
 <p>直接<strong>扫描全部二级索引记录</strong>，且查询结果包含在索引列中，无需回表操作。即索引覆盖，因为二级索引比聚簇索引是要小很多的，就算全部扫描也不会消耗很多资源</p>
 <p><strong>all</strong></p>
@@ -395,7 +394,7 @@
 <p>注意：</p>
 <p>一般来说，具体使用哪种方法来执行，是MySQL中优化器的工作，它会访问表中少量数据获等方式，<strong>分析出多种执行计划中成本最小</strong>的来查询。</p>
 <p>一般来说，使用二级索引查询时，当拿到匹配的二级记录后，就算还有其他匹配条件，也会先根据结果（主键）执行回表操作，再检测该记录是否满足其他条件，满足则发送给客户端，不满足则忽略。</p>
-<p><strong>index_merge</strong> </p>
+<p><strong>index_merge</strong></p>
 <p>索引合并。使用多个索引来完成一次查询，有以下三种方式：</p>
 <ul>
 <li><strong>Intersection索引合并</strong></li>
@@ -403,10 +402,11 @@
 <p>举个栗子：SELECT * FROM sing_table WHERE key1 = ‘a’ AND key3 = ‘b’;</p>
 <p>一共有四种方式可以执行该查询：</p>
 <ol>
-<li><ol>
+<li>
+<ol>
 <li>首先，是全表就不谈了，慢。</li>
-<li>其次，是使用key1的索引查询，则扫描区间为[‘a’,’a’]，查询到之后立刻回表，再匹配key3。</li>
-<li>然后，是按照key3的索引查询，同样的则扫描区间为[‘b’,’b’]，查询到之后立刻回表，再匹配key1</li>
+<li>其次，是使用key1的索引查询，则扫描区间为[‘a’,‘a’]，查询到之后立刻回表，再匹配key3。</li>
+<li>然后，是按照key3的索引查询，同样的则扫描区间为[‘b’,‘b’]，查询到之后立刻回表，再匹配key1</li>
 <li>最后，同时使用key1和key3的索引查询。在key1索引中扫描出匹配key1=a的记录，在key3索引中扫描出匹配key1=b的记录。由于在普通二级索引中，重复的索引值会按照主键来排序。所以在这个执行计划中，使用各自的索引扫描出来的记录也是主键排序的。又因为这里使用了 AND，需要查询两者条件都匹配的结果，所以<strong>找出两者查询的结果中主键相同的记录</strong>，再使用这些相同的主键<strong>一并执行回表</strong>，这样可能会省下很多回表带来的开销。这就是Intersection索引合并，它<strong>要求二级索引是排序的</strong>，也就是说我们的查询条件必须是等值的，只有等值才会排序。如果不使用等值条件，则不会使用Intersection索引合并（相当于各自使用ref，最后取重复集）</li>
 </ol>
 </li>
@@ -421,7 +421,7 @@
 <ul>
 <li><strong>Sort-Union索引合并</strong></li>
 </ul>
-<p>看这个名字其实就是比Union新增了一个Sort，那么它在什么地方加了排序呢？我们知道使用Union的条件是二级索引记录必须是按主键排序的，也就是说在SQL语句中，必须是等值的，类似上面的：key1 = ‘a’ OR key3 = ‘b’; 但如果是这种：key1 &lt; ‘a’ OR key3 &gt; ‘z’; 呢？使用Sort-Union排序可以先从key1索引中获得条件为“key1 &lt; ‘a’ ”的二级索引记录，并<strong>对其根据主键进行排序**；再从key3索引中获得条件为“key3 &gt; ‘z’ ”的二级索引记录，也对其根据主键进行排序。如此，又变成Union索引合并了。又可以减少很多回表操作。这种方法比普通的Union</strong>多了一层各自索引的主键值的排序**，也称Sort-Union索引合并。</p>
+<p>看这个名字其实就是比Union新增了一个Sort，那么它在什么地方加了排序呢？我们知道使用Union的条件是二级索引记录必须是按主键排序的，也就是说在SQL语句中，必须是等值的，类似上面的：key1 = ‘a’ OR key3 = ‘b’; 但如果是这种：key1 &lt; ‘a’ OR key3 &gt; ‘z’; 呢？使用Sort-Union排序可以先从key1索引中获得条件为“key1 &lt; ‘a’ ”的二级索引记录，并<strong>对其根据主键进行排序</strong>；再从key3索引中获得条件为“key3 &gt; ‘z’ ”的二级索引记录，也对其根据主键进行排序。如此，又变成Union索引合并了。又可以减少很多回表操作。这种方法比普通的Union<strong>多了一层各自索引的主键值的排序</strong>，也称Sort-Union索引合并。</p>
 <p>注意：只有Sort-Union而没有Sort-Intersecion的原因作者也有解释，但具体没怎么看明白：如果加入Sort-Intersecion，就需要<strong>为大量的二级索引记录按照主键值进行排序</strong>，这个成本可能比使用单个二级索引执行查询的成本都要高，所以mysql没有引入。</p>
 <p>在MySQL中执行计划使用EXPLAIN关键字查看，可以查看 SELECT,DELETE,INSERT,REPLACE,UPDATE语句的查询计划，查询出来的执行计划有两种查看方式（MySQL5.7+），：</p>
 <ul>
@@ -429,9 +429,9 @@
 <li>json格式：EXPLAIN FORMAT =JSON SQL</li>
 </ul>
 <p>例：表格：</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194506.png" srcset="/img/loading.gif" lazyload></p>
-<p> json:</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194518.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194506.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>json:</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194518.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>多表查询</strong></p>
 <p>MySQL是关系型数据库，一个非常重要的概念就是Join 。表关联的实质其实就是把各个表的记录都取出来依此匹配，并把匹配后的组合发给客户端。如果不加条件限制，给到客户端的记录将是几个表的乘积，也称<strong>笛卡尔积</strong>，因为需要每个表的每一条记录都与另一个表的每条记录相互匹配。这个过程有点像大规模的回表操作，或者代码中的嵌套for循环。</p>
 <p>因此，我们一般在连接查询时并不会全部匹配，而是会加上限制条件。这里的限制条件一般只有两种情况：</p>
@@ -440,15 +440,18 @@
 <li>多表限制条件。如：t1.m1=t2.m1、t1.n1&lt; t2.n2。就针对了t1和t2两个表的限制条件。</li>
 </ul>
 <p>在这里有必要提一下基本连接查询过程：假设有表t1和t2，t1作为驱动表，t2作为被驱动表。首先在t1表中，按照对应的限制条件，使用成本最小的单表查询方法去查询。每次在t1查询到一条记录，都需要根据这条记录去t2表查询匹配的记录。即<strong>驱动表只需要查询一次，而被驱动表可能需要访问多次</strong>。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194532.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194532.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>这种方式有个缺点，如果驱动表的某条记录，没有在被驱动表中找到相应记录，那么就连驱动表的那条记录也不会查询出来，这样就导致查询出来的数据有缺失。为了解决该问题，引出了连接另一个概念：外连接。<strong>在外连接中，即时驱动表中的记录在被驱动表中没有匹配的记录，也仍然需要加入到结果集</strong>。</p>
 <p>连接查询也需要有过滤条件，单表查询中使用WHERE，连接查询中的WHERE可能是不够用的。因此在连接查询中，存在着两种过滤条件：</p>
 <ul>
-<li><p>WHERE：<strong>不分内外连接</strong>，只要不匹配WHERE子句的条件，就不加入结果集。</p>
+<li>
+<p>WHERE：<strong>不分内外连接</strong>，只要不匹配WHERE子句的条件，就不加入结果集。</p>
 </li>
-<li><p>ON：</p>
+<li>
+<p>ON：</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>对于外连接的驱动表来说，如果在被驱动表中找不到匹配ON子句的过滤条件，<strong>驱动表的记录还是会加入结果集</strong>，被驱动表找不到记录没有关系，填NULL即可。</li>
 <li>对于内连接的驱动表来说，ON等效于WHERE。</li>
 </ul>
@@ -465,10 +468,10 @@
 <p><strong>嵌套循环连接</strong></p>
 <p>最基本的简单的连接查询算算法。驱动表只访问一次，但被驱动表却可能访问多次，且访问的次数取决于对驱动表执行单表查询后的结果集中有多少条记录（驱动表匹配到记录后立即去被驱动表查）</p>
 <p>多次如果每条驱动表的记录在被驱动表中都有很多，那么单表查询被驱动表的次数就会非常多，效率自然会不高。如果被驱动表的限制条件带有索引，那么有可能会使用ref、ref_or_null或者range等方式来查找，效率相对会快一些。所以在查询时，尽量避免select *，而是把真正使用到的列作为查询条件，这是在人为可控的情况下，优化查询。一般常用的列都会有索引，索引覆盖下查询效率会更高。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194548.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194548.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>基于块的嵌套循环连接</strong></p>
 <p>在表数据过于庞大的情况下，记录有可能是千万、亿级的规模，这种情况下的连接查询有可能会非常慢。基于块的嵌套循环连接是从减少被驱动表的访问次数入手，达到减少IO、提高效率的效果的。具体的做法就是在执行连接查询前申请一块固定大小的内存（也称Join Buffer），先将若干驱动表结果集里的记录装在这个内存中，然后开始扫描被驱动表，<strong>每条被驱动表的记录一次性地与Join Buffer中的多条驱动表记录进行匹配</strong>，由于匹配在内存中完成，无需IO，所以可以大大减少IO量。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194603.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806194603.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>Join Buffer的大小通过启动项或系统变量进行配置，默认为256KB。一般在<strong>不能使用索引且自己机器的内存较大</strong>的情况下，可以尝试调大Join Buffer来进行连接查询的优化。需要注意的是Join Buffer并不会放所有驱动表的列，只存放查询列表中的列和过滤条件的列。因此我们查询时少用select * ，这样Join Buffer可以存放更多的记录。</p>
 
                 

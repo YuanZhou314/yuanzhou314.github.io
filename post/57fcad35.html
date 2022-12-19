@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="发现网上有两个版本的JVM内存划分，一个是按照《深入理解JVM虚拟机》上的版本，包含程序计数器等，按照是否线程共享划分。 另一个我觉得更好记一些，也更适合我自己，在这里记录一下。 首先上思维导图： 一个个来说道吧。 堆内存 heap 堆内存主要被划分为新生代和老年代（叫法不一，差不多的意思）。JVM默认Yong和Old分配比例为1:2，即新生代的内存大小为堆内存的1&#x2F;3。 （调整参数：–XX:">
+    <meta name="description" content="发现网上有两个版本的JVM内存划分，一个是按照《深入理解JVM虚拟机》上的版本，包含程序计数器等，按照是否线程共享划分。 另一个我觉得更好记一些，也更适合我自己，在这里记录一下。 首先上思维导图：  一个个来说道吧。 堆内存 heap 堆内存主要被划分为新生代和老年代（叫法不一，差不多的意思）。JVM默认Yong和Old分配比例为1:2，即新生代的内存大小为堆内存的1&#x2F;3。 （调整参数：–XX:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-JVM内存区域划分">
 <meta property="og:url" content="https://zhouyinglin.cn/post/57fcad35.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="发现网上有两个版本的JVM内存划分，一个是按照《深入理解JVM虚拟机》上的版本，包含程序计数器等，按照是否线程共享划分。 另一个我觉得更好记一些，也更适合我自己，在这里记录一下。 首先上思维导图： 一个个来说道吧。 堆内存 heap 堆内存主要被划分为新生代和老年代（叫法不一，差不多的意思）。JVM默认Yong和Old分配比例为1:2，即新生代的内存大小为堆内存的1&#x2F;3。 （调整参数：–XX:">
+<meta property="og:description" content="发现网上有两个版本的JVM内存划分，一个是按照《深入理解JVM虚拟机》上的版本，包含程序计数器等，按照是否线程共享划分。 另一个我觉得更好记一些，也更适合我自己，在这里记录一下。 首先上思维导图：  一个个来说道吧。 堆内存 heap 堆内存主要被划分为新生代和老年代（叫法不一，差不多的意思）。JVM默认Yong和Old分配比例为1:2，即新生代的内存大小为堆内存的1&#x2F;3。 （调整参数：–XX:">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/JVM.png">
 <meta property="article:published_time" content="2022-08-06T10:22:43.000Z">
@@ -372,17 +372,18 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>发现网上有两个版本的JVM内存划分，一个是按照《深入理解JVM虚拟机》上的版本，包含程序计数器等，按照是否线程共享划分。</p>
 <p>另一个我觉得更好记一些，也更适合我自己，在这里记录一下。</p>
-<p>首先上思维导图：<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182340.png" srcset="/img/loading.gif" lazyload></p>
+<p>首先上思维导图：<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182340.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>一个个来说道吧。</p>
 <p><strong>堆内存 heap</strong></p>
 <p>堆内存主要被划分为新生代和老年代（叫法不一，差不多的意思）。JVM默认Yong和Old分配比例为1:2，即新生代的内存大小为堆内存的1/3。</p>
 <p>（调整参数：–XX:NewRatio）</p>
 <p>基本上所有对象实例都在堆中创建，因此堆内存经常发生GC回收操作。新的对象首先分配在Eden区，两个Surviior区仅作为Eden区的缓冲使用。每次GC回收一次，对象的age值就+1，当Survivor区对象age值大于15时，就被转移到老年代。</p>
 <p>（age值调整参数：-XX:MaxTenuringThreshold）</p>
-<p>新生代下又划分为三个区，即Eden Space，To Survivor ，From Survivor。新生代占用堆内存的1/3，而三个区的内存占用情况如下图:<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182358.png" srcset="/img/loading.gif" lazyload></p>
+<p>新生代下又划分为三个区，即Eden Space，To Survivor ，From Survivor。新生代占用堆内存的1/3，而三个区的内存占用情况如下图:<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182358.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>新生代中，Eden、from、to的默认比例为8：1：1，一般来说，当Eden区内存将要被占满时，才会进入其中一个Survivor区。JVM每次只会使用一块Survivor区来为对象服务。所以，不论何时，都存在一个空闲的Survivor区域</p>
 <p>（调整参数：–XX:SurvivorRatio ）</p>
 <p>老年代存放JVM认为生命周期较长的对象，内存大小也比较大，GC回收相对来说不太频繁，所以分配给老年区的内存大小为堆内存的2/3</p>

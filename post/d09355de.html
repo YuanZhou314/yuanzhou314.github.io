@@ -373,42 +373,56 @@
                 
                 <p>ArrayList是Java集合常用的数据结构之一，继承自AbstractList，实现了List，RandomAccess、Cloneable、Serializable等一系列接口…………</p>
 <span id="more"></span>
-
 <p><strong>简介</strong></p>
 <p>ArrayList是Java集合常用的数据结构之一，继承自AbstractList，实现了List，RandomAccess、Cloneable、Serializable等一系列接口，支持快速访问，复制和序列化。底层是基于数组实现容量大小动态变化，允许null值存在。</p>
 <p><strong>部分源码分析</strong></p>
 <p>ArrayList的底层是由数组实现</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180401.png" srcset="/img/loading.gif" lazyload></p>
-<p>默认size的初始大小为10：<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180551.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180401.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>默认size的初始大小为10：<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180551.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>ArrayList定义了两个类常量数组：EMPTY_ELEMENTDATA（EE）和DEFAULTCAPACITY_EMPTY_ELEMENTDATA（DEE）</p>
 <p>注释：EE，用于ArrayList空实例的共享空数组实例</p>
-<p>DEE，用于默认大小空实例的共享空数组实例，将EE和DEE区分开，以便在添加第一个元素时知道要增加多少<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180614.png" srcset="/img/loading.gif" lazyload></p>
-<p>三个构造函数，包括一个无参构造和两个有参构造：<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180648.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180701.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180711.png" srcset="/img/loading.gif" lazyload></p>
+<p>DEE，用于默认大小空实例的共享空数组实例，将EE和DEE区分开，以便在添加第一个元素时知道要增加多少<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180614.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>三个构造函数，包括一个无参构造和两个有参构造：<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180648.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180701.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180711.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>注：无参构造创建的实例是DEFAULTCAPACITY_EMPTY_ELEMENTDATA，有参构造创建的实例是EMPTY_ELEMENTDATA</p>
-<p>然后是add( )方法：<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180744.png" srcset="/img/loading.gif" lazyload></p>
-<p>当第一次调用add(E e)方法时，判断是不是无参构造方法创建的对象，如果是，则将DEFAULT_CAPACITY作为ArrayLiat的容量，此时minCapacity = 1<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180802.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后是add( )方法：<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180744.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>当第一次调用add(E e)方法时，判断是不是无参构造方法创建的对象，如果是，则将DEFAULT_CAPACITY作为ArrayLiat的容量，此时minCapacity = 1<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180802.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>还有其他add方法例如：</p>
-<p> addAll( Collection&lt;? extends E&gt; c )<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180818.png" srcset="/img/loading.gif" lazyload><br>add( int index, E element )<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180851.png" srcset="/img/loading.gif" lazyload></p>
-<p>等等….这些方法中都包含ensureCapacitylnternal( int Capacity )方法，确保无参构造在创建实例并添加第一个元素时，最小的容量是默认大小10。</p>
-<p>　　而有参构造创建空实例后，在add( E e )方法添加元素扩容情况是这样的：</p>
-<p><strong>新容量为旧容量的1.5倍</strong><br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180911.png" srcset="/img/loading.gif" lazyload></p>
-<p>在Java7中，ArrayList的构造方法只有EMPTY_ELEMENTDATA即EE, 而Java8中DEE代替了EE，但是原来的EE还存在，只是作用改变了：<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180926.png" srcset="/img/loading.gif" lazyload></p>
-<p> 　当容量为0时，会创建一个空数组，赋值给elementData，当一个应用中有很多这样的ArrayList空实例时，就会有很多空数组，这样使用EMPTY_ELEMENTDATA就是为了优化性能，所有的ArrayList空实例都指向同一个数组。而DEE（DEFAULTCAPACITY_EMPTY_ELEMENTDATA）就是为了保证无参构造方法常见的实例在添加第一个元素时，最小的容量是默认的10.</p>
-<p> <strong>ArrayList的扩容</strong></p>
-<p> 以无参构造为例：</p>
-<p>首先无参构造初以默认大小来始化内部数组<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180949.png" srcset="/img/loading.gif" lazyload></p>
-<p>然后是扩容，使用add( )方法<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806181005.png" srcset="/img/loading.gif" lazyload></p>
+<p>addAll( Collection&lt;? extends E&gt; c )<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180818.png" srcset="/img/loading.gif" lazyload alt><br>
+add( int index, E element )<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180851.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>等等…这些方法中都包含ensureCapacitylnternal( int Capacity )方法，确保无参构造在创建实例并添加第一个元素时，最小的容量是默认大小10。</p>
+<p>而有参构造创建空实例后，在add( E e )方法添加元素扩容情况是这样的：</p>
+<p><strong>新容量为旧容量的1.5倍</strong><br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180911.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>在Java7中，ArrayList的构造方法只有EMPTY_ELEMENTDATA即EE, 而Java8中DEE代替了EE，但是原来的EE还存在，只是作用改变了：<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180926.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>当容量为0时，会创建一个空数组，赋值给elementData，当一个应用中有很多这样的ArrayList空实例时，就会有很多空数组，这样使用EMPTY_ELEMENTDATA就是为了优化性能，所有的ArrayList空实例都指向同一个数组。而DEE（DEFAULTCAPACITY_EMPTY_ELEMENTDATA）就是为了保证无参构造方法常见的实例在添加第一个元素时，最小的容量是默认的10.</p>
+<p><strong>ArrayList的扩容</strong></p>
+<p>以无参构造为例：</p>
+<p>首先无参构造初以默认大小来始化内部数组<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806180949.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>然后是扩容，使用add( )方法<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806181005.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>ensureCapacityInternal方法中的size代表执行添加前的元素个数，通过现有的元素个数数组的容量进行对比，若需要扩容则扩容。</p>
-<p> ensureCapacityInternal(size + 1)就是将要添加的额元素放入数组中</p>
-<p>扩容条件：若数组的长度eleentData的长度小于做小需要的容量minCapacity，就需要扩容<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806181021.png" srcset="/img/loading.gif" lazyload></p>
-<p>扩容逻辑：<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806181021.png" srcset="/img/loading.gif" lazyload></p>
+<p>ensureCapacityInternal(size + 1)就是将要添加的额元素放入数组中</p>
+<p>扩容条件：若数组的长度eleentData的长度小于做小需要的容量minCapacity，就需要扩容<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806181021.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>扩容逻辑：<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806181021.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>注：</p>
 <p>\1. &gt;&gt;位运算，右移一位代表oldCapacity / 2，位运算效率更高</p>
 <p>\2. JDK7后增加对元素个数的最大个数判断，MAX_ARRAY_SIZE为int最大值减去8</p>
 <p>\3. 复制元素方法扩容。使用延迟分配对象数组空间，当数组加满数组容量后才会按照1.5倍扩容。</p>
-<p><strong>ArrayList的remove( int index )方法</strong><br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806181055.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>ArrayList的remove( int index )方法</strong><br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806181055.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>当我们调用remove( int index )时，首先调用rangrCheck( ) 方法检查index是否合法，再判断要删除的元素是否位于数组的最后一个位置。</p>
 <p>当index是最后一个，则直接将数组的最后一个位置置空，即size-1即可；</p>
 <p>当index不是最后一个，调用System.arraycopy( )方法复制数组，将从index+1开始，所有元素都往前挪一个位置，再将数组最后一个位置置空。</p>

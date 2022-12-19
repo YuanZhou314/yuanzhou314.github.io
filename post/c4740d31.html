@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="注意：据我观察，scrapy很多版本的文档都不大一样。在一些早期版本，有好心人将英文文档翻译成中文(大概率是机翻或者AI翻的)，而在最新版本中内容又不一样。因此建议参考的路径是 pip官网scrapy主页查看最新版本，并找到相关最新的文档。（不是说旧版文档不能用，每个文档都有差别容易，让人摸不着头脑） scrapy简单调用过程爬虫通过向start_urls发送请求，调用默认的回调函数，并将相">
+    <meta name="description" content="注意：据我观察，scrapy很多版本的文档都不大一样。在一些早期版本，有好心人将英文文档翻译成中文(大概率是机翻或者AI翻的)，而在最新版本中内容又不一样。因此建议参考的路径是 pip官网scrapy主页查看最新版本，并找到相关最新的文档。（不是说旧版文档不能用，每个文档都有差别容易，让人摸不着头脑）  scrapy简单调用过程 爬虫通过向start_urls发送请求，调用默认的回调函数，并">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scrapy2.7速通">
 <meta property="og:url" content="https://zhouyinglin.cn/post/c4740d31.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="注意：据我观察，scrapy很多版本的文档都不大一样。在一些早期版本，有好心人将英文文档翻译成中文(大概率是机翻或者AI翻的)，而在最新版本中内容又不一样。因此建议参考的路径是 pip官网scrapy主页查看最新版本，并找到相关最新的文档。（不是说旧版文档不能用，每个文档都有差别容易，让人摸不着头脑） scrapy简单调用过程爬虫通过向start_urls发送请求，调用默认的回调函数，并将相">
+<meta property="og:description" content="注意：据我观察，scrapy很多版本的文档都不大一样。在一些早期版本，有好心人将英文文档翻译成中文(大概率是机翻或者AI翻的)，而在最新版本中内容又不一样。因此建议参考的路径是 pip官网scrapy主页查看最新版本，并找到相关最新的文档。（不是说旧版文档不能用，每个文档都有差别容易，让人摸不着头脑）  scrapy简单调用过程 爬虫通过向start_urls发送请求，调用默认的回调函数，并">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/202212151733479.png">
 <meta property="article:published_time" content="2022-12-16T06:57:26.000Z">
@@ -319,7 +319,7 @@
         
         
         
-          58 分钟
+          57 分钟
         
       </span>
     
@@ -379,262 +379,273 @@ Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美
 历史、政治、社会、导购
  -->
 <p>注意：据我观察，scrapy很多版本的文档都不大一样。在一些早期版本，有好心人将英文文档翻译成中文(大概率是机翻或者AI翻的)，而在最新版本中内容又不一样。因此建议参考的路径是 <a target="_blank" rel="noopener" href="https://pypi.org/project/Scrapy/">pip官网scrapy主页</a>查看最新版本，并找到相关最新的文档。（不是说旧版文档不能用，每个文档都有差别容易，让人摸不着头脑）</p>
-<h2 id="scrapy简单调用过程"><a href="#scrapy简单调用过程" class="headerlink" title="scrapy简单调用过程"></a>scrapy简单调用过程</h2><p>爬虫通过向<code>start_urls</code>发送请求，调用默认的回调函数，并将相应对象作为参数传给它</p>
+<h2 id="scrapy简单调用过程"><a class="markdownIt-Anchor" href="#scrapy简单调用过程"></a> scrapy简单调用过程</h2>
+<p>爬虫通过向<code>start_urls</code>发送请求，调用默认的回调函数，并将相应对象作为参数传给它</p>
 <p>在回调函数中，使用css选择器遍历元素，将寻找到的结果生成一个字典通过生成器返回，并找到下一个链接继续使用回调函数。</p>
 <p><code>scrapy</code>的请求调度是异步的，<code>scrapy</code>无需等待上一个请求被处理完，可以同时发送另一个请求继续处理</p>
-<h3 id="Scrapy纯代码创建爬虫"><a href="#Scrapy纯代码创建爬虫" class="headerlink" title="Scrapy纯代码创建爬虫"></a>Scrapy纯代码创建爬虫</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-keyword">class</span> <span class="hljs-title class_">QuotesSpider</span>(scrapy.Spider):  <span class="hljs-comment"># 自定义爬虫需要继承scrapy类</span><br>    <span class="hljs-comment"># 配置爬虫名字和初始URL，注意url是一个列表</span><br>    name = <span class="hljs-string">&#x27;quotes&#x27;</span><br>    start_urls = [<span class="hljs-string">&#x27;http://quotes.toscrape.com/tag/humor/&#x27;</span>,]<br>    <span class="hljs-comment"># 解析入口</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params"><span class="hljs-variable language_">self</span>, response</span>):<br>        <span class="hljs-comment"># 抓取所有class属性为quote的&lt;div&gt;，该&lt;div&gt;应该包含所需的text和auther</span><br>        <span class="hljs-keyword">for</span> quote <span class="hljs-keyword">in</span> response.css(<span class="hljs-string">&#x27;div.quote&#x27;</span>):<br>            <span class="hljs-keyword">yield</span> &#123;  <span class="hljs-comment"># 通过生成器返回</span><br>                <span class="hljs-comment"># 获取class属性为text的&lt;span&gt;的text内容，即句子内容</span><br>                <span class="hljs-string">&#x27;text&#x27;</span>: quote.css(<span class="hljs-string">&#x27;span.text::text&#x27;</span>).get(),<br>                <span class="hljs-comment"># 通过xpath方式获取 &lt;span&gt;下的&lt;small&gt;标签的文本内容，即作者</span><br>                <span class="hljs-string">&#x27;author&#x27;</span>: quote.xpath(<span class="hljs-string">&#x27;span/small/text()&#x27;</span>).get(),<br>            &#125;<br>        <span class="hljs-comment"># 获取下一页所在的链接</span><br>        next_page = response.css(<span class="hljs-string">&#x27;li.next a::attr(&quot;href&quot;)&#x27;</span>).get()<br>        <span class="hljs-keyword">if</span> next_page is <span class="hljs-keyword">not</span> <span class="hljs-symbol">None:</span><br>            <span class="hljs-keyword">yield</span> response.follow(next_page, <span class="hljs-variable language_">self</span>.parse)<br></code></pre></td></tr></table></figure>
-
-<p>然后在终端使用下列命令运行该文件，如需设置字符集在后面加上<code>-s FEED_EXPORT_ENCODING=&#39;utf-8&#39;</code></p>
+<h3 id="scrapy纯代码创建爬虫"><a class="markdownIt-Anchor" href="#scrapy纯代码创建爬虫"></a> Scrapy纯代码创建爬虫</h3>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-keyword">class</span> <span class="hljs-title class_">QuotesSpider</span>(scrapy.Spider):  <span class="hljs-comment"># 自定义爬虫需要继承scrapy类</span><br>    <span class="hljs-comment"># 配置爬虫名字和初始URL，注意url是一个列表</span><br>    name = <span class="hljs-string">&#x27;quotes&#x27;</span><br>    start_urls = [<span class="hljs-string">&#x27;http://quotes.toscrape.com/tag/humor/&#x27;</span>,]<br>    <span class="hljs-comment"># 解析入口</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params"><span class="hljs-variable language_">self</span>, response</span>):<br>        <span class="hljs-comment"># 抓取所有class属性为quote的&lt;div&gt;，该&lt;div&gt;应该包含所需的text和auther</span><br>        <span class="hljs-keyword">for</span> quote <span class="hljs-keyword">in</span> response.css(<span class="hljs-string">&#x27;div.quote&#x27;</span>):<br>            <span class="hljs-keyword">yield</span> &#123;  <span class="hljs-comment"># 通过生成器返回</span><br>                <span class="hljs-comment"># 获取class属性为text的&lt;span&gt;的text内容，即句子内容</span><br>                <span class="hljs-string">&#x27;text&#x27;</span>: quote.css(<span class="hljs-string">&#x27;span.text::text&#x27;</span>).get(),<br>                <span class="hljs-comment"># 通过xpath方式获取 &lt;span&gt;下的&lt;small&gt;标签的文本内容，即作者</span><br>                <span class="hljs-string">&#x27;author&#x27;</span>: quote.xpath(<span class="hljs-string">&#x27;span/small/text()&#x27;</span>).get(),<br>            &#125;<br>        <span class="hljs-comment"># 获取下一页所在的链接</span><br>        next_page = response.css(<span class="hljs-string">&#x27;li.next a::attr(&quot;href&quot;)&#x27;</span>).get()<br>        <span class="hljs-keyword">if</span> next_page is <span class="hljs-keyword">not</span> <span class="hljs-symbol">None:</span><br>            <span class="hljs-keyword">yield</span> response.follow(next_page, <span class="hljs-variable language_">self</span>.parse)<br></code></pre></td></tr></table></figure>
+<p>然后在终端使用下列命令运行该文件，如需设置字符集在后面加上<code>-s FEED_EXPORT_ENCODING='utf-8'</code></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">scrapy runspider spider1<span class="hljs-selector-class">.py</span> -o <span class="hljs-attribute">quotes</span><span class="hljs-selector-class">.json</span><br></code></pre></td></tr></table></figure>
-
 <p>问题1：这是一个.py文件，应该可以通过纯代码的方式来运行，但目前位置没有看到相关的教程。</p>
 <p>问题2：为什么要用<code>yield</code>而不用<code>return</code>：因为需要重复调用，<code>return</code>会直接退出函数。</p>
-<h3 id="通过Scrapy模板快速创建爬虫"><a href="#通过Scrapy模板快速创建爬虫" class="headerlink" title="通过Scrapy模板快速创建爬虫"></a>通过Scrapy模板快速创建爬虫</h3><h4 id="创建爬虫项目"><a href="#创建爬虫项目" class="headerlink" title="创建爬虫项目"></a>创建爬虫项目</h4><p>注意，在创建项目时，建议不要以某个单功能/网站爬虫来命名。一般以范围比较大的，例如电影爬虫、新闻爬虫等为名。因为一个项目下面允许创建多个爬虫，单个网站的爬虫就放在项目里面，通过模板命令来创建即可</p>
+<h3 id="通过scrapy模板快速创建爬虫"><a class="markdownIt-Anchor" href="#通过scrapy模板快速创建爬虫"></a> 通过Scrapy模板快速创建爬虫</h3>
+<h4 id="创建爬虫项目"><a class="markdownIt-Anchor" href="#创建爬虫项目"></a> 创建爬虫项目</h4>
+<p>注意，在创建项目时，建议不要以某个单功能/网站爬虫来命名。一般以范围比较大的，例如电影爬虫、新闻爬虫等为名。因为一个项目下面允许创建多个爬虫，单个网站的爬虫就放在项目里面，通过模板命令来创建即可</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">scrapy startproject stockstar</span><br></code></pre></td></tr></table></figure>
-
 <p>通过以上命令，将会创建一个名为<code>stockstar</code>的目录，目录结构如下：</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/202212151733479.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="按模板初始化爬虫"><a href="#按模板初始化爬虫" class="headerlink" title="按模板初始化爬虫"></a>按模板初始化爬虫</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs applescript">cd stockstar <span class="hljs-comment"># 进入创建好的爬虫项目目录</span><br>scrapy genspider stock <span class="hljs-literal">quote</span>.stockstart.com<br><br>scrapy genspider ：初始化爬虫命令<br>stock : 爬虫名<br><span class="hljs-literal">quote</span>.stockstart.com ： 根域名<br></code></pre></td></tr></table></figure>
-
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/202212151733479.png" srcset="/img/loading.gif" lazyload alt></p>
+<h4 id="按模板初始化爬虫"><a class="markdownIt-Anchor" href="#按模板初始化爬虫"></a> 按模板初始化爬虫</h4>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs applescript">cd stockstar <span class="hljs-comment"># 进入创建好的爬虫项目目录</span><br>scrapy genspider stock <span class="hljs-literal">quote</span>.stockstart.com<br><br>scrapy genspider ：初始化爬虫命令<br>stock : 爬虫名<br><span class="hljs-literal">quote</span>.stockstart.com ： 根域名<br></code></pre></td></tr></table></figure>
 <p>创建爬虫初始URL和parse函数，在spider目录下创建一个<code>stock.py</code>文件，自动生成start_url和parse函数，爬虫的逻辑就在parse中编写。</p>
-<h4 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h4><p>在根目录新建<code>main.py</code>，执行代码运行爬虫。这种方式貌似在纯代码状态下无法使用</p>
+<h4 id="运行爬虫"><a class="markdownIt-Anchor" href="#运行爬虫"></a> 运行爬虫</h4>
+<p>在根目录新建<code>main.py</code>，执行代码运行爬虫。这种方式貌似在纯代码状态下无法使用</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">from scrapy<span class="hljs-selector-class">.cmdline</span> import execute<br><br><span class="hljs-function"><span class="hljs-title">execute</span><span class="hljs-params">([<span class="hljs-string">&quot;scrapy&quot;</span>,<span class="hljs-string">&quot;crawl&quot;</span>,<span class="hljs-string">&quot;stock&quot;</span>,<span class="hljs-string">&quot;-o&quot;</span>,<span class="hljs-string">&quot;items.json&quot;</span>])</span></span><br>或:<br>cmdline<span class="hljs-selector-class">.execute</span>(<span class="hljs-string">&quot;scrapy crawl stock&quot;</span><span class="hljs-selector-class">.split</span>())<br></code></pre></td></tr></table></figure>
-
 <p>这行代码等价于终端执行<code>scrapy crawl stock -o items.json</code></p>
-<h4 id="settings-py配置"><a href="#settings-py配置" class="headerlink" title="settings.py配置"></a>settings.py配置</h4><figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-type">ROBOTSTXT_OBEY</span> = <span class="hljs-type">False</span>    	     <span class="hljs-comment"># 是否遵守协议，项目创建完默认为Ture，建议为False</span><br><span class="hljs-type">CONCURRENT_REQUESTS</span> = <span class="hljs-number">32</span> 		 <span class="hljs-comment"># 最大并发量</span><br><span class="hljs-type">DOWNLOAD_DELAY</span> = <span class="hljs-number">3</span>       		 <span class="hljs-comment"># 下载延迟 3 秒</span><br><span class="hljs-type">DEFAULT_REQUEST_HEADERS</span> = <span class="hljs-meta">&#123;...&#125;</span>  <span class="hljs-comment"># 请求报头</span><br><span class="hljs-type">SPIDER_MIDDLEWARES</span> = <span class="hljs-meta">&#123;...&#125;</span>  	 <span class="hljs-comment"># 爬虫中间件</span><br><span class="hljs-type">DOWNLOADER_MIDDLEWARES</span> = <span class="hljs-meta">&#123;...&#125;</span>   <span class="hljs-comment"># 下载中间件</span><br><span class="hljs-type">ITEM_PIPELINES</span> = <span class="hljs-meta">&#123;...&#125;</span>  		 <span class="hljs-comment"># 管道</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h3><h4 id="Scrapy-Shell"><a href="#Scrapy-Shell" class="headerlink" title="Scrapy Shell"></a>Scrapy Shell</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">scrapy shell http:<span class="hljs-regexp">//</span>xxxxxxxxx<br></code></pre></td></tr></table></figure>
-
+<h4 id="settingspy配置"><a class="markdownIt-Anchor" href="#settingspy配置"></a> settings.py配置</h4>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-type">ROBOTSTXT_OBEY</span> = <span class="hljs-type">False</span>    	     <span class="hljs-comment"># 是否遵守协议，项目创建完默认为Ture，建议为False</span><br><span class="hljs-type">CONCURRENT_REQUESTS</span> = <span class="hljs-number">32</span> 		 <span class="hljs-comment"># 最大并发量</span><br><span class="hljs-type">DOWNLOAD_DELAY</span> = <span class="hljs-number">3</span>       		 <span class="hljs-comment"># 下载延迟 3 秒</span><br><span class="hljs-type">DEFAULT_REQUEST_HEADERS</span> = <span class="hljs-meta">&#123;...&#125;</span>  <span class="hljs-comment"># 请求报头</span><br><span class="hljs-type">SPIDER_MIDDLEWARES</span> = <span class="hljs-meta">&#123;...&#125;</span>  	 <span class="hljs-comment"># 爬虫中间件</span><br><span class="hljs-type">DOWNLOADER_MIDDLEWARES</span> = <span class="hljs-meta">&#123;...&#125;</span>   <span class="hljs-comment"># 下载中间件</span><br><span class="hljs-type">ITEM_PIPELINES</span> = <span class="hljs-meta">&#123;...&#125;</span>  		 <span class="hljs-comment"># 管道</span><br></code></pre></td></tr></table></figure>
+<h3 id="其他工具"><a class="markdownIt-Anchor" href="#其他工具"></a> 其他工具</h3>
+<h4 id="scrapy-shell"><a class="markdownIt-Anchor" href="#scrapy-shell"></a> Scrapy Shell</h4>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">scrapy shell http:<span class="hljs-regexp">//</span>xxxxxxxxx<br></code></pre></td></tr></table></figure>
 <p>创建Scrapy Shell终端，Scrapy将对网页进行访问后返回response，在scrapy shell中可以<strong>随意使用选择器进行测试、选取</strong>，而不需要多次访问该网页，相当于将该网页的内容下载到本地供你测试使用。</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">response.css(<span class="hljs-string">&#x27;&#x27;</span>).<span class="hljs-built_in">get</span>()<br>response.xpath(<span class="hljs-string">&#x27;&#x27;</span>).<span class="hljs-built_in">get</span>()<br></code></pre></td></tr></table></figure>
-
-<h4 id="scrapy-view"><a href="#scrapy-view" class="headerlink" title="scrapy view"></a>scrapy view</h4><p>通过<code>scrapy view http://xxxxxx.com</code>可以将spider可以爬取到的页面保存到本地或者浏览器打开，在保存到本地后，可以对其进行分析，无需手动对目标页面发请求</p>
-<h4 id="scrapy-list"><a href="#scrapy-list" class="headerlink" title="scrapy list"></a>scrapy list</h4><p>在<strong>根目录</strong>执行<code>scrapy list</code>，可以查看当前项目中所有spider</p>
-<h4 id="scrapy-settings"><a href="#scrapy-settings" class="headerlink" title="scrapy settings"></a>scrapy settings</h4><p>格式：<code>scrapy setting --get BOT_NAME</code>获得设定值。</p>
-<h2 id="选择器的使用"><a href="#选择器的使用" class="headerlink" title="选择器的使用"></a>选择器的使用</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;http://example.com/&#x27;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Example website<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;images&#x27;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image1.html&#x27;</span>&gt;</span>Name: My image 1 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image1_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image2.html&#x27;</span>&gt;</span>Name: My image 2 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image2_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image3.html&#x27;</span>&gt;</span>Name: My image 3 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image3_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image4.html&#x27;</span>&gt;</span>Name: My image 4 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image4_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image5.html&#x27;</span>&gt;</span>Name: My image 5 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image5_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hero shout&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">time</span> <span class="hljs-attr">datetime</span>=<span class="hljs-string">&quot;2014-07-23 19:00&quot;</span>&gt;</span>Special date<span class="hljs-tag">&lt;/<span class="hljs-name">time</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
+<h4 id="scrapy-view"><a class="markdownIt-Anchor" href="#scrapy-view"></a> scrapy view</h4>
+<p>通过<code>scrapy view http://xxxxxx.com</code>可以将spider可以爬取到的页面保存到本地或者浏览器打开，在保存到本地后，可以对其进行分析，无需手动对目标页面发请求</p>
+<h4 id="scrapy-list"><a class="markdownIt-Anchor" href="#scrapy-list"></a> scrapy list</h4>
+<p>在<strong>根目录</strong>执行<code>scrapy list</code>，可以查看当前项目中所有spider</p>
+<h4 id="scrapy-settings"><a class="markdownIt-Anchor" href="#scrapy-settings"></a> scrapy settings</h4>
+<p>格式：<code>scrapy setting --get BOT_NAME</code>获得设定值。</p>
+<h2 id="选择器的使用"><a class="markdownIt-Anchor" href="#选择器的使用"></a> 选择器的使用</h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;http://example.com/&#x27;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Example website<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;images&#x27;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image1.html&#x27;</span>&gt;</span>Name: My image 1 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image1_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image2.html&#x27;</span>&gt;</span>Name: My image 2 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image2_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image3.html&#x27;</span>&gt;</span>Name: My image 3 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image3_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image4.html&#x27;</span>&gt;</span>Name: My image 4 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image4_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;image5.html&#x27;</span>&gt;</span>Name: My image 5 <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;image5_thumb.jpg&#x27;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hero shout&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">time</span> <span class="hljs-attr">datetime</span>=<span class="hljs-string">&quot;2014-07-23 19:00&quot;</span>&gt;</span>Special date<span class="hljs-tag">&lt;/<span class="hljs-name">time</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>针对上方的HTML结构，不同的选择器有不同的写法。</p>
-<h3 id="Xpath选择器"><a href="#Xpath选择器" class="headerlink" title="Xpath选择器"></a>Xpath选择器</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p>格式:<code> response.selector.xpath(&#39;//span/text()&#39;).get()</code></p>
+<h3 id="xpath选择器"><a class="markdownIt-Anchor" href="#xpath选择器"></a> Xpath选择器</h3>
+<h4 id="基本用法"><a class="markdownIt-Anchor" href="#基本用法"></a> 基本用法</h4>
+<p>格式:<code> response.selector.xpath('//span/text()').get()</code></p>
 <p>获取文本：<code>/text()</code></p>
 <p>获取属性：<code>/@href</code></p>
 <p>过滤标签：</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">response.xpath(&#x27;//a[contains(<span class="hljs-meta">@href,</span> <span class="hljs-string">&quot;image&quot;</span>)]/<span class="hljs-meta">@href&#x27;).getall()</span><br></code></pre></td></tr></table></figure>
-
 <p>即：选择<code>href</code>属性的值包含<code>image</code>的<code>&lt;a&gt;</code>,输出其<code>href</code>值</p>
-<h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h3><h4 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h4><p>格式：response.selector.css(‘span::text’).get()</p>
+<h3 id="css选择器"><a class="markdownIt-Anchor" href="#css选择器"></a> CSS选择器</h3>
+<h4 id="基本用法-2"><a class="markdownIt-Anchor" href="#基本用法-2"></a> 基本用法</h4>
+<p>格式：response.selector.css(‘span::text’).get()</p>
 <p>获取文本：<code>::text </code>或 <code>*::text</code> , 后者用于选择某节点下所有文本</p>
-<p>获取属性：<code>::attr(&quot;href&quot;) </code>或者 <code>.attrib[&#39;href&#39;]</code> , 后者一般用于在唯一元素中使用，因此无需在用get()</p>
-<p>过滤标签: </p>
+<p>获取属性：<code>::attr(&quot;href&quot;) </code>或者 <code>.attrib['href']</code> , 后者一般用于在唯一元素中使用，因此无需在用get()</p>
+<p>过滤标签:</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">response<span class="hljs-selector-class">.css</span>(<span class="hljs-string">&#x27;a[href*=image]::attr(href)&#x27;</span>)<span class="hljs-selector-class">.getall</span>() <br></code></pre></td></tr></table></figure>
-
 <p>即：选择<code>href</code>属性的值包含<code>image</code>的<code>&lt;a&gt;</code>,输出其<code>href</code>值</p>
 <p>补充：</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">id选择器: <span class="hljs-string">&#x27;#&#x27;</span>, 如<span class="hljs-meta">#tag 代表id为tag的元素</span><br>类选择器: <span class="hljs-string">&#x27;.&#x27;</span>, 如span.text代表<span class="hljs-keyword">class</span>值为text的span<br></code></pre></td></tr></table></figure>
-
-<h3 id="选择器的其他用法"><a href="#选择器的其他用法" class="headerlink" title="选择器的其他用法"></a>选择器的其他用法</h3><h4 id="选择器列表"><a href="#选择器列表" class="headerlink" title="选择器列表"></a>选择器列表</h4><p>选择器为所选取的标签构建一个选择器列表SelectorList:</p>
+<h3 id="选择器的其他用法"><a class="markdownIt-Anchor" href="#选择器的其他用法"></a> 选择器的其他用法</h3>
+<h4 id="选择器列表"><a class="markdownIt-Anchor" href="#选择器列表"></a> 选择器列表</h4>
+<p>选择器为所选取的标签构建一个选择器列表SelectorList:</p>
 <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scheme">[<span class="hljs-name">&lt;Selector</span> xpath=<span class="hljs-symbol">&#x27;//title/text</span>()&#x27; data=<span class="hljs-symbol">&#x27;Example</span> website<span class="hljs-symbol">&#x27;&gt;</span>]<br></code></pre></td></tr></table></figure>
-
 <p>返回的是一个列表，因此需要使用<code>get()</code>或<code>getall()</code>来提取文本</p>
-<p>当未匹配时返回<code>None</code>，可设置默认返回值: <code>xxx.get(default=&#39;not-found&#39;)</code></p>
-<h4 id="选择器-正则"><a href="#选择器-正则" class="headerlink" title="选择器+正则"></a>选择器+正则</h4><p>xpath和css选择器都支持使用正则表达式提取方法，<code>selector.re()</code>将返回unicode字符串列表</p>
+<p>当未匹配时返回<code>None</code>，可设置默认返回值: <code>xxx.get(default='not-found')</code></p>
+<h4 id="选择器正则"><a class="markdownIt-Anchor" href="#选择器正则"></a> 选择器+正则</h4>
+<p>xpath和css选择器都支持使用正则表达式提取方法，<code>selector.re()</code>将返回unicode字符串列表</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">response.css(<span class="hljs-string">&#x27;a::text&#x27;</span>).re(<span class="hljs-string">r&#x27;\d&#x27;</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-<h4 id="选择器连接"><a href="#选择器连接" class="headerlink" title="选择器连接"></a>选择器连接</h4><p>单纯的某种选择器可能不太方便使用，scrapy选择器允许在合适的地方联合使用css和xpath</p>
+<h4 id="选择器连接"><a class="markdownIt-Anchor" href="#选择器连接"></a> 选择器连接</h4>
+<p>单纯的某种选择器可能不太方便使用，scrapy选择器允许在合适的地方联合使用css和xpath</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-keyword">from</span> scrapy import Selector<br><br>sel = Selector(<span class="hljs-built_in">text</span>=&#x27;&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;hero shout&quot;</span>&gt;&lt;<span class="hljs-built_in">time</span> datetime=<span class="hljs-string">&quot;2014-07-23 19:00&quot;</span>&gt;Special <span class="hljs-built_in">date</span>&lt;/<span class="hljs-built_in">time</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;&#x27;)<br><br>sel.css(&#x27;.shout&#x27;).xpath(./<span class="hljs-built_in">time</span>/@datatime).getall()<br></code></pre></td></tr></table></figure>
-
-
-
-<h4 id="嵌套选择器"><a href="#嵌套选择器" class="headerlink" title="嵌套选择器"></a>嵌套选择器</h4><p>两种选择器都返回的列表是相同的，既然是列表就可以用于迭代，在迭代过程中，每个元素都可以再次使用选择器来匹配元素</p>
+<h4 id="嵌套选择器"><a class="markdownIt-Anchor" href="#嵌套选择器"></a> 嵌套选择器</h4>
+<p>两种选择器都返回的列表是相同的，既然是列表就可以用于迭代，在迭代过程中，每个元素都可以再次使用选择器来匹配元素</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">links = response.xpath(<span class="hljs-string">&#x27;//a[contains(@href, &quot;image&quot;)]&#x27;</span>)<br><br><span class="hljs-keyword">for</span> index, link <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(links):<br>	args = (index, link.xpath(<span class="hljs-string">&#x27;@href&#x27;</span>).get(), link.xpath(<span class="hljs-string">&#x27;img/@src&#x27;</span>).get())<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Link number %d points to url %r and image %r&#x27;</span> % args)<br></code></pre></td></tr></table></figure>
-
 <p>如果在内部使用的选择器是xpath，需要注意路径问题：</p>
 <p>如果使用相对路径，则需要这样用 ‘.//xx’ 或者 直接选择所需元素，因为外部的选择器已经是根路径</p>
-<h4 id="带括号的条件"><a href="#带括号的条件" class="headerlink" title="带括号的条件"></a>带括号的条件</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;ul <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">list</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">list</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">5</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">6</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br><br>&#x27;//<span class="hljs-symbol">li</span>[<span class="hljs-symbol">1</span>]&#x27;   : [&#x27;&lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;&#x27;, &#x27;&lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;&#x27;]<br>&#x27;(//<span class="hljs-symbol">li</span>)[<span class="hljs-symbol">1</span>]&#x27; : [&#x27;&lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;&#x27;]<br></code></pre></td></tr></table></figure>
-
+<h4 id="带括号的条件"><a class="markdownIt-Anchor" href="#带括号的条件"></a> 带括号的条件</h4>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;ul <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">list</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">list</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">5</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>    &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">6</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br><br>&#x27;//<span class="hljs-symbol">li</span>[<span class="hljs-symbol">1</span>]&#x27;   : [&#x27;&lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;&#x27;, &#x27;&lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;&#x27;]<br>&#x27;(//<span class="hljs-symbol">li</span>)[<span class="hljs-symbol">1</span>]&#x27; : [&#x27;&lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;&#x27;]<br></code></pre></td></tr></table></figure>
 <ul>
-<li><p>带着括号的(node)相当于获取所有符合元素的列表的第[n]个</p>
+<li>
+<p>带着括号的(node)相当于获取所有符合元素的列表的第[n]个</p>
 </li>
-<li><p>不带括号时对整个response进行筛选，只要符合就取出</p>
+<li>
+<p>不带括号时对整个response进行筛选，只要符合就取出</p>
 </li>
 </ul>
 <p>例如上面的例子：</p>
-<p><code>&#39;//li[1]&#39;</code>可以匹配到2个<code>&lt;ul&gt;</code>下的<code>&lt;li&gt;</code>, 因为他们都表示<code>li</code>的第一个</p>
-<p>而<code>&#39;(//li)[1]&#39;</code>则匹配整个文档中<code>li[1]</code>，因为加了括号后整个文档的<code>li</code>是一个整体，只取这个整体里的第一个。</p>
+<p><code>'//li[1]'</code>可以匹配到2个<code>&lt;ul&gt;</code>下的<code>&lt;li&gt;</code>, 因为他们都表示<code>li</code>的第一个</p>
+<p>而<code>'(//li)[1]'</code>则匹配整个文档中<code>li[1]</code>，因为加了括号后整个文档的<code>li</code>是一个整体，只取这个整体里的第一个。</p>
 <p>除了自带的选择器，Python还有其他库也可以进行解析：</p>
 <ol>
-<li><p>beautifulSoup，根据HTML构造Python对象，缺点是速度慢</p>
+<li>
+<p>beautifulSoup，根据HTML构造Python对象，缺点是速度慢</p>
 </li>
-<li><p>lxml，可解析xml和HTML，非python标准库</p>
+<li>
+<p>lxml，可解析xml和HTML，非python标准库</p>
 </li>
 </ol>
-<h3 id="选择器语法大全"><a href="#选择器语法大全" class="headerlink" title="选择器语法大全"></a>选择器语法大全</h3><h4 id="CSS选择器-1"><a href="#CSS选择器-1" class="headerlink" title="CSS选择器"></a>CSS选择器</h4><table>
+<h3 id="选择器语法大全"><a class="markdownIt-Anchor" href="#选择器语法大全"></a> 选择器语法大全</h3>
+<h4 id="css选择器-2"><a class="markdownIt-Anchor" href="#css选择器-2"></a> CSS选择器</h4>
+<table>
 <thead>
 <tr>
-<th align="center">表达式</th>
-<th align="center">说明</th>
+<th style="text-align:center">表达式</th>
+<th style="text-align:center">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">*</td>
-<td align="center">所有节点</td>
+<tbody>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">所有节点</td>
 </tr>
 <tr>
-<td align="center">#ElementId</td>
-<td align="center">ID为ElementId的节点</td>
+<td style="text-align:center">#ElementId</td>
+<td style="text-align:center">ID为ElementId的节点</td>
 </tr>
 <tr>
-<td align="center">.clsName</td>
-<td align="center">class为clsName的节点</td>
+<td style="text-align:center">.clsName</td>
+<td style="text-align:center">class为clsName的节点</td>
 </tr>
 <tr>
-<td align="center">li a</td>
-<td align="center">li元素下所有a元素</td>
+<td style="text-align:center">li a</td>
+<td style="text-align:center">li元素下所有a元素</td>
 </tr>
 <tr>
-<td align="center">ul + p</td>
-<td align="center">ul下第一个P元素</td>
+<td style="text-align:center">ul + p</td>
+<td style="text-align:center">ul下第一个P元素</td>
 </tr>
 <tr>
-<td align="center">div#eId &gt; ul</td>
-<td align="center">id为eId的元素下所有ul元素</td>
+<td style="text-align:center">div#eId &gt; ul</td>
+<td style="text-align:center">id为eId的元素下所有ul元素</td>
 </tr>
 <tr>
-<td align="center">div.clsName</td>
-<td align="center">clsss为clsName的div元素</td>
+<td style="text-align:center">div.clsName</td>
+<td style="text-align:center">clsss为clsName的div元素</td>
 </tr>
 <tr>
-<td align="center">ul ~ p</td>
-<td align="center">与ul相邻的所有p元素</td>
+<td style="text-align:center">ul ~ p</td>
+<td style="text-align:center">与ul相邻的所有p元素</td>
 </tr>
 <tr>
-<td align="center">a[title]</td>
-<td align="center">所有有tittle属性的a元素</td>
+<td style="text-align:center">a[title]</td>
+<td style="text-align:center">所有有tittle属性的a元素</td>
 </tr>
 <tr>
-<td align="center">a[href=“<a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a>”]</td>
-<td align="center">所有href为指定值的a元素</td>
+<td style="text-align:center">a[href=“<a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a>”]</td>
+<td style="text-align:center">所有href为指定值的a元素</td>
 </tr>
 <tr>
-<td align="center">a[href*=“job”]</td>
-<td align="center">所有href属性包含指定值的a元素</td>
+<td style="text-align:center">a[href*=“job”]</td>
+<td style="text-align:center">所有href属性包含指定值的a元素</td>
 </tr>
 <tr>
-<td align="center">a[href^=“http”]</td>
-<td align="center">所有href属性值以指定值开头的a元素</td>
+<td style="text-align:center">a[href^=“http”]</td>
+<td style="text-align:center">所有href属性值以指定值开头的a元素</td>
 </tr>
 <tr>
-<td align="center">a[href$=”.jpg”]</td>
-<td align="center">素有href属性值以指定值结尾的a元素</td>
+<td style="text-align:center">a[href$=“.jpg”]</td>
+<td style="text-align:center">素有href属性值以指定值结尾的a元素</td>
 </tr>
 <tr>
-<td align="center">input[type=radio]:checked</td>
-<td align="center">状态为选中的radio元素</td>
+<td style="text-align:center">input[type=radio]:checked</td>
+<td style="text-align:center">状态为选中的radio元素</td>
 </tr>
 <tr>
-<td align="center">div:not(#eleId)</td>
-<td align="center">所有id不是指定值的div元素</td>
+<td style="text-align:center">div:not(#eleId)</td>
+<td style="text-align:center">所有id不是指定值的div元素</td>
 </tr>
 <tr>
-<td align="center">li:nth-child(3)</td>
-<td align="center">第三个li元素</td>
+<td style="text-align:center">li:nth-child(3)</td>
+<td style="text-align:center">第三个li元素</td>
 </tr>
 <tr>
-<td align="center">tr:nth-child(2n)</td>
-<td align="center">第偶数个 tr 元素</td>
+<td style="text-align:center">tr:nth-child(2n)</td>
+<td style="text-align:center">第偶数个 tr 元素</td>
 </tr>
 <tr>
-<td align="center">以下选择器未尝试过</td>
-<td align="center"></td>
+<td style="text-align:center">以下选择器未尝试过</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center">div,p</td>
-<td align="center">选择所有 <div> 元素和所有 <p> 元素</p></div></td>
+<td style="text-align:center">div,p</td>
+<td style="text-align:center">选择所有 <div> 元素和所有 <p> 元素</p></div></td>
 </tr>
 <tr>
-<td align="center">div&gt;p</td>
-<td align="center">选择父元素为 <div> 元素的所有 <p> 元素</p></div></td>
+<td style="text-align:center">div&gt;p</td>
+<td style="text-align:center">选择父元素为 <div> 元素的所有 <p> 元素</p></div></td>
 </tr>
 <tr>
-<td align="center">[title~=flower]</td>
-<td align="center">选择 title 属性包含单词 “flower” 的所有元素</td>
+<td style="text-align:center">[title~=flower]</td>
+<td style="text-align:center">选择 title 属性包含单词 “flower” 的所有元素</td>
 </tr>
 <tr>
-<td align="center">p:first-child</td>
-<td align="center">选择属于父元素的第一个子元素的每个 <p> 元素</p></td>
+<td style="text-align:center">p:first-child</td>
+<td style="text-align:center">选择属于父元素的第一个子元素的每个 <p> 元素</p></td>
 </tr>
-</tbody></table>
-<h4 id="Xpath语法大全"><a href="#Xpath语法大全" class="headerlink" title="Xpath语法大全"></a>Xpath语法大全</h4><table>
+</tbody>
+</table>
+<h4 id="xpath语法大全"><a class="markdownIt-Anchor" href="#xpath语法大全"></a> Xpath语法大全</h4>
+<table>
 <thead>
 <tr>
-<th align="center">表达式</th>
-<th align="center">说明</th>
+<th style="text-align:center">表达式</th>
+<th style="text-align:center">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">div</td>
-<td align="center">选取所有div元素的所有子元素</td>
+<tbody>
+<tr>
+<td style="text-align:center">div</td>
+<td style="text-align:center">选取所有div元素的所有子元素</td>
 </tr>
 <tr>
-<td align="center">/div</td>
-<td align="center">选取根元素div</td>
+<td style="text-align:center">/div</td>
+<td style="text-align:center">选取根元素div</td>
 </tr>
 <tr>
-<td align="center">div/a</td>
-<td align="center">素有属于div的子元素的a元素</td>
+<td style="text-align:center">div/a</td>
+<td style="text-align:center">素有属于div的子元素的a元素</td>
 </tr>
 <tr>
-<td align="center">//div</td>
-<td align="center">所有div元素</td>
+<td style="text-align:center">//div</td>
+<td style="text-align:center">所有div元素</td>
 </tr>
 <tr>
-<td align="center">div//span</td>
-<td align="center">所有属于div元素的后代span元素，无论在那个层级</td>
+<td style="text-align:center">div//span</td>
+<td style="text-align:center">所有属于div元素的后代span元素，无论在那个层级</td>
 </tr>
 <tr>
-<td align="center">//@class</td>
-<td align="center">选取所有名为class的属性</td>
+<td style="text-align:center">//@class</td>
+<td style="text-align:center">选取所有名为class的属性</td>
 </tr>
 <tr>
-<td align="center">/div/p[1]</td>
-<td align="center">属于div子元素的第一个p元素</td>
+<td style="text-align:center">/div/p[1]</td>
+<td style="text-align:center">属于div子元素的第一个p元素</td>
 </tr>
 <tr>
-<td align="center">/div/p[last()]</td>
-<td align="center">属于div子元素的最后一个p元素</td>
+<td style="text-align:center">/div/p[last()]</td>
+<td style="text-align:center">属于div子元素的最后一个p元素</td>
 </tr>
 <tr>
-<td align="center">/div/p[last()-1]</td>
-<td align="center">属于div子元素的倒数第二个p元素</td>
+<td style="text-align:center">/div/p[last()-1]</td>
+<td style="text-align:center">属于div子元素的倒数第二个p元素</td>
 </tr>
 <tr>
-<td align="center">/div[@lang]</td>
-<td align="center">所有有lang属性的div元素</td>
+<td style="text-align:center">/div[@lang]</td>
+<td style="text-align:center">所有有lang属性的div元素</td>
 </tr>
 <tr>
-<td align="center">//div[@lang=‘eng’]</td>
-<td align="center">所有lang属性为eng的div元素</td>
+<td style="text-align:center">//div[@lang=‘eng’]</td>
+<td style="text-align:center">所有lang属性为eng的div元素</td>
 </tr>
 <tr>
-<td align="center">.//header//span[contains(@class,‘main-title-rating’)]/@title</td>
-<td align="center">.符号表示当前路径，一般在循环中使用；contains中表示class中包含指定值元素，@title是取元素的title属性</td>
+<td style="text-align:center">.//header//span[contains(@class,‘main-title-rating’)]/@title</td>
+<td style="text-align:center">.符号表示当前路径，一般在循环中使用；contains中表示class中包含指定值元素，@title是取元素的title属性</td>
 </tr>
 <tr>
-<td align="center">*</td>
-<td align="center">匹配任意元素</td>
+<td style="text-align:center">*</td>
+<td style="text-align:center">匹配任意元素</td>
 </tr>
 <tr>
-<td align="center">@*</td>
-<td align="center">匹配任意属性的元素</td>
+<td style="text-align:center">@*</td>
+<td style="text-align:center">匹配任意属性的元素</td>
 </tr>
 <tr>
-<td align="center">node()</td>
-<td align="center">匹配任意类型的元素</td>
+<td style="text-align:center">node()</td>
+<td style="text-align:center">匹配任意类型的元素</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 
                 
               </div>

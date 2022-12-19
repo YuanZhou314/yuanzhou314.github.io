@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="HDFS基本概念 是一个文件系统，用于存储文件，通过目录树来定位文件；是分布式的，由多个服务器联合起来实现其功。 适合场景：一次写入，多次读出，不可更改。文件写入后就不需要再改变 HDFS特征 优点  高容错，文件报错多个副本 适合处理大数据，数据规模到GB、TB甚至TP；文件数量多到百万级以上均可处理 可建构廉价机器上  缺点  不适合低延迟数据访问，实时场景不合适 无法高效对大量小文件进行">
+    <meta name="description" content="HDFS基本概念 是一个文件系统，用于存储文件，通过目录树来定位文件；是分布式的，由多个服务器联合起来实现其功。 适合场景：一次写入，多次读出，不可更改。文件写入后就不需要再改变 HDFS特征 优点  高容错，文件报错多个副本 适合处理大数据，数据规模到GB、TB甚至TP；文件数量多到百万级以上均可处理 可建构廉价机器上  缺点  不适合低延迟数据访问，实时场景不合适 无法高效对大量小文件进行存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据课程————HDFS">
 <meta property="og:url" content="https://zhouyinglin.cn/post/fff3faaa.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="HDFS基本概念 是一个文件系统，用于存储文件，通过目录树来定位文件；是分布式的，由多个服务器联合起来实现其功。 适合场景：一次写入，多次读出，不可更改。文件写入后就不需要再改变 HDFS特征 优点  高容错，文件报错多个副本 适合处理大数据，数据规模到GB、TB甚至TP；文件数量多到百万级以上均可处理 可建构廉价机器上  缺点  不适合低延迟数据访问，实时场景不合适 无法高效对大量小文件进行">
+<meta property="og:description" content="HDFS基本概念 是一个文件系统，用于存储文件，通过目录树来定位文件；是分布式的，由多个服务器联合起来实现其功。 适合场景：一次写入，多次读出，不可更改。文件写入后就不需要再改变 HDFS特征 优点  高容错，文件报错多个副本 适合处理大数据，数据规模到GB、TB甚至TP；文件数量多到百万级以上均可处理 可建构廉价机器上  缺点  不适合低延迟数据访问，实时场景不合适 无法高效对大量小文件进行存">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/BigData.jpg">
 <meta property="article:published_time" content="2022-08-06T11:34:00.000Z">
@@ -372,7 +372,6 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p><strong>HDFS基本概念</strong></p>
 <p>是一个文件系统，用于存储文件，通过目录树来定位文件；是分布式的，由多个服务器联合起来实现其功。</p>
 <p>适合场景：一次写入，多次读出，不可更改。文件写入后就不需要再改变</p>
@@ -388,37 +387,45 @@
 <li>不适合低延迟数据访问，实时场景不合适</li>
 <li>无法高效对大量小文件进行存储（占用大量NN内存来存储目录和块信息，且小文件的寻址时间超过读取时间，违反了HDFS的设计目标）</li>
 <li>不支持并发写入、文件随机修改，不允许多线程写入</li>
-<li>仅支持数据追加，不允许文件修改 </li>
+<li>仅支持数据追加，不允许文件修改</li>
 </ul>
 <p><strong>组成架构</strong></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193437.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193437.png" srcset="/img/loading.gif" lazyload alt></p>
 <ul>
-<li><p>NameNode：即NN，Master，是整个HDFS的管理者，</p>
+<li>
+<p>NameNode：即NN，Master，是整个HDFS的管理者，</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>管理HDFS的NmaeSpeace</li>
 <li>配置副本策略</li>
 <li>管理Block的映射信息</li>
 <li>处理客户端读写请求</li>
 </ul>
 </li>
-<li><p>DataNode：即DN，Slave，NN下达的命令由DN执行实际的操作</p>
+<li>
+<p>DataNode：即DN，Slave，NN下达的命令由DN执行实际的操作</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>存储实际的数据块</li>
 <li>执行数据块的读写操作</li>
 </ul>
 </li>
-<li><p>Secondary NameNode：NN的冷备份，当NN挂掉后并不会立刻替换NN</p>
+<li>
+<p>Secondary NameNode：NN的冷备份，当NN挂掉后并不会立刻替换NN</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>辅助NN，定期合并Fsimage和Edits，并推送给NN</li>
 <li>紧急情况下可辅助恢复NN</li>
 </ul>
 </li>
-<li><p>Client：客户端</p>
+<li>
+<p>Client：客户端</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>文件切分。</li>
 <li>与NameNode交互，读取文件位置信息</li>
 <li>与DataNode交互，读取或写入数据</li>
@@ -429,7 +436,7 @@
 </ul>
 <p><strong>HDFS的块大小</strong></p>
 <p>HDFS是分块存储，块大小通过配置参数dfs.blocksize来规定，默认大小在Hadoop2/3版本是128M，1.x版本是64M。</p>
-<p>HDFS是块大小主要取决于磁盘传输的速率，普通机械硬盘一般80<del>90MB/s，固态200</del>300MB/s</p>
+<p>HDFS是块大小主要取决于磁盘传输的速率，普通机械硬盘一般80<sub>90MB/s，固态200</sub>300MB/s</p>
 <ul>
 <li>HDFS块设置太小，会增加寻址时间</li>
 <li>HDFS块设置太大，传输时间会明显大于寻址时间，导致程序处理这块数据会非常慢</li>
@@ -437,17 +444,21 @@
 <p>准则：寻址时间为传输时间的1%为最佳状态。</p>
 <p><strong>HDFS的Shell操作</strong></p>
 <ul>
-<li><p>上传</p>
+<li>
+<p>上传</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>-moveFromLocal：从本地剪切粘贴到HDFS</li>
 <li>-copyFromLocal 或 -put：从本地文件系统中拷贝文件到HDFS路径去</li>
 <li>-appendToFile：追加一个文件到已经存在的文件末尾</li>
 </ul>
 </li>
-<li><p>下载、直接操作</p>
+<li>
+<p>下载、直接操作</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>-copyToLocal 或 -get ：从HDFS 拷贝到本地</li>
 <li>-ls: 显示目录信息</li>
 <li>-cat：显示文件内容</li>
@@ -464,7 +475,7 @@
 </li>
 </ul>
 <p><strong>HDFS的API操作</strong></p>
-<p>   环境搭建：</p>
+<p>环境搭建：</p>
 <ul>
 <li>资料包中打开windows依赖，将文件夹拷贝到本地文件，并对其添加环境变量（windows上不需要安装hadoop服务器，只需安装此文件中的winutils即可）</li>
 <li>创建maven项目，添加hadoop等相关依赖</li>
@@ -473,33 +484,37 @@
 </ul>
 <p>都是代码实现，在IDEA中</p>
 <p>HDFS的读写数据流程：面试重点</p>
-<p> <img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193523.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193523.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>HDFS读数据流程</strong></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193552.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193552.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>节点距离计算</p>
 <p>在HDFS写数据的过程中，NN会选择距离上离带上传数据最近的DN接收数据。</p>
 <p>节点距离：两个节点到达最近共同祖先的距离总和。</p>
 <p>解释：将网络分层，数出节点到达共同祖先的另一节点即可</p>
 <p>副本存储节点选择——机架感知</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193610.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193610.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>NameNode和DataNode的工作机制</strong></p>
 <p>注意的点：</p>
 <p>secondary NameNode向NameNode checkpoint时的条件：</p>
 <ol>
-<li><p>定时时间到</p>
+<li>
+<p>定时时间到</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>hdfs-default.xml中有所描述，即 dfs.namenode.checkpoint.period字段，默认设置为3600s。即每个小时2NN会向NN请求checkpoint</li>
 </ul>
 </li>
-<li><p>Edits中的数据满了</p>
+<li>
+<p>Edits中的数据满了</p>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>hdfs-default.xml中有所描述，即 dfs.namenode.checkpoint.txns字段，当操作次数到达100w次时，2NN执行checkpoint，检查次数的时间由 dfs.namenode.checkpoint.check.period设置，默认为60s即每分钟检查一次操作次数</li>
 </ul>
 </li>
 </ol>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193625.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806193625.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>Fsimage和Edits解析</strong></p>
 <p>NameNode被格式化之后，将会在$HADOOP_HOME/data/tmp/dfs/name/cirrent目录下产生如下文件</p>
 <p><img src="https://img2020.cnblogs.com/blog/1560490/202110/1560490-20211008075447431-470533680.png" srcset="/img/loading.gif" lazyload alt="img"></p>
@@ -511,14 +526,12 @@
 </ul>
 <p>语法：hdfs oiv -p 文件类型 -i镜像文件 -o 转换后文件输出路径</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">例子：<br>hadoop103:<span class="hljs-number">8088</span>hdfs oiv -p XML -i fsimage_0000000000000000025 -o <span class="hljs-regexp">/opt/m</span>odule<span class="hljs-regexp">/hadoop-3.1.3/</span>fsimage.xml<br>cat <span class="hljs-regexp">/opt/m</span>odule<span class="hljs-regexp">/hadoop-3.1.3/</span>fsimage.xml<br></code></pre></td></tr></table></figure>
-
 <p>fsimage.xml文件中，记录了HDFS中的文件树，并使用inode来作为元数据中的目录管理节点，与文件一一对应。</p>
 <ul>
 <li>oev查看Edits</li>
 </ul>
 <p>语法：hdfs oev -p 文件类型 -i编辑日志 -o 转换后文件输出路径</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">例子：<br>hdfs oev -p XML -i edits_inprogress_0000000000000000289 -o <span class="hljs-regexp">/opt/</span>software/edits.xml<br>cat <span class="hljs-regexp">/opt/m</span>odule<span class="hljs-regexp">/hadoop-3.1.3/</span>edits.xml<br></code></pre></td></tr></table></figure>
-
 <p>edits.xml中记录了写入追加的操作。</p>
 <p>NN和2NN最大的区别就是2NN没有edits_inprogress这个记录最新操作的文件，因此如果发生数据丢失，最有可能丢失的是最近一次操作，而往期操作被存放在2NN中</p>
 <p><strong>DataNode 的工作机制</strong></p>

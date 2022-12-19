@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="mysql下载器下载了mysql worbench后无法连接远端数据库，提示SSL之类的错误  解决方案：不使用SSL，在Advance TAB页的others框中输入参数：useSSL&#x3D;0，就可以连接上了。  有时候本地连接可以，但远程连接不行，并且报错：Host is not allowed to connect to this MySQL server。那一般是没有允许远程登录来的，解决">
+    <meta name="description" content="mysql下载器下载了mysql worbench后无法连接远端数据库，提示SSL之类的错误  解决方案：不使用SSL，在Advance TAB页的others框中输入参数：useSSL&#x3D;0，就可以连接上了。  有时候本地连接可以，但远程连接不行，并且报错：Host is not allowed to connect to this MySQL server。那一般是没有允许远程登录来的，解决办">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL Workbench 连接数据库提示SSL connection error: SSL is required but the server doesn&#39;t support it">
 <meta property="og:url" content="https://zhouyinglin.cn/post/743305aa.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="mysql下载器下载了mysql worbench后无法连接远端数据库，提示SSL之类的错误  解决方案：不使用SSL，在Advance TAB页的others框中输入参数：useSSL&#x3D;0，就可以连接上了。  有时候本地连接可以，但远程连接不行，并且报错：Host is not allowed to connect to this MySQL server。那一般是没有允许远程登录来的，解决">
+<meta property="og:description" content="mysql下载器下载了mysql worbench后无法连接远端数据库，提示SSL之类的错误  解决方案：不使用SSL，在Advance TAB页的others框中输入参数：useSSL&#x3D;0，就可以连接上了。  有时候本地连接可以，但远程连接不行，并且报错：Host is not allowed to connect to this MySQL server。那一般是没有允许远程登录来的，解决办">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/MySQL.png">
 <meta property="article:published_time" content="2022-08-06T12:17:03.000Z">
@@ -371,39 +371,33 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>mysql下载器下载了mysql worbench后无法连接远端数据库，提示SSL之类的错误</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806201747.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806201747.png" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>解决方案</strong>：不使用SSL，在Advance TAB页的others框中输入参数：useSSL=0，就可以连接上了。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806201800.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806201800.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>有时候本地连接可以，但远程连接不行，并且报错：Host is not allowed to connect to this MySQL server。那一般是没有允许远程登录来的，解决办法也很简单：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>先进入mysql<br>use mysql<br><span class="hljs-regexp">//</span>允许root用户从所有IP远程访问<br>update user set host = <span class="hljs-string">&#x27;%&#x27;</span> where user = <span class="hljs-string">&#x27;root&#x27;</span>;<br><span class="hljs-regexp">//</span>刷新<br>flush privileges;<br></code></pre></td></tr></table></figure>
-
-<h3 id="附上忘记Mysql密码的修改方法（CentOS7）："><a href="#附上忘记Mysql密码的修改方法（CentOS7）：" class="headerlink" title="附上忘记Mysql密码的修改方法（CentOS7）："></a>附上忘记Mysql密码的修改方法（CentOS7）：</h3><ol>
+<h3 id="附上忘记mysql密码的修改方法centos7"><a class="markdownIt-Anchor" href="#附上忘记mysql密码的修改方法centos7"></a> 附上忘记Mysql密码的修改方法（CentOS7）：</h3>
+<ol>
 <li>先关闭Mysql（前提是mysql存在，且安装正常）</li>
 </ol>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">service mysqld stop<br></code></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>修改mysql配置文件，在[mysqld] 下添加一句 skip-grant-tables 然后保存退出</li>
 </ol>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo vi <span class="hljs-regexp">/etc/my</span>.cnf<br></code></pre></td></tr></table></figure>
-
 <ol start="3">
 <li>重启数据库</li>
 </ol>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">service mysqld <span class="hljs-literal">start</span><br></code></pre></td></tr></table></figure>
-
 <ol start="4">
 <li>此时进入数据库是免密的，进入后 use mysql 选择数据库进入</li>
 </ol>
 <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xquery">mysql -u<span class="hljs-built_in"> root</span> mysql -u<span class="hljs-built_in"> root</span> <br><br>use mysql;<br></code></pre></td></tr></table></figure>
-
 <ol start="5">
 <li>修改密码( newpwd为新密码 )</li>
 </ol>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">update</span> mysql.<span class="hljs-keyword">user</span> <span class="hljs-keyword">set</span> authentication_string=<span class="hljs-keyword">password</span>(<span class="hljs-string">&#x27;newpwd&#x27;</span>) <span class="hljs-keyword">where</span> <span class="hljs-keyword">user</span>=<span class="hljs-string">&#x27;root&#x27;</span>;<br></code></pre></td></tr></table></figure>
-
 <p>修改完毕，exit后重新用新密码登录试一下，记得把好了之后记得把刚才的添加的语句注释掉，再重新启动mysql。</p>
 
                 

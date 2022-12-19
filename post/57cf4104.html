@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在此放一下我的系统 链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;192cL6qSsMd-wqxHeDWfIug提取码：0lrq  1.准备一张内存卡，最好是32G class10 16G的话也够用。然后用SDFormatter格式化一下  2.用Win32DiskImager读取img包，并选择需要写入的SD卡，然后点击下方Write写入，根据img包的大小和内存卡写入速度不同，等待">
+    <meta name="description" content="在此放一下我的系统 链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;192cL6qSsMd-wqxHeDWfIug 提取码：0lrq 1.准备一张内存卡，最好是32G class10 16G的话也够用。然后用SDFormatter格式化一下  2.用Win32DiskImager读取img包，并选择需要写入的SD卡，然后点击下方Write写入，根据img包的大小和内存卡写入速度不同，等待时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派wifi环境下初始化及环境配置">
 <meta property="og:url" content="https://zhouyinglin.cn/post/57cf4104.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="在此放一下我的系统 链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;192cL6qSsMd-wqxHeDWfIug提取码：0lrq  1.准备一张内存卡，最好是32G class10 16G的话也够用。然后用SDFormatter格式化一下  2.用Win32DiskImager读取img包，并选择需要写入的SD卡，然后点击下方Write写入，根据img包的大小和内存卡写入速度不同，等待">
+<meta property="og:description" content="在此放一下我的系统 链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;192cL6qSsMd-wqxHeDWfIug 提取码：0lrq 1.准备一张内存卡，最好是32G class10 16G的话也够用。然后用SDFormatter格式化一下  2.用Win32DiskImager读取img包，并选择需要写入的SD卡，然后点击下方Write写入，根据img包的大小和内存卡写入速度不同，等待时">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182544.png">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182559.png">
@@ -374,34 +374,29 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>在此放一下我的系统</p>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/192cL6qSsMd-wqxHeDWfIug">https://pan.baidu.com/s/192cL6qSsMd-wqxHeDWfIug</a><br>提取码：0lrq </p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/192cL6qSsMd-wqxHeDWfIug">https://pan.baidu.com/s/192cL6qSsMd-wqxHeDWfIug</a><br>
+提取码：0lrq</p>
 <p>1.准备一张内存卡，最好是32G class10 16G的话也够用。然后用SDFormatter格式化一下</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182544.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182544.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>2.用Win32DiskImager读取img包，并选择需要写入的SD卡，然后点击下方Write写入，根据img包的大小和内存卡写入速度不同，等待时间也不一样</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182559.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182559.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>3.打开内存卡的根目录，创建一个名为ssh的文件，（没有后缀）。如若看不到后缀自行打开文件夹选项-查看显示后缀。然后再创建一个名为wpa_supplicant.conf，注意后缀就是.conf，用文本编辑器打开即可，填入以下内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">country=CN <br>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev<br>update_config=1<br>network=&#123;  <br>ssid=<span class="hljs-string">&quot;WiFi-SSID&quot;</span>   <br>psk=<span class="hljs-string">&quot;pwd&quot;</span>   <br>key_mgmt=WPA-PSK   <br>priority=1<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>ssid和psk自己填入wifi名和密码，key_mgmt是加密方式，按照不同的加密方式填写，一般都是WPA-PSK加密，其他的应该不需要改动。</p>
 <p>4.将内存卡插入树莓派，等待1~2分钟。第一次连接wifi时，IP是跟随当前地址往后排的。但这样的的地址是动态的，不方便后期调试，所以应该设置为静态IP。</p>
 <p>打开netscan（官网安装，自带中文试用） ，查找当前局域网内的ip范围，如果不清楚就先看看自己电脑上的，根据网关选择一个0~192的范围。根据扫描结果：</p>
 <p>我这里已经配置好了静态IP，这个系统也自带的已经写好的主机名，所以第一次连接时还是很好找的。但我们设置静态IP应该将IP固定在不常用的一些地址，比如我常用的是192.168.0.0 ~ 192.168.0.100，我就把110这个不常用的ip给树莓派，一般操作就是这样。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182616.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806182616.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>5.想好一个将要分配给树莓派的IP后，根据扫描到的树莓派IP,SSH上去，输入用户名密码，这个系统的用户名是pi 密码 yahboom</p>
 <p>然后用自带的nano编辑DHCP配置文件：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo nano <span class="hljs-regexp">/etc/</span>dhcpcd.conf<br></code></pre></td></tr></table></figure>
-
-<p> 然后在末尾添加一段代码</p>
+<p>然后在末尾添加一段代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">interface wlan0<br> <br>static ip_address=内网静态ip地址/24<br>static routers=内网网关ip地址<br>static domain_name_servers=114.114.114.114<br><span class="hljs-comment"># 使用CTRL+O保存修改（字母o），然后回车确认，再CTRL+X退出编辑</span><br><span class="hljs-comment"># 设置静态IP完成，重启树莓派即可，重新SSH连接时记得更换为刚刚替换的静态IP</span><br></code></pre></td></tr></table></figure>
-
 <p>将系统自带的python2.7卸载：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt-get autoremove python2.7<br></code></pre></td></tr></table></figure>
-
 <p>然后将另外一个3.5版本的python设置为默认（否则无法检测到）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">ln</span> -s /usr/bin/python3.5 /usr/bin/python<br></code></pre></td></tr></table></figure>
-
 <p>进入python命令后，退出则输入quit()或按CTRL+D回到树莓派命令下。</p>
 
                 

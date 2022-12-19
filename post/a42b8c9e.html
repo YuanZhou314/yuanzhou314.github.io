@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="树莓派虽然体积很小,但功能相当齐全.有幸3年前接触到树莓派,并使其成为我的Linux入门老师,感谢…………   如图我的Raspbian系统如下图版本信息： 可以看到是armv7l，我查了一下是32位的arm架构，即下载第一个就好了 通过SSH Secure Shell远程上去把压缩包或者解压后的文件传过去 这样拖过去有个问题，需要改文件JDK文件夹的权限 然后配上环境变量，就可以啦，最好重启下树">
+    <meta name="description" content="树莓派虽然体积很小,但功能相当齐全.有幸3年前接触到树莓派,并使其成为我的Linux入门老师,感谢…………  如图我的Raspbian系统如下图版本信息：  可以看到是armv7l，我查了一下是32位的arm架构，即下载第一个就好了  通过SSH Secure Shell远程上去把压缩包或者解压后的文件传过去  这样拖过去有个问题，需要改文件JDK文件夹的权限  然后配上环境变量，就可以啦，最好重">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派3b+ 32位arm架构安装JDK">
 <meta property="og:url" content="https://zhouyinglin.cn/post/a42b8c9e.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="树莓派虽然体积很小,但功能相当齐全.有幸3年前接触到树莓派,并使其成为我的Linux入门老师,感谢…………   如图我的Raspbian系统如下图版本信息： 可以看到是armv7l，我查了一下是32位的arm架构，即下载第一个就好了 通过SSH Secure Shell远程上去把压缩包或者解压后的文件传过去 这样拖过去有个问题，需要改文件JDK文件夹的权限 然后配上环境变量，就可以啦，最好重启下树">
+<meta property="og:description" content="树莓派虽然体积很小,但功能相当齐全.有幸3年前接触到树莓派,并使其成为我的Linux入门老师,感谢…………  如图我的Raspbian系统如下图版本信息：  可以看到是armv7l，我查了一下是32位的arm架构，即下载第一个就好了  通过SSH Secure Shell远程上去把压缩包或者解压后的文件传过去  这样拖过去有个问题，需要改文件JDK文件夹的权限  然后配上环境变量，就可以啦，最好重">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174245.png">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174313.png">
@@ -378,12 +378,18 @@
                 
                 <p>树莓派虽然体积很小,但功能相当齐全.有幸3年前接触到树莓派,并使其成为我的Linux入门老师,感谢…………</p>
 <!-- moew -->
-
-<p>如图我的Raspbian系统如下图版本信息：<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174245.png" srcset="/img/loading.gif" lazyload></p>
-<p>可以看到是armv7l，我查了一下是32位的arm架构，即下载第一个就好了<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174313.png" srcset="/img/loading.gif" lazyload></p>
-<p>通过SSH Secure Shell远程上去把压缩包或者解压后的文件传过去<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174410.png" srcset="/img/loading.gif" lazyload></p>
-<p>这样拖过去有个问题，需要改文件JDK文件夹的权限<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174453.png" srcset="/img/loading.gif" lazyload></p>
-<p>然后配上环境变量，就可以啦，最好重启下树莓派，重启之后java -version 验证一下<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174513.png" srcset="/img/loading.gif" lazyload><br>java c 试一下,OK了<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174602.png" srcset="/img/loading.gif" lazyload></p>
+<p>如图我的Raspbian系统如下图版本信息：<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174245.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>可以看到是armv7l，我查了一下是32位的arm架构，即下载第一个就好了<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174313.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>通过SSH Secure Shell远程上去把压缩包或者解压后的文件传过去<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174410.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>这样拖过去有个问题，需要改文件JDK文件夹的权限<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174453.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>然后配上环境变量，就可以啦，最好重启下树莓派，重启之后java -version 验证一下<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174513.png" srcset="/img/loading.gif" lazyload alt><br>
+java c 试一下,OK了<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806174602.png" srcset="/img/loading.gif" lazyload alt></p>
 
                 
               </div>

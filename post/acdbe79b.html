@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="apt-get默认下载的是8.10版本的NodeJS，顺带npm的版本同样是3.xx，常规升级后提示 installed 已安装新版本，但node -v后发现仍然是旧版本。这是是因为新下载的node在其他位置，因此只需注意更改变量位置或添加新位置到profile即可。 错误提示： 1error：The engine node is incompatible with this module.">
+    <meta name="description" content="apt-get默认下载的是8.10版本的NodeJS，顺带npm的版本同样是3.xx，常规升级后提示 installed 已安装新版本，但node -v后发现仍然是旧版本。这是是因为新下载的node在其他位置，因此只需注意更改变量位置或添加新位置到profile即可。 错误提示： 1error：The engine node is incompatible with this module. E">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu无法升级Nodejs">
 <meta property="og:url" content="https://zhouyinglin.cn/post/acdbe79b.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="apt-get默认下载的是8.10版本的NodeJS，顺带npm的版本同样是3.xx，常规升级后提示 installed 已安装新版本，但node -v后发现仍然是旧版本。这是是因为新下载的node在其他位置，因此只需注意更改变量位置或添加新位置到profile即可。 错误提示： 1error：The engine node is incompatible with this module.">
+<meta property="og:description" content="apt-get默认下载的是8.10版本的NodeJS，顺带npm的版本同样是3.xx，常规升级后提示 installed 已安装新版本，但node -v后发现仍然是旧版本。这是是因为新下载的node在其他位置，因此只需注意更改变量位置或添加新位置到profile即可。 错误提示： 1error：The engine node is incompatible with this module. E">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806205242.png">
 <meta property="article:published_time" content="2022-08-06T12:52:03.000Z">
@@ -371,11 +371,9 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>apt-get默认下载的是8.10版本的NodeJS，顺带npm的版本同样是3.xx，常规升级后提示 installed 已安装新版本，但node -v后发现仍然是旧版本。这是是因为新下载的node在其他位置，因此只需注意更改变量位置或添加新位置到profile即可。</p>
 <p>错误提示：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">error</span>：The engine node is incompatible with this module. Expected version ^<span class="hljs-number">6</span>.<span class="hljs-number">14</span>.<span class="hljs-number">0</span> || ^<span class="hljs-number">8</span>.<span class="hljs-number">10</span>.<span class="hljs-number">0</span> || &gt;=<span class="hljs-number">9</span>.<span class="hljs-number">10</span>.<span class="hljs-number">0</span>. Got <span class="hljs-number">9</span>.<span class="hljs-number">5</span>.<span class="hljs-number">0</span>y　<br></code></pre></td></tr></table></figure>
-
 <p>意思很明显，版本不匹配</p>
 <p>更新node版本：</p>
 <p>清除npm缓存：npm cache clean -f</p>
@@ -393,7 +391,7 @@
 <p>查看当前node安装路径：which node</p>
 <p>我的当前安装路径是：/usr/local/Cellar/node/9.5.0/bin/node</p>
 <p>而 n 默认安装路径是 /usr/local，需要通过通过N_PREFIX变量来修改 n 的默认node安装路径。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806205242.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806205242.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>编辑环境配置文件：vim ~/.bash_profile</p>
 <p>修改node安装位置：在末尾增加export PATH=/usr/local/bin:$PATH shift+:wq 保存退出</p>
 <p>让新配置生效：socuce ~/.bash_profile</p>

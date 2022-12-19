@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="两种监督机器学习问题许多算法都有分类和回归两种形式  分类：预测类别标签 二分类：两个类别之间区分 正类：需要获得的一类 反类：不需要的一类   多分类：两个以上的类别区分   回归：预测一个连续值（浮点数或实数），这个值在给定范围内任意取值，不必精确到某一个基体数值  术语泛化：如果一个模型可以对新数据做出准确预测，那么可以说该模型能够从训练集泛化到测试集，预测精度即为泛化精度 拟合：模型预">
+    <meta name="description" content="两种监督机器学习问题 许多算法都有分类和回归两种形式  分类：预测类别标签  二分类：两个类别之间区分  正类：需要获得的一类 反类：不需要的一类   多分类：两个以上的类别区分   回归：预测一个连续值（浮点数或实数），这个值在给定范围内任意取值，不必精确到某一个基体数值   术语 泛化：如果一个模型可以对新数据做出准确预测，那么可以说该模型能够从训练集泛化到测试集，预测精度即为泛化精度 拟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习实践（二）：k-NN算法">
 <meta property="og:url" content="https://zhouyinglin.cn/post/b233c6fd.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="两种监督机器学习问题许多算法都有分类和回归两种形式  分类：预测类别标签 二分类：两个类别之间区分 正类：需要获得的一类 反类：不需要的一类   多分类：两个以上的类别区分   回归：预测一个连续值（浮点数或实数），这个值在给定范围内任意取值，不必精确到某一个基体数值  术语泛化：如果一个模型可以对新数据做出准确预测，那么可以说该模型能够从训练集泛化到测试集，预测精度即为泛化精度 拟合：模型预">
+<meta property="og:description" content="两种监督机器学习问题 许多算法都有分类和回归两种形式  分类：预测类别标签  二分类：两个类别之间区分  正类：需要获得的一类 反类：不需要的一类   多分类：两个以上的类别区分   回归：预测一个连续值（浮点数或实数），这个值在给定范围内任意取值，不必精确到某一个基体数值   术语 泛化：如果一个模型可以对新数据做出准确预测，那么可以说该模型能够从训练集泛化到测试集，预测精度即为泛化精度 拟">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/jiqixuexi.png">
 <meta property="article:published_time" content="2022-08-06T12:38:48.000Z">
@@ -372,11 +372,13 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
-<h3 id="两种监督机器学习问题"><a href="#两种监督机器学习问题" class="headerlink" title="两种监督机器学习问题"></a>两种监督机器学习问题</h3><p>许多算法都有分类和回归两种形式</p>
+<h3 id="两种监督机器学习问题"><a class="markdownIt-Anchor" href="#两种监督机器学习问题"></a> 两种监督机器学习问题</h3>
+<p>许多算法都有分类和回归两种形式</p>
 <ul>
-<li>分类：预测类别标签<ul>
-<li>二分类：两个类别之间区分<ul>
+<li>分类：预测类别标签
+<ul>
+<li>二分类：两个类别之间区分
+<ul>
 <li>正类：需要获得的一类</li>
 <li>反类：不需要的一类</li>
 </ul>
@@ -386,13 +388,17 @@
 </li>
 <li>回归：预测一个连续值（浮点数或实数），这个值在给定范围内任意取值，不必精确到某一个基体数值</li>
 </ul>
-<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><p>泛化：如果一个模型可以对新数据做出准确预测，那么可以说该模型能够从训练集<strong>泛化</strong>到测试集，预测精度即为泛化精度</p>
-<p>拟合：模型预测时对训练集的依赖<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203918.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="术语"><a class="markdownIt-Anchor" href="#术语"></a> 术语</h3>
+<p>泛化：如果一个模型可以对新数据做出准确预测，那么可以说该模型能够从训练集<strong>泛化</strong>到测试集，预测精度即为泛化精度</p>
+<p>拟合：模型预测时对训练集的依赖<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203918.png" srcset="/img/loading.gif" lazyload alt></p>
 <ul>
 <li>当模型较为复杂、过分关注细节，在训练集中预测表现很好但不能泛化到新数据时，称之为过拟合</li>
 <li>当模型过于简单，无法抓住数据的全部内容和变化，在训练集上表现很差，称之为欠拟合</li>
 </ul>
-<p>总的来说，模型越复杂，在训练数据上的预测结果就越好；但如果模型过于复杂，<br>去过多关注训练集中每个单独的数据点，模型就不能很好地泛化到新数据上。因此，二者之间存在一个最佳位置，可以得到最佳的泛化性能，这就是我们需要的模型<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203937.png" srcset="/img/loading.gif" lazyload></p>
+<p>总的来说，模型越复杂，在训练数据上的预测结果就越好；但如果模型过于复杂，<br>
+去过多关注训练集中每个单独的数据点，模型就不能很好地泛化到新数据上。因此，二者之间存在一个最佳位置，可以得到最佳的泛化性能，这就是我们需要的模型<br>
+<img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203937.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>模型复杂度和数据集大小的关系：数据集中包含的数据点的变化范围越大，在不发生过拟合的前提下模型就越复杂（相同或相似的数据点除外）</p>
 <p>其他属于补充：</p>
 <ul>
@@ -400,23 +406,23 @@
 <li>特征较多的数据集：高维数据集（不同维度的数据集中得出的结论可能是不同的，互相不适用）</li>
 <li>特征与特征的乘机也可以作为特征——特征工程：包含导出特征的方法</li>
 </ul>
-<h3 id="k-NN算法——人云亦云"><a href="#k-NN算法——人云亦云" class="headerlink" title="k-NN算法——人云亦云"></a>k-NN算法——人云亦云</h3><p>一种非参、惰性的算法模型：模型本身不会对数据做任何假设，模型结构贴合数据，且训练数据的过程很快</p>
-<h4 id="k近邻分类"><a href="#k近邻分类" class="headerlink" title="k近邻分类"></a>k近邻分类</h4><p><strong>预测过程</strong></p>
+<h3 id="k-nn算法人云亦云"><a class="markdownIt-Anchor" href="#k-nn算法人云亦云"></a> k-NN算法——人云亦云</h3>
+<p>一种非参、惰性的算法模型：模型本身不会对数据做任何假设，模型结构贴合数据，且训练数据的过程很快</p>
+<h4 id="k近邻分类"><a class="markdownIt-Anchor" href="#k近邻分类"></a> k近邻分类</h4>
+<p><strong>预测过程</strong></p>
 <p>给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的K个实例，这K个实例的多数属于某个类，就把该输入实例分类到这个类中</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203949.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203949.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>图解：单一近邻是k-NN最简单的版本，只需考虑最近距离的点。分类结果就是最近的训练集中的点所在的分类</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203959.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806203959.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>图解：任意(k)个邻居时，采用投票法指定标签，即k个邻居中分类比例占多数的为最后的预测结果</p>
 <p><strong>KNeighborsClassifier的决策边界</strong></p>
 <p>如果是二维数据集，可以再xy平面上画出所有可能的预测结果，根据点的所属类别对平面着色，这样就可以查看决策边界</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">import</span> mglearn<br><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br>X, y = mglearn.datasets.make_forge()<br>X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=<span class="hljs-number">0</span>)<br>clf = KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>)<br>clf.fit(X_train, y_train)<br><span class="hljs-built_in">print</span>(clf.predict(X_test))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#123;:.2&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(clf.score(X_test, y_test)))<br>fig, axes=plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>))<br><span class="hljs-keyword">for</span> n_neighbors, ax <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>], axes):<br>    clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X, y)<br>    mglearn.plots.plot_2d_separator(clf, X, fill=<span class="hljs-literal">True</span>, eps=<span class="hljs-number">0.5</span>, ax=ax, alpha=<span class="hljs-number">.4</span>)<br>    mglearn.discrete_scatter(X[:, <span class="hljs-number">0</span>], X[:, <span class="hljs-number">1</span>], y, ax=ax)<br>    ax.set_title(<span class="hljs-string">&quot;&#123;&#125; neighbor(s)&quot;</span>.<span class="hljs-built_in">format</span>(n_neighbors))<br>    ax.set_xlabel(<span class="hljs-string">&quot;feature 0&quot;</span>)<br>    ax.set_ylabel(<span class="hljs-string">&quot;feature 1&quot;</span>)<br>    axes[<span class="hljs-number">0</span>].legend(loc=<span class="hljs-number">3</span>)<br>p1=plt.scatter(X[y==<span class="hljs-number">0</span>,<span class="hljs-number">0</span>], X[y==<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], color=<span class="hljs-string">&#x27;blue&#x27;</span>)<br>p2=plt.scatter(X[y==<span class="hljs-number">1</span>,<span class="hljs-number">0</span>], X[y==<span class="hljs-number">1</span>, <span class="hljs-number">1</span>], color=<span class="hljs-string">&#x27;green&#x27;</span>)<br>p3=plt.scatter(X[y==<span class="hljs-number">2</span>,<span class="hljs-number">0</span>], X[y==<span class="hljs-number">2</span>, <span class="hljs-number">1</span>], color=<span class="hljs-string">&#x27;red&#x27;</span>)<br>plt.show()<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204015.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204015.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>图解：当单一邻居决策时，边界紧挨着训练数据点，边界很陡峭；当邻居越来越多，边界越平滑。而更平滑的边界对应的模型也就更简单</p>
 <p><strong>模型复杂度和泛化能力的关系</strong></p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> mglearn<br><span class="hljs-title">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_breast_cancer<br><span class="hljs-title">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-title">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-title">cancer</span> = load_breast_cancer()<br><span class="hljs-type">X_train</span>, <span class="hljs-type">X_test</span>, y_train, y_test = train_test_split(<br><span class="hljs-title">cancer</span>.<span class="hljs-class"><span class="hljs-keyword">data</span>, cancer.target, stratify=cancer.target, random_state=66)</span><br><span class="hljs-title">training_accuracy</span> = []<br><span class="hljs-title">test_accuracy</span> = []<br><span class="hljs-title">neighbors_settings</span> = range(<span class="hljs-number">1</span>, <span class="hljs-number">11</span>)<br><span class="hljs-title">for</span> n_neighbors <span class="hljs-keyword">in</span> neighbors_settings:<br>    clf = <span class="hljs-type">KNeighborsClassifier</span>(n_neighbors=n_neighbors)<br>    clf.fit(<span class="hljs-type">X_train</span>, y_train)<br>    training_accuracy.append(clf.score(<span class="hljs-type">X_train</span>, y_train))<br>    test_accuracy.append(clf.score(<span class="hljs-type">X_test</span>, y_test))<br><br><span class="hljs-title">plt</span>.plot(neighbors_settings, training_accuracy, label=<span class="hljs-string">&quot;training accuracy&quot;</span>)<br><span class="hljs-title">plt</span>.plot(neighbors_settings, test_accuracy, label=<span class="hljs-string">&quot;test accuracy&quot;</span>)<br><span class="hljs-title">plt</span>.ylabel(<span class="hljs-string">&quot;Accuracy&quot;</span>)<br><span class="hljs-title">plt</span>.xlabel(<span class="hljs-string">&quot;n_neighbors&quot;</span>)<br><span class="hljs-title">plt</span>.legend()<br><span class="hljs-title">plt</span>.show()<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204028.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204028.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>图解：</p>
 <ul>
 <li>当单一邻居时，训练集的预测结果十分准确，而测试集精度很低。这边是单一近邻的模型过于复杂</li>
@@ -425,18 +431,15 @@
 </ul>
 <p>k近邻回归</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> mglearn<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>mglearn.plots.plot_knn_regression(n_neighbors=<span class="hljs-number">1</span>)<br>plt.show()<br></code></pre></td></tr></table></figure>
-
 <p>单个和多个近邻预测结果如下：</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204043.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204056.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204043.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204056.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>sklearn中KNeighborsRegressor类实现回归</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsRegressor<br><span class="hljs-keyword">import</span> mglearn<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br>X, y = mglearn.datasets.make_wave(n_samples=<span class="hljs-number">40</span>)<br><span class="hljs-comment"># 将wave数据集分为训练集和测试集</span><br>X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=<span class="hljs-number">0</span>)<br><span class="hljs-comment"># 模型实例化，并将邻居个数设为3</span><br>reg = KNeighborsRegressor(n_neighbors=<span class="hljs-number">3</span>)<br><span class="hljs-comment"># 利用训练数据和训练目标值来拟合模型</span><br>reg.fit(X_train, y_train)<br><br><span class="hljs-comment"># 预测测试集</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Test set predictions:\n&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(reg.predict(X_test)))<br><br><span class="hljs-comment"># 评估模型，返回的是R2分数</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Test set R^2: &#123;:.2f&#125;&quot;</span>.<span class="hljs-built_in">format</span>(reg.score(X_test, y_test)))<br></code></pre></td></tr></table></figure>
-
 <p>回归模型同样适用score方法来评估模型，返回的是R2分数，R2分数就是决定系数，是回归模型预测的优度度量，位于1~0之间，当为1时就是完美预测，等于0就是常数模型，即只能预测训练集的平均值</p>
 <p><strong>分析KNeighborsRegressor</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsRegressor<br><span class="hljs-keyword">import</span> mglearn<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br>X, y = mglearn.datasets.make_wave(n_samples=<span class="hljs-number">40</span>)<br><span class="hljs-comment"># 将wave数据集分为训练集和测试集</span><br>X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=<span class="hljs-number">0</span>)<br>fig, axes = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, figsize=(<span class="hljs-number">15</span>, <span class="hljs-number">4</span>))<br><span class="hljs-comment"># 创建1000个数据点，在-3和3之间均匀分布</span><br>line = np.linspace(-<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1000</span>).reshape(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br><span class="hljs-keyword">for</span> n_neighbors, ax <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>], axes):<br>    <span class="hljs-comment"># 利用1个、3个或9个邻居分别进行预测</span><br>    reg = KNeighborsRegressor(n_neighbors=n_neighbors)<br>    reg.fit(X_train, y_train)<br>    ax.plot(line, reg.predict(line))<br>    ax.plot(X_train, y_train, <span class="hljs-string">&#x27;^&#x27;</span>, c=mglearn.cm2(<span class="hljs-number">0</span>), markersize=<span class="hljs-number">8</span>)<br>    ax.plot(X_test, y_test, <span class="hljs-string">&#x27;v&#x27;</span>, c=mglearn.cm2(<span class="hljs-number">1</span>), markersize=<span class="hljs-number">8</span>)<br>    ax.set_title(<span class="hljs-string">&quot;&#123;&#125; neighbor(s)\n train score: &#123;:.2f&#125; test score: &#123;:.2f&#125;&quot;</span>.<span class="hljs-built_in">format</span>(n_neighbors, reg.score(X_train, y_train),<br>    reg.score(X_test, y_test)))<br>    ax.set_xlabel(<span class="hljs-string">&quot;Feature&quot;</span>)<br>    ax.set_ylabel(<span class="hljs-string">&quot;Target&quot;</span>)<br>axes[<span class="hljs-number">0</span>].legend([<span class="hljs-string">&quot;Model predictions&quot;</span>, <span class="hljs-string">&quot;Training data/target&quot;</span>,<span class="hljs-string">&quot;Test data/target&quot;</span>], loc=<span class="hljs-string">&quot;best&quot;</span>)<br><br>plt.show()<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204111.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204111.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>图解：单一邻居时，训练集的每个点都对预测结果有显著影响，预测结果的图像经过所有数据点，这样并不稳定；邻居多的时候，预测结果更为平滑，但对训练数据的拟合不好</p>
 <p>总结：kNeighbors分类似的重要参数：邻居个数、数据点之间的距离度量方法。度量方法一般使用 欧式距离 ，即直线距离</p>
 <ul>

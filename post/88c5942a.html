@@ -372,10 +372,8 @@
                 
                 <p>ModuleNotFoundError: No module named 是经常能碰到的事情.这篇文章详细解释了Python导入模块的细节…………</p>
 <span id="more"></span>
-
 <p>谈到模块，不得不提起Pytho程序本身的架构。一般来说，一个Python程序包括多个含有Python语句的文本文件，程序就是作为一个主体、顶层的文件来构造，配合0~多个支持的文件，而这些文件就是模块。模块文件在运行时无需做任何事，当一个文件导入一个模块从而获得该模块定义的工具的访问权，那么该工具就是这个模块的属性</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">顶层文件：程序的主要控制流程<br><br>模块文件：工具库，提供给顶层文件使用的组件<br></code></pre></td></tr></table></figure>
-
 <p><strong>导入的实质</strong></p>
 <p>当程序执行时，且是第一次导入时，会执行以下步骤：</p>
 <p>1.找到该模块文件</p>
@@ -385,13 +383,17 @@
 <p>回到现实，在日常工作中，经常能碰到导包失败的情况，程序是死的，它只能通过人设置好的路径是查找给定的包。这就涉及到Python包的搜索路径sys.path。</p>
 <p><strong>搜索路径</strong></p>
 <ol>
-<li><p>程序的主目录：即顶层文件所在目录</p>
+<li>
+<p>程序的主目录：即顶层文件所在目录</p>
 </li>
-<li><p>PYTHONPATH目录：跨目录使用</p>
+<li>
+<p>PYTHONPATH目录：跨目录使用</p>
 </li>
-<li><p>标准链接库目录：安装在机器上本身的目录，一定会被搜索到</p>
+<li>
+<p>标准链接库目录：安装在机器上本身的目录，一定会被搜索到</p>
 </li>
-<li><p>任意.pth文件的内容：同跨目录使用，配置环境变量的一种替代方案，可将其放在顶层文件目录或标准链接库目录下</p>
+<li>
+<p>任意.pth文件的内容：同跨目录使用，配置环境变量的一种替代方案，可将其放在顶层文件目录或标准链接库目录下</p>
 </li>
 </ol>
 <p><strong>导入的方式</strong></p>
@@ -400,21 +402,18 @@
 </ol>
 <p>一般用于导入内置模块或第三方库</p>
 <figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elm"><span class="hljs-keyword">import</span> sys <br><span class="hljs-keyword">import</span> Person <span class="hljs-keyword">as</span> ps  #别名<br></code></pre></td></tr></table></figure>
-
 <p>导入后使用时，需要加上模块名的限定，如：person=Person.Person(‘xiaozhou’)</p>
 <ol start="2">
 <li>from package import funcname</li>
 </ol>
 <p>from 包名.模块名 import 类名/方法名，从指定模块中导入具体方法，<strong>推荐用法</strong></p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">from</span> sys <span class="hljs-keyword">import</span> <span class="hljs-keyword">version</span><br><span class="hljs-keyword">from</span> sys <span class="hljs-keyword">import</span> <span class="hljs-keyword">version</span>,executable<br><span class="hljs-keyword">from</span> sys <span class="hljs-keyword">import</span> *<br></code></pre></td></tr></table></figure>
-
-<p>导入后使用时，可直接对import的类/方法名进行操作，如：person=Person(‘ xiaozhou ‘)</p>
+<p>导入后使用时，可直接对import的类/方法名进行操作，如：person=Person(’ xiaozhou ')</p>
 <ol start="3">
-<li>mymodule=<strong>import</strong>(‘ modulename ‘)，不推荐该写法，可读性很差</li>
+<li>mymodule=<strong>import</strong>(’ modulename ')，不推荐该写法，可读性很差</li>
 </ol>
 <p>另外，跨目录还有一种导入方法，即：在顶层文件中手动添加sys.path，注意要先添加路径，后执行导入操作</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">sys<span class="hljs-selector-class">.path</span><span class="hljs-selector-class">.append</span>(<span class="hljs-string">&#x27;E:\\insertdir&#x27;</span>)<br></code></pre></td></tr></table></figure>
-
 
                 
               </div>

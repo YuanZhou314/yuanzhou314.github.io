@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="场景：Hexo定期手动备份，需要将本地的源文件去除模块文件后压缩打包出来，由于模块文件比较大，会增加打包时间，所以需要在打包时剔除。使用tar 的–exclude 参数就能实现 例子：打包blog文件夹，需要去除blog&#x2F;node_modules&#x2F;目录： 1tar -zcvf blog.tar.gz --exclude&#x3D;blog&#x2F;node_modules blog    排除多个目录的话在第">
+    <meta name="description" content="场景：Hexo定期手动备份，需要将本地的源文件去除模块文件后压缩打包出来，由于模块文件比较大，会增加打包时间，所以需要在打包时剔除。使用tar 的–exclude 参数就能实现 例子：打包blog文件夹，需要去除blog&#x2F;node_modules&#x2F;目录： 1tar -zcvf blog.tar.gz --exclude&#x3D;blog&#x2F;node_modules blog 排除多个目录的话在第一个–">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 压缩文件时排除指定文件&#x2F;目录">
 <meta property="og:url" content="https://zhouyinglin.cn/post/66ddc09a.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="场景：Hexo定期手动备份，需要将本地的源文件去除模块文件后压缩打包出来，由于模块文件比较大，会增加打包时间，所以需要在打包时剔除。使用tar 的–exclude 参数就能实现 例子：打包blog文件夹，需要去除blog&#x2F;node_modules&#x2F;目录： 1tar -zcvf blog.tar.gz --exclude&#x3D;blog&#x2F;node_modules blog    排除多个目录的话在第">
+<meta property="og:description" content="场景：Hexo定期手动备份，需要将本地的源文件去除模块文件后压缩打包出来，由于模块文件比较大，会增加打包时间，所以需要在打包时剔除。使用tar 的–exclude 参数就能实现 例子：打包blog文件夹，需要去除blog&#x2F;node_modules&#x2F;目录： 1tar -zcvf blog.tar.gz --exclude&#x3D;blog&#x2F;node_modules blog 排除多个目录的话在第一个–">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-11T07:39:32.000Z">
 <meta property="article:modified_time" content="2022-12-15T02:32:52.000Z">
@@ -378,20 +378,12 @@ Life、树莓派、Git、Hexo
 <p>场景：Hexo定期手动备份，需要将本地的源文件去除模块文件后压缩打包出来，由于模块文件比较大，会增加打包时间，所以需要在打包时剔除。使用tar 的–exclude 参数就能实现</p>
 <p>例子：打包blog文件夹，需要去除blog/node_modules/目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zcvf blog.tar.gz --exclude=blog/node_modules blog<br></code></pre></td></tr></table></figure>
-
-
-
 <p>排除多个目录的话在第一个–exclude后面追加即可，如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zcvf blog.tar.gz --exclude=blog/node_modules --exclude=blog/public blog<br></code></pre></td></tr></table></figure>
-
-
-
 <p>注意：</p>
 <p>–exclude排除目录时，<strong>不能在目录后面加 <code>/</code></strong> ，否则这个命令就失效了，还是会被打包进去</p>
 <p>如下，这个是错误写法，因为node_modules后面多个一个<code>/</code>：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle">tar -zcvf blog.tar.gz --<span class="hljs-keyword">exclude</span>=blog<span class="hljs-regexp">/node_modules/</span> blog<br></code></pre></td></tr></table></figure>
-
-
 
                 
               </div>

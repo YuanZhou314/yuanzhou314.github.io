@@ -378,14 +378,11 @@ Maven、数据结构、JVM、JavaScript、Crontab、Shell、Ubuntu、VPN、NodeJ
 Life、树莓派、Git、Hexo
  -->
 <p>该脚本只是做简单的逻辑处理，纯属自用，大佬勿喷。目前用到的只有这些，后续如果有更多需求会继续补充。</p>
-<p>不废话直接上代码吧，如下代码起名为blogpush.sh</p>
+<p>不废话直接上代码吧，<a target="_blank" rel="noopener" href="http://xn--blogpush-t39lfp33dj72a2wq4w4huj3c.sh">如下代码起名为blogpush.sh</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br>  <br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> == <span class="hljs-string">&quot;local&quot;</span>  ];<span class="hljs-keyword">then</span><br>    hexo clean<br>    hexo g<br>    hexo s<br><span class="hljs-keyword">elif</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> == <span class="hljs-string">&quot;github&quot;</span> ];<span class="hljs-keyword">then</span><br>    git config --global  --<span class="hljs-built_in">unset</span> https.https://github.com.proxy<br>    git config --global  --<span class="hljs-built_in">unset</span> http.https://github.com.proxy<br>    hexo clean<br>    hexo g<br>    hexo d<br><span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Parameter validation failed!&quot;</span><br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
-
-
-
 <p>食用方法：</p>
-<p>启动本地调试：. blogpush.sh local </p>
-<p>部署到Github：. blogpush.sh github</p>
+<p>启动本地调试：. <a target="_blank" rel="noopener" href="http://blogpush.sh">blogpush.sh</a> local</p>
+<p>部署到Github：. <a target="_blank" rel="noopener" href="http://blogpush.sh">blogpush.sh</a> github</p>
 <p>其他：</p>
 <p>$1 获取第一个参数</p>
 <p>hexo clean 清除缓存</p>

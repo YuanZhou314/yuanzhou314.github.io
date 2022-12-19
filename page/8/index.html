@@ -310,6 +310,67 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/post/91527534.html" target="_self">
+          linux下普通用户无法使用yum，提示需root用户
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/post/91527534.html" target="_self">
+        <div>
+          使用root 用户用 vi 或 vim 编辑&#x2F;etc&#x2F;sudoers文件，找到 &quot;root ALL&#x3D;(ALL) ALL&quot;一栏，在下一行填写： 1user ALL&#x3D;(root) NOPASSWORD:yum * 然后按：wq!完成编辑。注意这里要用到 ! 强制保存，如果不用的话会提示这是一个readonly文件，不支持修改。 上面语句的作用是：
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-06 20:21" pubdate>
+              2022-08-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Ops/" class="category-chain-item">Ops</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">#Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/post/8a0f9ffc.html" target="_self">
           记录一次云服务器被异地登录密码破解、不得已重装系统的经历
         </a>
@@ -318,7 +379,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/post/8a0f9ffc.html" target="_self">
         <div>
-          开局一张图，是我正在安装linux上的杀毒软件clamav 。从昨天开始就登录不删服务器了，而且自检提示什么外网宽带占用率90%+，当时还不知道什么问题，直到今天在图书馆用所有方式都无法登陆，这才发现有点不对，跟客服联系后得出结论是有木马入侵，多次被异地登录。简直大无语，不过也正好，把服务器整理一下，不然一直用root登陆有些不太好。 安装杀软……https:&#x2F;&#x2F;blog.csdn.net&#x2F;w
+          开局一张图，是我正在安装linux上的杀毒软件clamav 。从昨天开始就登录不删服务器了，而且自检提示什么外网宽带占用率90%+，当时还不知道什么问题，直到今天在图书馆用所有方式都无法登陆，这才发现有点不对，跟客服联系后得出结论是有木马入侵，多次被异地登录。简直大无语，不过也正好，把服务器整理一下，不然一直用root登陆有些不太好。 安装杀软……https:&#x2F;&#x2F;blog.csdn.net&#x2F;we
         </div>
       </a>
 
@@ -387,7 +448,7 @@
       
       <a class="index-excerpt " href="/post/ff07f10b.html" target="_self">
         <div>
-          防火墙、参数这些就不用说了，最基本的，填错了就当眼瞎了。最重要的是这个：增加允许远程连接 MySQL 用户并授权 很多朋友（包括我）拿到一条命令，好家伙直接欢欢喜喜拿去运行，运行完了一看运行正常，没报错，ok继续验证，发现没用，心想：垃圾东西。各位，好好看看这里的参数： 1grant all PRIVILEGES on database.* to user@&amp;#x27;123.123.123.
+          防火墙、参数这些就不用说了，最基本的，填错了就当眼瞎了。最重要的是这个：增加允许远程连接 MySQL 用户并授权 很多朋友（包括我）拿到一条命令，好家伙直接欢欢喜喜拿去运行，运行完了一看运行正常，没报错，ok继续验证，发现没用，心想：垃圾东西。各位，好好看看这里的参数： 1grant all PRIVILEGES on database.* to user@&amp;#x27;123.123.123.1
         </div>
       </a>
 
@@ -454,7 +515,7 @@
       
       <a class="index-excerpt " href="/post/743305aa.html" target="_self">
         <div>
-          mysql下载器下载了mysql worbench后无法连接远端数据库，提示SSL之类的错误  解决方案：不使用SSL，在Advance TAB页的others框中输入参数：useSSL&#x3D;0，就可以连接上了。  有时候本地连接可以，但远程连接不行，并且报错：Host is not allowed to connect to this MySQL server。那一般是没有允许远程登录来的，解决
+          mysql下载器下载了mysql worbench后无法连接远端数据库，提示SSL之类的错误  解决方案：不使用SSL，在Advance TAB页的others框中输入参数：useSSL&#x3D;0，就可以连接上了。  有时候本地连接可以，但远程连接不行，并且报错：Host is not allowed to connect to this MySQL server。那一般是没有允许远程登录来的，解决办
         </div>
       </a>
 
@@ -521,7 +582,7 @@
       
       <a class="index-excerpt " href="/post/183d3010.html" target="_self">
         <div>
-          原题：给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。 （请必须使用时间复杂度为 O(log n) 的算法） 示例 1: 输入: nums &#x3D; [1,3,5,6], target &#x3D; 5输出: 2示例 2: 输入: nums &#x3D; [1,3,5,6], target &#x3D; 2输出: 1示例 3: 输入: nums &#x3D; [1,3
+          原题：给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。 （请必须使用时间复杂度为 O(log n) 的算法） 示例 1: 输入: nums &#x3D; [1,3,5,6], target &#x3D; 5 输出: 2 示例 2: 输入: nums &#x3D; [1,3,5,6], target &#x3D; 2 输出: 1 示例 3: 输入: nums &#x3D; [
         </div>
       </a>
 
@@ -590,7 +651,7 @@
       
       <a class="index-excerpt " href="/post/ba18b6b1.html" target="_self">
         <div>
-          给你一个整数数组 nums ，请计算数组的 中心下标 。 数组 中心下标 是数组的一个下标，其左侧所有元素相加的和等于右侧所有元素相加的和。 如果中心下标位于数组最左端，那么左侧数之和视为 0 ，因为在下标的左侧不存在元素。这一点对于中心下标位于数组最右端同样适用。 如果数组有多个中心下标，应该返回 最靠近左边 的那一个。如果数组不存在中心下标，返回 -1 。 示例 1： 输入：nums &#x3D;
+          给你一个整数数组 nums ，请计算数组的 中心下标 。 数组 中心下标 是数组的一个下标，其左侧所有元素相加的和等于右侧所有元素相加的和。 如果中心下标位于数组最左端，那么左侧数之和视为 0 ，因为在下标的左侧不存在元素。这一点对于中心下标位于数组最右端同样适用。 如果数组有多个中心下标，应该返回 最靠近左边 的那一个。如果数组不存在中心下标，返回 -1 。 示例 1： 输入：nums &#x3D; [
         </div>
       </a>
 
@@ -659,7 +720,7 @@
       
       <a class="index-excerpt " href="/post/9af169b7.html" target="_self">
         <div>
-          Dockerfile的组成构建docker镜像的文件，命令+参数+脚本 步骤  编写一个dockerfile文件 docker build 构建成一个镜像 docker run运行镜像 docker push发布镜像至DockerHub或阿里云镜像仓库  官方做法：在dockerHub中随意点击一个镜像的版本，就会跳转至github的DockerFile目录，如cengtos7显示如下： 12
+          Dockerfile的组成 构建docker镜像的文件，命令+参数+脚本 步骤  编写一个dockerfile文件 docker build 构建成一个镜像 docker run运行镜像 docker push发布镜像至DockerHub或阿里云镜像仓库  官方做法：在dockerHub中随意点击一个镜像的版本，就会跳转至github的DockerFile目录，如cengtos7显示如下： 1
         </div>
       </a>
 
@@ -720,7 +781,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/post/c3c62a73.html" target="_self">
         <div>
-          如果开发的环境是unix、dos并存，那么一定会碰到文本格式的问题。比如dos环境中（win下的notepad++）编辑的脚本文件传输到linux上，行尾会多出来一个^M，导致脚本在linux上无法运行，这就是fileformat的问题。由于历史原因，unix、dos、mac三家系统采用的是不同的行结束符，unix是\n，windows是复古的\r\n（也不是所有windows上编辑的都是do
+          如果开发的环境是unix、dos并存，那么一定会碰到文本格式的问题。比如dos环境中（win下的notepad++）编辑的脚本文件传输到linux上，行尾会多出来一个^M，导致脚本在linux上无法运行，这就是fileformat的问题。由于历史原因，unix、dos、mac三家系统采用的是不同的行结束符，unix是\n，windows是复古的\r\n（也不是所有windows上编辑的都是dos
         </div>
       </a>
 
@@ -787,7 +848,7 @@
       
       <a class="index-excerpt " href="/post/a71cbc0a.html" target="_self">
         <div>
-          &#x2F;dev目录&#x2F;dev目录挂载了linux的所有外部设备，dev意为device，是linux访问外部设备的端口，但没有入口，只能通过挂载的方式访问，在任意一台正常使用的服务器上，&#x2F;dev下面的文件是很多的，因为linux遵循unix万物皆文件的风格。常见的设备有：  &#x2F;dev&#x2F;hd[a-t]：IDE设备，硬盘 &#x2F;dev&#x2F;sd[a-z]：SCSI设备 &#x2F;dev&#x2F;ram[0-15]内存 ………
+          &#x2F;dev目录 &#x2F;dev目录挂载了linux的所有外部设备，dev意为device，是linux访问外部设备的端口，但没有入口，只能通过挂载的方式访问，在任意一台正常使用的服务器上，&#x2F;dev下面的文件是很多的，因为linux遵循unix万物皆文件的风格。常见的设备有：  &#x2F;dev&#x2F;hd[a-t]：IDE设备，硬盘 &#x2F;dev&#x2F;sd[a-z]：SCSI设备 &#x2F;dev&#x2F;ram[0-15]内存 ………
         </div>
       </a>
 
@@ -854,7 +915,7 @@
       
       <a class="index-excerpt " href="/post/1f3c0c60.html" target="_self">
         <div>
-          Crontab是啥？我们先来看看wiki的说法：  再来看看官方（http:&#x2F;&#x2F;crontab.org&#x2F;）对crontab的定义：   大概说明了crontab命令的使用方法、参数的使用等注意事项，其实这些中文网已经有很多了。推荐一个小网站：https:&#x2F;&#x2F;tool.lu&#x2F;crontab 这个网站可以用来执行我们的cron表达式，以检测是否有错误。我发现这种小工具网站是真的多，而且一个比一个好
+          Crontab是啥？ 我们先来看看wiki的说法：  再来看看官方（http:&#x2F;&#x2F;crontab.org&#x2F;）对crontab的定义：  大概说明了crontab命令的使用方法、参数的使用等注意事项，其实这些中文网已经有很多了。推荐一个小网站：https:&#x2F;&#x2F;tool.lu&#x2F;crontab 这个网站可以用来执行我们的cron表达式，以检测是否有错误。我发现这种小工具网站是真的多，而且一个比一个好
         </div>
       </a>
 
@@ -903,78 +964,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/post/46cf604d.html" target="_self">
-          <img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/docker2.png" srcset="/img/loading.gif" lazyload alt="Docker进阶-挂载-容器数据卷">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/post/46cf604d.html" target="_self">
-          Docker进阶-挂载-容器数据卷
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/post/46cf604d.html" target="_self">
-        <div>
-          容器数据卷卷技术，作用是数据共享。由于容器删除后内部修改的数据也会丢失，因此需要有个地方存储数据。 卷技术可以让容器本地产生的数据映射到本地，卷技术的本质是目录的挂载，将容器内部的目录挂载到宿主机上，实现容器持久化。包括容器间也可以共享 12docker -v 主机目录:容器目录# 就算重启容器，映射关系也还是会存在   安装mysqlnavicat连接到云服务器的3305端口，映射到dock
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-06 19:55" pubdate>
-              2022-08-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Ops/" class="category-chain-item">Ops</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Docker/">#Docker</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/7/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/9/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/7/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#board">12</a><a class="extend next" rel="next" href="/page/9/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

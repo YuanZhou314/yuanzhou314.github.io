@@ -385,30 +385,27 @@ Maven、数据结构、JVM、JavaScript、Crontab、Shell、Ubuntu、VPN、NodeJ
 Life、树莓派、Git、Hexo
  -->
 <img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809223028790.png" srcset="/img/loading.gif" lazyload>
-
 <p>环境为Ubuntu，nodeJS版本12.0.0，npm版本6.9.0，hexo版本5.4.2</p>
-<h4 id="安装Aplayer"><a href="#安装Aplayer" class="headerlink" title="安装Aplayer"></a>安装Aplayer</h4><p>cd到博客根目录，执行</p>
+<h4 id="安装aplayer"><a class="markdownIt-Anchor" href="#安装aplayer"></a> 安装Aplayer</h4>
+<p>cd到博客根目录，执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install --save hexo-tag-aplayer<br></code></pre></td></tr></table></figure>
-
-
-
 <p>此时<code>node_module</code>文件夹会多出来一个aplayer文件夹</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gradle">ubuntu@VM-<span class="hljs-number">0</span>-<span class="hljs-number">7</span>-ubuntu:~<span class="hljs-regexp">/blog$ ls node_modules/</span> | <span class="hljs-keyword">grep</span> aplayer<br>aplayer<br>hexo-tag-aplayer<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809224238027.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809224238027.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>将dist文件夹复制一份到主题目录文件下的source文件夹下</p>
 <p>（<strong>注意后面我所说的source文件夹都指的是主题目录下的</strong>）</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809224433775.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="配置Aplayer"><a href="#配置Aplayer" class="headerlink" title="配置Aplayer"></a>配置Aplayer</h4><p>在source/js下新建一个amusic.js（自定义），手动配置Aplayer。audio中就是配置歌曲，参数的信息在官网找就好了，有中文很好找。</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809224433775.png" srcset="/img/loading.gif" lazyload alt></p>
+<h4 id="配置aplayer"><a class="markdownIt-Anchor" href="#配置aplayer"></a> 配置Aplayer</h4>
+<p>在source/js下新建一个amusic.js（自定义），手动配置Aplayer。audio中就是配置歌曲，参数的信息在官网找就好了，有中文很好找。</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> ap = <span class="hljs-keyword">new</span> APlayer(&#123;<br>    <span class="hljs-built_in">container</span>: document.getElementById(<span class="hljs-string">&#x27;aplayer&#x27;</span>),<br>    fixed: <span class="hljs-literal">true</span>,<br>	  autoplay: <span class="hljs-literal">false</span>, <span class="hljs-comment">//关闭自动播放</span><br>    audio: [<br>	&#123;<br>        name: <span class="hljs-string">&#x27;&#x27;</span>,<br>        artist: <span class="hljs-string">&#x27;&#x27;</span>,<br>        url: <span class="hljs-string">&#x27;&#x27;</span>,<br>        cover: <span class="hljs-string">&#x27;&#x27;</span>,<br>        lrc: <span class="hljs-string">&#x27;&#x27;</span>,<br>    &#125;, <br>	]<br>&#125;);<br><br><br></code></pre></td></tr></table></figure>
-
 <p>这里需要手动填写的内容有：</p>
 <p>name-歌曲名</p>
 <p>artist-歌手名</p>
 <p>url-歌曲链接</p>
 <p>cover-歌曲封面</p>
 <p>lrc-歌词</p>
-<h4 id="快链"><a href="#快链" class="headerlink" title="快链"></a>快链</h4><p>歌曲链接是不能直接用官网的链接，需要使用外链。拿网易云音乐为例</p>
+<h4 id="快链"><a class="markdownIt-Anchor" href="#快链"></a> 快链</h4>
+<p>歌曲链接是不能直接用官网的链接，需要使用外链。拿网易云音乐为例</p>
 <p>例如：《特别的人》 歌手：方大同</p>
 <p>网址是<a target="_blank" rel="noopener" href="https://music.163.com/#/song?id=28403111%EF%BC%8C%E5%AE%83%E7%9A%84ID%E6%98%AF28403111">https://music.163.com/#/song?id=28403111，它的ID是28403111</a></p>
 <p>那么这首歌的外链就是<a target="_blank" rel="noopener" href="http://music.163.com/song/media/outer/url?id=28403111.mp3">http://music.163.com/song/media/outer/url?id=28403111.mp3</a></p>
@@ -417,25 +414,22 @@ Life、树莓派、Git、Hexo
 <p>我自己一般网易云没有的话就直接Google去搜，锁着找一些专门提供快链的网站，<a target="_blank" rel="noopener" href="http://music.xf1433.com/">http://music.xf1433.com/</a> 这个是我白天的时候用的，但不知道为啥晚上回家打不开了……离谱</p>
 <p>还有一个快链来源：打开chrome控制台-Network,播放音乐后选择筛选media类型的URL，就可以了。</p>
 <p>快链直接复制封面图片的地址，填写即可</p>
-<h4 id="歌词"><a href="#歌词" class="headerlink" title="歌词"></a>歌词</h4><p>歌词在官网有介绍三种插入方式，LRC、JS、HTML，后2种代码怼上去太繁杂了，直接拒绝。LRC我没有尝试成功，在别的网站那里找到另一种方式，如下：</p>
+<h4 id="歌词"><a class="markdownIt-Anchor" href="#歌词"></a> 歌词</h4>
+<p>歌词在官网有介绍三种插入方式，LRC、JS、HTML，后2种代码怼上去太繁杂了，直接拒绝。LRC我没有尝试成功，在别的网站那里找到另一种方式，如下：</p>
 <p>LRC文件即歌词文件，格式一般是时间轴+歌词</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-attr">[ti:不得不爱]</span> <br><span class="hljs-selector-attr">[ar:潘玮柏]</span> <br><span class="hljs-selector-attr">[al:高手]</span> <br><span class="hljs-selector-attr">[BY:]</span> <br><span class="hljs-selector-attr">[00:01.985]</span>www<span class="hljs-selector-class">.gecimao</span><span class="hljs-selector-class">.com</span>★QQ122121036 <br><span class="hljs-selector-attr">[00:29.023]</span>天天都需要你爱 <br><span class="hljs-selector-attr">[00:31.605]</span>我的心思由你猜 <br><span class="hljs-selector-attr">[00:34.306]</span><span class="hljs-selector-tag">I</span> love you <br><span class="hljs-selector-attr">[00:35.675]</span>我就是要你让我每天都精彩 <br><span class="hljs-selector-attr">[00:40.959]</span>天天把它挂嘴边 <br><span class="hljs-selector-attr">[00:43.541]</span>到底什么是真爱 <br><span class="hljs-selector-attr">[00:46.367]</span><span class="hljs-selector-tag">I</span> love you  <br>……………<br></code></pre></td></tr></table></figure>
-
 <p>我的做法是在网上找到这种格式的文本（搜索歌名+lrc 或者找专门的网站），直接复制下来，然后在我的ubuntu上touch一个文件，vim编辑好，注意一下编码是UTF-8。</p>
 <p>配置文件中的lrc字段，其实只要是可以访问当的lrc文件就可以了，因此可以直接将lrc文件上传至github，通过域名能够访问到即可：</p>
 <p>把在source下创建一个lrcs目录，将所有的LRC文件丢进去</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809231716929.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809231716929.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>歌词放在这个位置，部署后通过域名+/lrcs/xxx.lrc就可以访问到了，同时amusic.js文件配置好对应位置即可</p>
 <p>（补充）需要注意的是，歌词默认展示的位置是底部居中，会遮挡一部分文字，最底部的统计也会被遮挡。至于怎么修改这个地方，我还没有去研究，知道的同学可以留言说一下。</p>
 <p>展示一下我的</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs 1c">const ap = new APlayer(&#123;<br>    container: document.getElementById(&#x27;aplayer&#x27;),<br>    fixed: true,<br>	  autoplay: false, <span class="hljs-comment">//自动播放</span><br>    audio: [<br>	&#123;<br>        name: &#x27;特别的人&#x27;,<br>        artist: &#x27;方大同&#x27;,<br>        url: &#x27;http://music.163.com/song/media/outer/url?id=<span class="hljs-number">28403111</span>.mp3&#x27;,<br>        cover: &#x27;https://p1.music.126.net/RTB72JJJapo01l4XfVDAWQ==/<span class="hljs-number">10995116634981</span><span class="hljs-number">9975</span>.jpg&#x27;,<br>        lrc: &#x27;https://zhouyinglin.cn/lrcs/特别的人.lrc&#x27;,<br>    &#125;,<br>        &#123;<br>        name: &#x27;身骑白马&#x27;,<br>        artist: &#x27;徐佳莹&#x27;,<br>        url: &#x27;http://music.163.com/song/media/outer/url?id=<span class="hljs-number">523303</span>8.mp3&#x27;,<br>        cover: &#x27;http://p2.music.126.net/jSLMqcE_Yq27rRKDNrRKcA==/<span class="hljs-number">10995116318740</span><span class="hljs-number">7183</span>.jpg&#x27;,<br>        lrc: &#x27;https://zhouyinglin.cn/lrcs/身骑白马.lrc&#x27;,<br>    &#125;,<br>	]<br>&#125;);<br></code></pre></td></tr></table></figure>
-
-
-
-<h4 id="添加到页面"><a href="#添加到页面" class="headerlink" title="添加到页面"></a>添加到页面</h4><p>由于fluid主题中留有footer的位置，这里也是一些小组件首选放置之地</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809230845547.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="添加到页面"><a class="markdownIt-Anchor" href="#添加到页面"></a> 添加到页面</h4>
+<p>由于fluid主题中留有footer的位置，这里也是一些小组件首选放置之地</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809230845547.png" srcset="/img/loading.gif" lazyload alt></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/dist/APlayer.min.css&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;aplayer&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/dist/APlayer.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/js/diy/music.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <p>注意这里的id需要与amusic.js中的getElementById填的ID相同，确认好之后部署。</p>
 <p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220809233230726.png" srcset="/img/loading.gif" lazyload alt="image-20220809233230726"></p>
 

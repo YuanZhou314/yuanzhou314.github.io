@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="近来将电脑的windows换成了Ubuntu桌面版，第一件事自然是挂上tizi。查了一下通用做法就是配置Clash，这里也留个记录，供需要的同学参考。 下载安装去github仓库下载最新版本即可:https:&#x2F;&#x2F;github.com&#x2F;Dreamacro&#x2F;clash&#x2F;releases 注意系统架构，我这里下的是clash-freebsd-amd64-v3-v1.11.0.gz  到gz包的下载目">
+    <meta name="description" content="近来将电脑的windows换成了Ubuntu桌面版，第一件事自然是挂上tizi。查了一下通用做法就是配置Clash，这里也留个记录，供需要的同学参考。  下载安装 去github仓库下载最新版本即可:https:&#x2F;&#x2F;github.com&#x2F;Dreamacro&#x2F;clash&#x2F;releases 注意系统架构，我这里下的是clash-freebsd-amd64-v3-v1.11.0.gz  到gz包的下载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu22.04桌面版配置Clash for Linux">
 <meta property="og:url" content="https://zhouyinglin.cn/post/bbbbe684.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="近来将电脑的windows换成了Ubuntu桌面版，第一件事自然是挂上tizi。查了一下通用做法就是配置Clash，这里也留个记录，供需要的同学参考。 下载安装去github仓库下载最新版本即可:https:&#x2F;&#x2F;github.com&#x2F;Dreamacro&#x2F;clash&#x2F;releases 注意系统架构，我这里下的是clash-freebsd-amd64-v3-v1.11.0.gz  到gz包的下载目">
+<meta property="og:description" content="近来将电脑的windows换成了Ubuntu桌面版，第一件事自然是挂上tizi。查了一下通用做法就是配置Clash，这里也留个记录，供需要的同学参考。  下载安装 去github仓库下载最新版本即可:https:&#x2F;&#x2F;github.com&#x2F;Dreamacro&#x2F;clash&#x2F;releases 注意系统架构，我这里下的是clash-freebsd-amd64-v3-v1.11.0.gz  到gz包的下载">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/Linux.jpg">
 <meta property="article:published_time" content="2022-08-06T12:44:20.000Z">
@@ -373,41 +373,38 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>近来将电脑的windows换成了Ubuntu桌面版，第一件事自然是挂上tizi。查了一下通用做法就是配置Clash，这里也留个记录，供需要的同学参考。</p>
-<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>去github仓库下载最新版本即可:<a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">https://github.com/Dreamacro/clash/releases</a></p>
+<h2 id="下载安装"><a class="markdownIt-Anchor" href="#下载安装"></a> 下载安装</h2>
+<p>去github仓库下载最新版本即可:<a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">https://github.com/Dreamacro/clash/releases</a></p>
 <p>注意系统架构，我这里下的是clash-freebsd-amd64-v3-v1.11.0.gz</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204455.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204455.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>到gz包的下载目录去解压，将解压出来的文件放在/usr/local/bin/下，改名为clash</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">gunzip</span> clash-linux-amd64-v1.<span class="hljs-number">7</span>.<span class="hljs-number">1</span>.gz``mv` `clash-linux-amd64-v1.<span class="hljs-number">7</span>.<span class="hljs-number">1</span> ``/usr/local/bin/clash<br></code></pre></td></tr></table></figure>
-
-<p>　　</p>
+<p></p>
 <p>先赋个权，再直接执行clash</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x clash<br><br>clash<br></code></pre></td></tr></table></figure>
-
-<p>　　</p>
+<p></p>
 <p>如此稍等一会儿，重新打开一个终端，查看一下~/.config/clash这个目录是否生成了下面3个文件。这其中config.yaml和Country.db是我们需要配置的。这三个文件如果已经生成，则上面的clash进程可以暂时关掉了。后面配置好了yaml再重新启动</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204526.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="配置yaml"><a href="#配置yaml" class="headerlink" title="配置yaml"></a>配置yaml</h2><p>重点来了，来到~/.config/clash目录下， 准备好订阅链接，然后执行下载clash配置文件的操作。这2个操作执行后，会有进度条显示，并且最后是完成的状态。</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204526.png" srcset="/img/loading.gif" lazyload alt></p>
+<h2 id="配置yaml"><a class="markdownIt-Anchor" href="#配置yaml"></a> 配置yaml</h2>
+<p>重点来了，来到~/.config/clash目录下， 准备好订阅链接，然后执行下载clash配置文件的操作。这2个操作执行后，会有进度条显示，并且最后是完成的状态。</p>
 <p>这个步骤有任何提示错误都代表不对的。另外，还有一种情况就是有的人开启了代理，网络不通，这里自然也就不通。因此这两步一定要确保网络是正常的</p>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs prolog">wget -<span class="hljs-symbol">O</span> config.yaml [订阅链接]<span class="hljs-string">``</span>wget -<span class="hljs-symbol">O</span> <span class="hljs-symbol">Country</span>.mmdb https:<span class="hljs-string">``</span>//www<span class="hljs-string">``</span>.sub-speeder.com<span class="hljs-string">``</span>/client-download/<span class="hljs-symbol">Country</span><span class="hljs-string">``</span>.mmdb<br><br></code></pre></td></tr></table></figure>
-
 <p>注意，这里的订阅链接<strong>不是直接用各个平台给的那种通用的</strong>（或者是酸酸乳ssr用的），而是<strong>需要转换</strong>一下。</p>
 <p>普通的订阅链接经过浏览器打开后是显示一串字符串，这种一般是酸酸乳用的，而这里clash需要的配置文件是yaml格式，这种格式有点类似json，是键值对格式的。所以很多人直接在这里直接用ssr用的，后面执行clash -d的时候就会提示下面这样的错误</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">FATA[<span class="hljs-number">0000</span>] Parse config error: yaml: unmarshal errors: line <span class="hljs-number">1</span>: cannot unmarshal !!str `c3M6Ly9...` into config.RawConfig<br></code></pre></td></tr></table></figure>
-
 <p>目前我所了解的情况是，通过在线订阅转换工具，例如下面的 <a target="_blank" rel="noopener" href="http://www.flyjiang.cn/">http://www.flyjiang.cn/</a> 来转换Clash类型的订阅地址。</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204540.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204540.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>将平台给的地址粘贴在订阅链接的框框里，类型选择Clash，点击生成订阅链接，定制订阅里会生成一个长链，这个链我试了一下不能用。因此再点击生成短链接，在订阅短链那一栏就会生成一条短链，把它拿到地址栏用浏览器访问一下，如下图所示，会发现这就是一个yaml格式的文件，因此我们需要的就是这玩意儿。</p>
 <p>把这个短链拿到上面步骤去，生成yaml配置文件。（不用复制网页内容，直接用wget下载即可）</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204559.png" srcset="/img/loading.gif" lazyload></p>
-<p> 重新回到/usr/local/bin/下面，根据配置文件执行clash</p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204559.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>重新回到/usr/local/bin/下面，根据配置文件执行clash</p>
 <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">clash -d ~<span class="hljs-regexp">/.config/</span>clash/<br></code></pre></td></tr></table></figure>
-
 <p>此时执行成功的话会产生大量的类似刚才浏览器访问短链的实时日志，在访问互联网的过程中也会一直产生日志，这个是正常的。这个进程所在的终端也不要关闭，关闭了就没法用的。然后，据说访问<a target="_blank" rel="noopener" href="http://clash.razord.top/#/proxies">http://clash.razord.top/#/proxies</a> 可以查看节点情况、测试延迟等等，但设置了密码后还是不能登录，就没有再测试了</p>
-<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><p>打开系统设置，选择网络，点击网络代理右边的设置按钮，选择手动，填写 HTTP 和 HTTPS 代理为 0.0.0.0:7890，填写 Socks 主机为 0.0.0.0:7891，即可启用系统代理。启用后尝试一下访问网站，应该就可以用了</p>
+<h2 id="系统设置"><a class="markdownIt-Anchor" href="#系统设置"></a> 系统设置</h2>
+<p>打开系统设置，选择网络，点击网络代理右边的设置按钮，选择手动，填写 HTTP 和 HTTPS 代理为 0.0.0.0:7890，填写 Socks 主机为 0.0.0.0:7891，即可启用系统代理。启用后尝试一下访问网站，应该就可以用了</p>
 <p>注意：clash进程和网络代理同时开启，才可以正常上网。如果clash开启但网络代理关闭，则无法使用，甚至连正常的网络都没法打开，这一点蛮坑的，所以最好设置clash开机自启，不然会比较麻烦</p>
-<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204633.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/20220806204633.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>但是开启自启我搞了半天也没搞好，查看clash的状态的时候也是没有启动、失败的，有经验的朋友也可以留言告知一下，不胜感激</p>
 
                 

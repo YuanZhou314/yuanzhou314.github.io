@@ -16,12 +16,12 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="首先查看声卡 1amixer scontrols  我是在手机上用JuiceSSH敲的命令，这里就不展示截图了 上述命令显示如下： 1Simple mixer control &amp;#x27;PCM&amp;#x27;, 0  然后在输入： 1amixer set PCM 80%  即可设置音量">
+    <meta name="description" content="首先查看声卡 1amixer scontrols 我是在手机上用JuiceSSH敲的命令，这里就不展示截图了 上述命令显示如下： 1Simple mixer control &amp;#x27;PCM&amp;#x27;, 0 然后在输入： 1amixer set PCM 80% 即可设置音量">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派设置音频输出音量">
 <meta property="og:url" content="https://zhouyinglin.cn/post/d4a9d35c.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="首先查看声卡 1amixer scontrols  我是在手机上用JuiceSSH敲的命令，这里就不展示截图了 上述命令显示如下： 1Simple mixer control &amp;#x27;PCM&amp;#x27;, 0  然后在输入： 1amixer set PCM 80%  即可设置音量">
+<meta property="og:description" content="首先查看声卡 1amixer scontrols 我是在手机上用JuiceSSH敲的命令，这里就不展示截图了 上述命令显示如下： 1Simple mixer control &amp;#x27;PCM&amp;#x27;, 0 然后在输入： 1amixer set PCM 80% 即可设置音量">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-06T10:31:52.000Z">
 <meta property="article:modified_time" content="2022-12-15T02:32:52.000Z">
@@ -370,17 +370,13 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-
 <p>首先查看声卡</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">amixer scontrols</span><br></code></pre></td></tr></table></figure>
-
 <p>我是在手机上用JuiceSSH敲的命令，这里就不展示截图了</p>
 <p>上述命令显示如下：</p>
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mel">Simple mixer <span class="hljs-keyword">control</span> <span class="hljs-string">&#x27;PCM&#x27;</span>, <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-
 <p>然后在输入：</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams">amixer <span class="hljs-keyword">set</span> PCM <span class="hljs-comment">80%</span><br></code></pre></td></tr></table></figure>
-
 <p>即可设置音量</p>
 
                 
