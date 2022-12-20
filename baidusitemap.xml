@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zhouyinglin.cn/post/python3sutong.html</loc>
+    <lastmod>2022-12-20</lastmod>
+  </url>
+  <url>
     <loc>https://zhouyinglin.cn/post/dc95e40f.html</loc>
     <lastmod>2022-12-19</lastmod>
   </url>
@@ -11,10 +15,6 @@
   <url>
     <loc>https://zhouyinglin.cn/post/fc930271.html</loc>
     <lastmod>2022-12-19</lastmod>
-  </url>
-  <url>
-    <loc>https://zhouyinglin.cn/post/python3sutong.html</loc>
-    <lastmod>2022-12-16</lastmod>
   </url>
   <url>
     <loc>https://zhouyinglin.cn/post/c4740d31.html</loc>

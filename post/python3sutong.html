@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://zhouyinglin.cn/C:/Users/v_vzylzhou/AppData/Roaming/Typora/typora-user-images/image-20221018101345894.png">
 <meta property="og:image" content="https://zhouyinglin.cn/C:/Users/v_vzylzhou/AppData/Roaming/Typora/typora-user-images/image-20221018101315765.png">
 <meta property="article:published_time" content="2022-11-07T03:41:53.000Z">
-<meta property="article:modified_time" content="2022-12-16T08:20:58.946Z">
+<meta property="article:modified_time" content="2022-12-20T10:17:50.203Z">
 <meta property="article:author" content="小周">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary_large_image">
@@ -309,7 +309,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          19k 字
         
       </span>
     
@@ -320,7 +320,7 @@
         
         
         
-          144 分钟
+          159 分钟
         
       </span>
     
@@ -636,10 +636,16 @@ Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美
 <p><strong>定义</strong></p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-keyword">def</span> <span class="hljs-title function_">function</span>(<span class="hljs-params">parm1，parm2</span>):<br>		……<br>		<span class="hljs-keyword">return</span> xxx<br><br><span class="hljs-variable constant_">PYTHON</span><br></code></pre></td></tr></table></figure>
 <p><strong>传参</strong></p>
+<p>Python的参数传递既不是值传递也不是引用传递，而是赋值传递。参数传递时，Python让新变量与原变量指向了相同的对象。一个对象是可以被多个变量所指向的，也就是说一个参数传入函数后，会有另一个变量指向它</p>
 <ul>
-<li>当参数为不可变参数时，是值传递。对原值没有影响</li>
-<li>当参数为可变参数时，是引用传递，在函数中修改则对原值有影响</li>
+<li>当参数为不可变对象时，所有指向该变量的值总是一样的，不会改变（改变之后是一个新对象）</li>
+<li>当参数为可变对象时，在函数中修改时对影响所有指向该对象的变量</li>
 </ul>
+<p>注意：</p>
+<ol>
+<li>变量是可以被删除的，但对象无法被删除</li>
+<li>要想在函数中改变外部传进来的参数，要么重新对其赋值，要么将其return</li>
+</ol>
 <p><strong>参数类型</strong></p>
 <ul>
 <li>必传参数：直接声明</li>
@@ -1271,10 +1277,26 @@ Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美
 <p>优势就在于边迭代边输出，提供了延迟操作。</p>
 <p>（哪儿都没说明白，等用上了再说）</p>
 <p><strong>装饰器</strong></p>
-<p>为function做额外的（且相同的）事情，如写日志、测试、鉴权等。装饰器一般在多个函数中做同样操作时发挥的作用最大，可以较大限度减少代码量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">dector</span>(<span class="hljs-params">func</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tests</span>(<span class="hljs-params">na</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;这是触发前的测试&quot;</span>)<br>        res = func(na)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;这是触发后的操作&quot;</span>)<br>        <span class="hljs-keyword">return</span> res<br>    <span class="hljs-keyword">return</span> tests<br><br><span class="hljs-meta">@dector</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mains</span>(<span class="hljs-params">name</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;这是主进程&quot;</span>)<br><br>mains(<span class="hljs-string">&quot;小周&quot;</span>)<br><br>输出：<br>这是触发前的测试<br>这是主进程<br>这是触发后的操作<br><br>PYTHON<br></code></pre></td></tr></table></figure>
-<p>如下，是一个计时器</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">import</span> <span class="hljs-type">time</span><br><br>def timer(func):<br>    def <span class="hljs-keyword">wrapper</span>(*args, **kwargs):<br>        start_time = <span class="hljs-type">time</span>.time()<br>        func()<br>        end_time = <span class="hljs-type">time</span>.time()<br>        print(end_time - start_time)<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">wrapper</span><br><br>@timer<br>def func():<br>    <span class="hljs-type">time</span>.sleep(<span class="hljs-number">0.8</span>)<br><br>func()<br><br>输出：<br><span class="hljs-number">0.8106818199157715</span><br><br>PGSQL<br></code></pre></td></tr></table></figure>
+<p>装饰器的实现前提：函数也是对象，函数可以当做参数传入其他函数。函数也可以当做返回值被return</p>
+<p>为function做额外的事情，如写日志、测试、鉴权等。装饰器一般在多个函数中做同样操作时发挥的作用最大，可以较大限度减少代码量</p>
+<p>举例说明：</p>
+<p>这里的mains函数作为参数传入了dector函数，内部又调用了原函数mains，但在调用前后分别执行输出了语句。这就是装饰器dector的作用，<strong>在不改变mains函数行为的前提下，改变了mains函数的行为</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">dector</span>(<span class="hljs-params">func</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tests</span>(<span class="hljs-params">*args, **kwargs</span>):  <span class="hljs-comment"># # 如需给原参数传参，这样写可以传任意数量和类型的参数</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;这是触发前的测试&quot;</span>)<br>        res = func(*args, **kwargs)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;这是触发后的操作&quot;</span>)<br>        <span class="hljs-keyword">return</span> res<br>    <span class="hljs-keyword">return</span> tests<br><br><span class="hljs-comment"># 这段代码等价于 mains = dector(mains)</span><br><span class="hljs-meta">@dector</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mains</span>(<span class="hljs-params">name</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;这是主进程&quot;</span>)<br><br><br>mains(<span class="hljs-string">&quot;小周&quot;</span>)<br><br>输出：<br>这是触发前的测试<br>这是主进程<br>这是触发后的操作<br><br>PYTHON<br></code></pre></td></tr></table></figure>
+<p><strong>自定义参数、保留函数元信息</strong></p>
+<p>除了原函数所需要的参数，装饰器本身也可以定义参数，例如希望指定装饰器内部函数的执行次数，可以在装饰器这里传入。</p>
+<p>需要注意的是，当同一个函数被包装器修饰后，它的名字就已经变成了包装器内部的函数（wrapper），如果需要改成原来的greet，在上面加上一个<code>@functools.wraps(func)</code>就可以了，这会将原函数的元信息拷贝至对应的装饰器函数里。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">import</span> functools<br><br>def repeat(num):<br>    def my_decorator(func):<br>    	@functools.wraps(func) #将原函数的元信息拷贝至装饰器函数中<br>        def <span class="hljs-keyword">wrapper</span>(*args, **kwargs):<br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(num): # <span class="hljs-number">4</span>被传入进来后，按照这个数字循环调用greet<br>                print(<span class="hljs-string">&#x27;wrapper of decorator&#x27;</span>)<br>                func(*args, **kwargs)<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">wrapper</span><br>    <span class="hljs-keyword">return</span> my_decorator<br><br>@repeat(<span class="hljs-number">4</span>)  # 此处是可以允许传参的<br>def greet(message):<br>    print(message)<br>#<span class="hljs-comment">-------------------------------------#</span><br>print(greet.__name__)<br>输出：<span class="hljs-keyword">wrapper</span><br></code></pre></td></tr></table></figure>
+<p><strong>装饰器的嵌套</strong></p>
+<p>允许有多个装饰器，执行顺序是从里到外（有待研究）：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@decorator1</span><br><span class="hljs-variable">@decorator2</span><br><span class="hljs-variable">@decorator3</span><br>def <span class="hljs-built_in">func</span>():<br>    ...<br>    <br># 等效于：<br><span class="hljs-built_in">decorator1</span>(<span class="hljs-built_in">decorator2</span>(<span class="hljs-built_in">decorator3</span>(func)))<br></code></pre></td></tr></table></figure>
+<p><strong>类装饰器</strong></p>
+<p>在<code>myDecorator</code>类的<code>__init__()</code>中定义和调用了<code>aFunction</code>函数，在<code>__init__()</code>执行结束后，<code>aFunction</code>函数已经声明且调用完了。然后输出第三句输出。最后执行<code>aFunction()</code>时，实际上是执行了<code>myDecorator</code>的<code>__call__()</code>方法。</p>
+<p>因此，被装饰后的函数<code>aFunction()</code>，已经是类<code>myDecorator</code>的对象了，当再次调用<code>aFunction()</code>时，也就是在调用类<code>myDecorator</code>的对象，所以会调到<code>__call__()</code>函数。</p>
+<p>使用类装饰器来装饰函数来对函数添加一些额外的属性或功能时，一般会在类的<code>__init__()</code>中传入函数，在<code>__call__()</code>调用修饰的函数或者其他额外处理。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs scss">class <span class="hljs-built_in">myDecorator</span>(object):<br>    def <span class="hljs-built_in">__init__</span>(self, f):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;inside myDecorator.__init__()&quot;</span>)<br>        <span class="hljs-built_in">f</span>() <br>    def <span class="hljs-built_in">__call__</span>(self):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;inside myDecorator.__call__()&quot;</span>)<br><br>@myDecorator<br>def <span class="hljs-built_in">aFunction</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;inside aFunction()&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Finished decorating aFunction()&quot;</span>) # 表示aFunction已经调用结束<br><span class="hljs-built_in">aFunction</span>()<br><br>输出：<br>inside myDecorator.<span class="hljs-built_in">__init__</span>()<br>inside <span class="hljs-built_in">aFunction</span>()<br>Finished decorating <span class="hljs-built_in">aFunction</span>()<br>inside myDecorator.<span class="hljs-built_in">__call__</span>()<br></code></pre></td></tr></table></figure>
+<p>补充：</p>
+<p>定义了<code>__call__()</code>方法的类的对象可以像函数一样被调用，此时调用的是对象的<code>__call__()</code>方法。因为按照装饰器语法的涵义，</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-variable">@myDecorator</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">aFunction</span>():<br>    <span class="hljs-comment"># ……</span><br>    <br><span class="hljs-comment"># 等价于</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">aFunction</span>():<br>    <span class="hljs-comment"># ……</span><br>aFunction = myDecorator(aFunction)<br><br></code></pre></td></tr></table></figure>
 <h2 id="进阶用法"><a class="markdownIt-Anchor" href="#进阶用法"></a> 进阶用法</h2>
 <h3 id="lambda表达式"><a class="markdownIt-Anchor" href="#lambda表达式"></a> lambda表达式</h3>
 <p>用于创建匿名函数，语法上限为单个表达式，是正常函数定义的语法糖。如下两种写法是一样的：</p>
@@ -1375,7 +1397,7 @@ Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年12月16日</div>
+          <div>2022年12月20日</div>
         </div>
       
       <div class="license-meta-item">
