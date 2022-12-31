@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>mysql5.7修改密码最佳实践</title>
+    <link href="/post/5ffe9ce3.html"/>
+    <url>/post/5ffe9ce3.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><span id="more"></span><!-- categories:Dev、Ops、Study、Sth、News、work--><!-- tags: Python、MySQL、LeetCode、机器学习、Linux、Big Data、Java、BlockChain、Docker、Web 、分布式、Maven、数据结构、JVM、JavaScript、Crontab、Shell、Ubuntu、VPN、NodeJS、String、VM、Hadoop、Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美学、写作、哲学、文档、绘画、前端、历史、政治、社会、导购 --><p>环境信息</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">ubuntu@VM<span class="hljs-number">-0</span><span class="hljs-number">-7</span>-ubuntu:~/blog$ lsb_release -a<br><span class="hljs-keyword">No</span> LSB modules are available.<br>Description:    Ubuntu <span class="hljs-number">18.04</span><span class="hljs-number">.4</span> LTS<br><br>ubuntu@VM<span class="hljs-number">-0</span><span class="hljs-number">-7</span>-ubuntu:~/blog$ mysql <span class="hljs-comment">--version</span><br>mysql  Ver <span class="hljs-number">14.14</span> Distrib <span class="hljs-number">5.7</span><span class="hljs-number">.38</span>, <span class="hljs-keyword">for</span> Linux (x86_64) <span class="hljs-keyword">using</span>  EditLine <span class="hljs-keyword">wrapper</span><br></code></pre></td></tr></table></figure><h3 id="修改配置文件"><a class="markdownIt-Anchor" href="#修改配置文件"></a> 修改配置文件</h3><p>在[mysqld]块内加上<code>skip-grant-tables</code>，然后保存退出，<code>sudo service mysql restart</code>重启mysql</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo vim <span class="hljs-regexp">/etc/my</span>sql<span class="hljs-regexp">/mysql.conf.d/my</span>sqld.cnf<br><br>[mysqld]<br><span class="hljs-comment">#</span><br><span class="hljs-comment"># * Basic Settings</span><br><span class="hljs-comment">#</span><br>user            = mysql<br>pid-file        = <span class="hljs-regexp">/var/</span>run<span class="hljs-regexp">/mysqld/my</span>sqld.pid<br>socket          = <span class="hljs-regexp">/var/</span>run<span class="hljs-regexp">/mysqld/my</span>sqld.sock<br>port            = <span class="hljs-number">3306</span><br>basedir         = /usr<br>datadir         = <span class="hljs-regexp">/var/</span>lib/mysql<br>tmpdir          = /tmp<br>lc-messages-dir = <span class="hljs-regexp">/usr/</span>share/mysql<br>skip-external-locking<br>skip-grant-tables<br></code></pre></td></tr></table></figure><h3 id="重设密码"><a class="markdownIt-Anchor" href="#重设密码"></a> 重设密码</h3><p>终端输入<code>mysql -u root</code>直接进入mysql，执行如下语句</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">use mysql;<br><span class="hljs-keyword">update</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">set</span> authentication_string=<span class="hljs-keyword">password</span>(&quot;新密码&quot;) <span class="hljs-keyword">where</span> <span class="hljs-keyword">user</span>=&quot;root&quot;;<br>flush <span class="hljs-keyword">privileges</span>;<br></code></pre></td></tr></table></figure><p>然后<code>quit</code>退出mysql</p><h3 id="还原配置文件"><a class="markdownIt-Anchor" href="#还原配置文件"></a> 还原配置文件</h3><p>重新回到刚才的配置文件，将加进去的<code>skip-grant-tables</code>注释掉即可。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Dev</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>运维</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>治疗新冠病毒感染中药协定方范例</title>
     <link href="/post/485cf97b.html"/>
     <url>/post/485cf97b.html</url>
