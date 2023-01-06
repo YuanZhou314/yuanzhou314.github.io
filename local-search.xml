@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Hexo Fluid中插入bilibili视频</title>
+    <link href="/post/4654962b.html"/>
+    <url>/post/4654962b.html</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><!-- categories:Dev、Ops、Study、Sth、News、work--><!-- tags: Python、MySQL、LeetCode、机器学习、Linux、Big Data、Java、BlockChain、Docker、Web 、分布式、Maven、数据结构、JVM、JavaScript、Crontab、Shell、Ubuntu、VPN、NodeJS、String、VM、Hadoop、Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美学、写作、哲学、文档、绘画、前端、历史、政治、社会、导购 --><p>用过<code>hexo-tag-dplayer</code>、<code>hexo-tag-mmedia</code>等插件，前者界面很丑且配置项繁杂，后者与<code>markdown</code>语法有冲突，只能单独放置无法添加其他文本。当然，二者的共同点就是都已经停止维护，联系到开发者就让自己二开。所以干脆使用原生的<code>iframe</code>方式插入视频。</p><p>在B站视频页面分享按钮点击复制嵌入代码，即可获取视频外链</p><p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/202301061225362.png" alt></p><p>复制到的代码是这样子的</p><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">&lt;iframe src<span class="hljs-operator">=</span><span class="hljs-string">&quot;//player.bilibili.com/player.html?aid=564630517&amp;bvid=BV1ov4y1B7pm&amp;cid=947156387&amp;page=1&quot;</span> scrolling<span class="hljs-operator">=</span><span class="hljs-string">&quot;no&quot;</span> border<span class="hljs-operator">=</span><span class="hljs-string">&quot;0&quot;</span> frameborder<span class="hljs-operator">=</span><span class="hljs-string">&quot;no&quot;</span> framespacing<span class="hljs-operator">=</span><span class="hljs-string">&quot;0&quot;</span> allowfullscreen<span class="hljs-operator">=</span><span class="hljs-string">&quot;true&quot;</span>&gt; &lt;/iframe&gt;<br></code></pre></td></tr></table></figure><p>如果直接拿去放到页面里，视频窗口会很小，也很丑。所以根据Hexo官网的视频案例布局进行美化，直接将原本代码中的<code>src</code>值替换进去，然后将如下代码放置进<code>markdown</code>即可。</p><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs abnf">&#123;% raw %&#125;<br>&lt;div style<span class="hljs-operator">=</span><span class="hljs-string">&quot;position: relative; width: 100%; height: 0; padding-bottom: 75%;&quot;</span>&gt;<br>&lt;iframe src<span class="hljs-operator">=</span><span class="hljs-string">&quot;//player.bilibili.com/player.html?aid=564630517&amp;bvid=BV1ov4y1B7pm&amp;cid=947156387&amp;page=1&quot;</span> scrolling<span class="hljs-operator">=</span><span class="hljs-string">&quot;no&quot;</span> border<span class="hljs-operator">=</span><span class="hljs-string">&quot;0&quot;</span> frameborder<span class="hljs-operator">=</span><span class="hljs-string">&quot;no&quot;</span> framespacing<span class="hljs-operator">=</span><span class="hljs-string">&quot;0&quot;</span> allowfullscreen<span class="hljs-operator">=</span><span class="hljs-string">&quot;true&quot;</span> style<span class="hljs-operator">=</span><span class="hljs-string">&quot;position: absolute; width: 100%; height: 100%; Left: 0; top: 0;&quot;</span> &gt;&lt;/iframe&gt;&lt;/div&gt;<br>&#123;% endraw %&#125;<br></code></pre></td></tr></table></figure><p>效果如下图所示：<br><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/202301061233355.png" alt></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Dev</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2022最后一天,我接到了来自四年前的电话...... | 2022关于我的一切</title>
     <link href="/post/fcbd6729.html"/>
     <url>/post/fcbd6729.html</url>
