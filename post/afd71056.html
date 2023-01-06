@@ -16,16 +16,16 @@
   <meta name="author" content="小周">
   <meta name="keywords" content="">
   
-    <meta name="description" content="数据模型创建后，Django会自动给予一套数据库抽象API，允许增删改查对象。 思考：目前官方的文档都是在命令行模式中举例，难道不能在代码中编写SQL吗？ 官方文档：https:&#x2F;&#x2F;docs.djangoproject.com&#x2F;zh-hans&#x2F;4.1&#x2F;topics&#x2F;db&#x2F;queries&#x2F;  导入模型 12from polls.models import Choice, Questionfro">
+    <meta name="description" content="数据模型创建后，Django会自动给予一套数据库抽象API，允许增删改查对象。在Django实际代码中，这些应该都是写在views.py内的。 官方文档：https:&#x2F;&#x2F;docs.djangoproject.com&#x2F;zh-hans&#x2F;4.1&#x2F;topics&#x2F;db&#x2F;queries&#x2F;  导入模型 12from polls.models import Choice, Questionfrom djan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django数据库基本API示例">
 <meta property="og:url" content="https://zhouyinglin.cn/post/afd71056.html">
 <meta property="og:site_name" content="小周的院子">
-<meta property="og:description" content="数据模型创建后，Django会自动给予一套数据库抽象API，允许增删改查对象。 思考：目前官方的文档都是在命令行模式中举例，难道不能在代码中编写SQL吗？ 官方文档：https:&#x2F;&#x2F;docs.djangoproject.com&#x2F;zh-hans&#x2F;4.1&#x2F;topics&#x2F;db&#x2F;queries&#x2F;  导入模型 12from polls.models import Choice, Questionfro">
+<meta property="og:description" content="数据模型创建后，Django会自动给予一套数据库抽象API，允许增删改查对象。在Django实际代码中，这些应该都是写在views.py内的。 官方文档：https:&#x2F;&#x2F;docs.djangoproject.com&#x2F;zh-hans&#x2F;4.1&#x2F;topics&#x2F;db&#x2F;queries&#x2F;  导入模型 12from polls.models import Choice, Questionfrom djan">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://static.djangoproject.com/img/logos/django-logo-negative.1d528e2cb5fb.png">
 <meta property="article:published_time" content="2023-01-05T03:02:07.000Z">
-<meta property="article:modified_time" content="2023-01-05T03:05:09.887Z">
+<meta property="article:modified_time" content="2023-01-05T07:01:45.765Z">
 <meta property="article:author" content="小周">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary_large_image">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.1k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          17 分钟
+          18 分钟
         
       </span>
     
@@ -378,8 +378,7 @@ Maven、数据结构、JVM、JavaScript、Crontab、Shell、Ubuntu、VPN、NodeJ
 Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美学、写作、哲学、文档、绘画、前端、
 历史、政治、社会、导购
  -->
-<p>数据模型创建后，Django会自动给予一套数据库抽象API，允许增删改查对象。</p>
-<p>思考：目前官方的文档都是在命令行模式中举例，难道不能在代码中编写SQL吗？</p>
+<p>数据模型创建后，Django会自动给予一套数据库抽象API，允许增删改查对象。在Django实际代码中，这些应该都是写在<code>views.py</code>内的。</p>
 <p>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.1/topics/db/queries/">https://docs.djangoproject.com/zh-hans/4.1/topics/db/queries/</a></p>
 <h2 id="导入模型"><a class="markdownIt-Anchor" href="#导入模型"></a> 导入模型</h2>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">from</span> polls.models <span class="hljs-keyword">import</span> Choice, Question<br><span class="hljs-keyword">from</span> django.utils <span class="hljs-keyword">import</span> timezone<br></code></pre></td></tr></table></figure>
@@ -405,6 +404,8 @@ Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp">Choice.objects.filter(question__pub_date__year=current_year)<br><span class="hljs-meta"># 等价于</span><br><span class="hljs-keyword">select</span> choice_text <span class="hljs-keyword">from</span> polls_choice <span class="hljs-keyword">as</span> c <span class="hljs-keyword">join</span> polls_question <span class="hljs-keyword">as</span> q <span class="hljs-keyword">on</span> c.question_id=q.<span class="hljs-function">id <span class="hljs-keyword">where</span> <span class="hljs-title">year</span>(<span class="hljs-params">q.pub_date</span>)</span> =(<span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">year</span>(<span class="hljs-params">curdate(</span>)))</span>;<br></code></pre></td></tr></table></figure>
 <h2 id="模糊查询并删除记录"><a class="markdownIt-Anchor" href="#模糊查询并删除记录"></a> 模糊查询并删除记录</h2>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">q.choice_set.<span class="hljs-keyword">filter</span>(choice_text__startswith=<span class="hljs-string">&#x27;Just hacking&#x27;</span>).<span class="hljs-keyword">delete</span>()<br># 等价于<br><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> polls_choice <span class="hljs-keyword">where</span> choice_text <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;Just hacking%&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="查询并排序"><a class="markdownIt-Anchor" href="#查询并排序"></a> 查询并排序</h2>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-meta"># 这里的-我没明白什么意思[TODO]</span><br>Question.objects.order_by(<span class="hljs-string">&#x27;-pub_date&#x27;</span>)<br><span class="hljs-meta"># 等价于</span><br><span class="hljs-keyword">select</span> question_text <span class="hljs-keyword">from</span> polls_question <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> pub_date;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -503,6 +504,12 @@ Life、树莓派、Git、Hexo、算法、运维、网络、看法、电影、美
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/post/4fe077c6.html" title="vediotest">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vediotest</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
