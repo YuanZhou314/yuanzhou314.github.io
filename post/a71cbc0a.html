@@ -19,7 +19,7 @@
     <meta name="description" content="&#x2F;dev目录 &#x2F;dev目录挂载了linux的所有外部设备，dev意为device，是linux访问外部设备的端口，但没有入口，只能通过挂载的方式访问，在任意一台正常使用的服务器上，&#x2F;dev下面的文件是很多的，因为linux遵循unix万物皆文件的风格。常见的设备有：  &#x2F;dev&#x2F;hd[a-t]：IDE设备，硬盘 &#x2F;dev&#x2F;sd[a-z]：SCSI设备 &#x2F;dev&#x2F;ram[0-15]内存 ………">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux探秘————&#x2F;dev&#x2F;null与&#x2F;dev&#x2F;zero">
-<meta property="og:url" content="https://zhouyinglin.cn/post/a71cbc0a.html">
+<meta property="og:url" content="https://zhouyinglin.top/post/a71cbc0a.html">
 <meta property="og:site_name" content="小周的院子">
 <meta property="og:description" content="&#x2F;dev目录 &#x2F;dev目录挂载了linux的所有外部设备，dev意为device，是linux访问外部设备的端口，但没有入口，只能通过挂载的方式访问，在任意一台正常使用的服务器上，&#x2F;dev下面的文件是很多的，因为linux遵循unix万物皆文件的风格。常见的设备有：  &#x2F;dev&#x2F;hd[a-t]：IDE设备，硬盘 &#x2F;dev&#x2F;sd[a-z]：SCSI设备 &#x2F;dev&#x2F;ram[0-15]内存 ………">
 <meta property="og:locale" content="zh_CN">
@@ -77,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"zhouyinglin.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"DOFm5rBfeIBUxN13vhiXlS4S-MdYXbMMI","app_key":"FJKOtk5nWqYzGoXXiFAvHIDC","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"zhouyinglin.top","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"DOFm5rBfeIBUxN13vhiXlS4S-MdYXbMMI","app_key":"FJKOtk5nWqYzGoXXiFAvHIDC","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -438,7 +438,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Linux探秘————/dev/null与/dev/zero</div>
-      <div>https://zhouyinglin.cn/post/a71cbc0a.html</div>
+      <div>https://zhouyinglin.top/post/a71cbc0a.html</div>
     </div>
     <div class="license-meta">
       

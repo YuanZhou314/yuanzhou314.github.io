@@ -19,7 +19,7 @@
     <meta name="description" content="存储引擎将数据存储在磁盘中，查询数据时会选择合适的执行计划将数据查询，执行计划的选择取决于SQL语句执行的成本。而当我们在讨论查询的成本时，一般有两部分：  I&#x2F;O成本：查询时需要将磁盘上的数据加载到内存中。这个过程损耗的时间即I&#x2F;O成本 CPU成本：读取记录、检测记录是否满足搜索条件、排序等操作的时间为CPU成本  在操作系统中，I&#x2F;O和CPU因为效率的不同，计算成本的单位也不一样。MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL单表查询的成本">
-<meta property="og:url" content="https://zhouyinglin.cn/post/8647cf5f.html">
+<meta property="og:url" content="https://zhouyinglin.top/post/8647cf5f.html">
 <meta property="og:site_name" content="小周的院子">
 <meta property="og:description" content="存储引擎将数据存储在磁盘中，查询数据时会选择合适的执行计划将数据查询，执行计划的选择取决于SQL语句执行的成本。而当我们在讨论查询的成本时，一般有两部分：  I&#x2F;O成本：查询时需要将磁盘上的数据加载到内存中。这个过程损耗的时间即I&#x2F;O成本 CPU成本：读取记录、检测记录是否满足搜索条件、排序等操作的时间为CPU成本  在操作系统中，I&#x2F;O和CPU因为效率的不同，计算成本的单位也不一样。MySQL">
 <meta property="og:locale" content="zh_CN">
@@ -77,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"zhouyinglin.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"DOFm5rBfeIBUxN13vhiXlS4S-MdYXbMMI","app_key":"FJKOtk5nWqYzGoXXiFAvHIDC","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"zhouyinglin.top","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"DOFm5rBfeIBUxN13vhiXlS4S-MdYXbMMI","app_key":"FJKOtk5nWqYzGoXXiFAvHIDC","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -478,7 +478,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>MySQL单表查询的成本</div>
-      <div>https://zhouyinglin.cn/post/8647cf5f.html</div>
+      <div>https://zhouyinglin.top/post/8647cf5f.html</div>
     </div>
     <div class="license-meta">
       

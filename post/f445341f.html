@@ -19,7 +19,7 @@
     <meta name="description" content="本文参照Waline官方文档，当网站有用户发布评论或者用户回复评论时，Waline支持对博主和回复评论作者进行通知。通知方式包括QQ、微信、邮件等。  推送配置 我最开始是想走邮件的，但由于即时性不高就放弃了，转为用微信。对于配置微信通知，Waline官网指引去Server酱提供的推送服务。  回到Waline官网的要求，可以发现SC_KEY是能在Server酱上找到的，其他三个都是自定义的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo-Fluid利用Waline实现微信&#x2F;PushDeer评论推送">
-<meta property="og:url" content="https://zhouyinglin.cn/post/f445341f.html">
+<meta property="og:url" content="https://zhouyinglin.top/post/f445341f.html">
 <meta property="og:site_name" content="小周的院子">
 <meta property="og:description" content="本文参照Waline官方文档，当网站有用户发布评论或者用户回复评论时，Waline支持对博主和回复评论作者进行通知。通知方式包括QQ、微信、邮件等。  推送配置 我最开始是想走邮件的，但由于即时性不高就放弃了，转为用微信。对于配置微信通知，Waline官网指引去Server酱提供的推送服务。  回到Waline官网的要求，可以发现SC_KEY是能在Server酱上找到的，其他三个都是自定义的">
 <meta property="og:locale" content="zh_CN">
@@ -78,7 +78,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"zhouyinglin.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"DOFm5rBfeIBUxN13vhiXlS4S-MdYXbMMI","app_key":"FJKOtk5nWqYzGoXXiFAvHIDC","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"zhouyinglin.top","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"DOFm5rBfeIBUxN13vhiXlS4S-MdYXbMMI","app_key":"FJKOtk5nWqYzGoXXiFAvHIDC","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -405,7 +405,7 @@ Life、树莓派、Git、Hexo
 </tr>
 <tr>
 <td><code>SITE_URL</code></td>
-<td>网站地址，如：<a href="https://zhouyinglin.cn">https://zhouyinglin.cn</a>  最后不加/</td>
+<td>网站地址，如：<a target="_blank" rel="noopener" href="https://zhouyinglin.cn">https://zhouyinglin.cn</a>  最后不加/</td>
 </tr>
 </tbody>
 </table>
@@ -413,7 +413,7 @@ Life、树莓派、Git、Hexo
 <p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810225550230.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>填写后重新部署一遍。</p>
 <p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810225723023.png" srcset="/img/loading.gif" lazyload alt></p>
-<p>重新部署后Server_URL会改变，所以需要修改一下Fluid主题配置文件中配置Server_URL的两个地方，我的另一篇<a href="https://zhouyinglin.cn/2022/08/10/Hexo-Fluid-%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0-Waline-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/#HTML-%E5%BC%95%E5%85%A5-%E5%AE%A2%E6%88%B7%E7%AB%AF">文章</a>有提到修改位置，修改配置文件后重新部署到Github。</p>
+<p>重新部署后Server_URL会改变，所以需要修改一下Fluid主题配置文件中配置Server_URL的两个地方，我的另一篇<a target="_blank" rel="noopener" href="https://zhouyinglin.cn/2022/08/10/Hexo-Fluid-%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0-Waline-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/#HTML-%E5%BC%95%E5%85%A5-%E5%AE%A2%E6%88%B7%E7%AB%AF">文章</a>有提到修改位置，修改配置文件后重新部署到Github。</p>
 <h4 id="server酱推送"><a class="markdownIt-Anchor" href="#server酱推送"></a> Server酱推送</h4>
 <p>然后来看推送服务这边。由于登录Server酱的时候扫码关注了公众号，所以这里我们可以直接点保存&gt;发送测试</p>
 <p><img src="https://blog-cnd-1307088890.cos.ap-guangzhou.myqcloud.com/image-20220810230352735.png" srcset="/img/loading.gif" lazyload alt></p>
@@ -477,7 +477,7 @@ Life、树莓派、Git、Hexo
   <div class="license-box my-3">
     <div class="license-title">
       <div>Hexo-Fluid利用Waline实现微信/PushDeer评论推送</div>
-      <div>https://zhouyinglin.cn/post/f445341f.html</div>
+      <div>https://zhouyinglin.top/post/f445341f.html</div>
     </div>
     <div class="license-meta">
       

@@ -19,7 +19,7 @@
     <meta name="description" content="前置概念：   磁盘预读：内存跟磁盘在发生数据交互的时候，一般情况下有一个最小的逻辑单元，即&quot;页&quot;&#x2F;“datapage”，页一般由操作系统决定是多大，一般是4k或8k。而进行数据交互的时候，可以取页的整数倍来读取。如innodb引擎每次读取数据都是16k   B+树    每个关键字对应一棵子树 每个结点关键字个数n的范围是[m&#x2F;2]&lt;&#x3D;n&lt;&#x3D;m 叶节点是包含信息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySql索引基本原理">
-<meta property="og:url" content="https://zhouyinglin.cn/post/2ab2ff87.html">
+<meta property="og:url" content="https://zhouyinglin.top/post/2ab2ff87.html">
 <meta property="og:site_name" content="小周的院子">
 <meta property="og:description" content="前置概念：   磁盘预读：内存跟磁盘在发生数据交互的时候，一般情况下有一个最小的逻辑单元，即&quot;页&quot;&#x2F;“datapage”，页一般由操作系统决定是多大，一般是4k或8k。而进行数据交互的时候，可以取页的整数倍来读取。如innodb引擎每次读取数据都是16k   B+树    每个关键字对应一棵子树 每个结点关键字个数n的范围是[m&#x2F;2]&lt;&#x3D;n&lt;&#x3D;m 叶节点是包含信息">
 <meta property="og:locale" content="zh_CN">
@@ -77,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"zhouyinglin.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"DOFm5rBfeIBUxN13vhiXlS4S-MdYXbMMI","app_key":"FJKOtk5nWqYzGoXXiFAvHIDC","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"zhouyinglin.top","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"DOFm5rBfeIBUxN13vhiXlS4S-MdYXbMMI","app_key":"FJKOtk5nWqYzGoXXiFAvHIDC","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -593,7 +593,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>MySql索引基本原理</div>
-      <div>https://zhouyinglin.cn/post/2ab2ff87.html</div>
+      <div>https://zhouyinglin.top/post/2ab2ff87.html</div>
     </div>
     <div class="license-meta">
       
